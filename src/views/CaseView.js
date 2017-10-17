@@ -1,0 +1,14 @@
+import React, { Component } from "react";
+import SideNav from "../components/SideNav";
+import CaseList from "../components/CaseList";
+
+export default class CaseView extends Component {
+  render() {
+    return (
+      <div className="CaseView">
+        <SideNav />
+        <CaseList />
+      </div>
+    );
+  }
+}
