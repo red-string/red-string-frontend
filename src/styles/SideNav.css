@@ -1,0 +1,44 @@
+.sideNav {
+    width: 200px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #e6e6e6;
+    border-right: 1px solid #808080;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+.navHeader {
+    font-size: 28px;
+    font-family: 'Roboto', sans-serif;
+    color: #5f5f5f;
+    margin-bottom: 5px;
+}
+
+.addItemBtn {
+    border: 1px solid black;
+    background: transparent;
+}
+
+.itemList li {
+    list-style: none;
+}
+
+.itemList a {
+    color: #aaaaaa;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.itemList a:hover {
+    transition: .2s;
+    color: #808080;
+}
+  
+  
+  
