@@ -8,18 +8,21 @@ class NewFileForm extends Component {
   this.state = {
     file_name: "",
     file: "",
-    file_desc: ""
+    file_desc: "",
+    file_dateModified: ""
   }
 }
 
 handleFiles = (files) => {
-  console.log(files)
-  console.log(files[0])
-  console.log(files[0].name, files[0].lastModifiedDate)
+  this.setState({
+    file_name: files[0].name,
+    file_dateModified: files[0].lastModifiedDate
+  })
 }
 
 
   render() {
+    console.log(this.state)
     return (
       <div className="newFile">
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
