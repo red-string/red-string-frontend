@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import ReactFileReader from "react-file-reader";
+import axios from "axios"
 
 class NewFileForm extends Component {
   constructor(props) {
@@ -13,21 +14,41 @@ class NewFileForm extends Component {
   }
 }
 
-handleFiles = (files) => {
+setFileState = (files) => {
+  let file = files[0]
   this.setState({
-    file_name: files[0].name,
-    file_dateModified: files[0].lastModifiedDate
+    file: file,
+    file_name: file.name,
+    file_dateModified: file.lastModifiedDate
   })
+  this.readFiles(file);
+}
+
+readFiles = (file) => {
+  console.log('yayyyyy', file)
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let text = reader.result;
+    console.log('done reading!');
+
+  }
+  reader.readAsText(file)
+  axios.post('/case/files/new', file)
 }
 
 
+
+
+
   render() {
-    console.log(this.state)
+    console.log('woo', this.state)
+    let instruction = this.state.file_name ? 'You have selected this file for upload: ' + this.state.file_name : 'Select a file for upload';
     return (
       <div className="newFile">
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
+        <p>{instruction}</p>
         <ReactFileReader
-          handleFiles={this.handleFiles} fileTypes='.docx'>
+          handleFiles={this.setFileState} fileTypes='.docx'>
           <button className='btn'>Upload</button>
         </ReactFileReader>
 
