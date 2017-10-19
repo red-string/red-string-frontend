@@ -8,6 +8,7 @@ export default class CaseView extends Component {
       <div className="CaseView">
         <SideNav />
         <CaseList />
+        <NewCaseForm />
       </div>
     );
   }
