@@ -29,7 +29,7 @@ class NewFileForm extends Component {
     let description = this.state.file_desc;
     let dateModified = this.state.file_dateModified;
     console.log('yo, submitting ', file, name, description, dateModified)
-    this.sendFile()
+    this.sendFile(file, name, description, dateModified)
   }
 
   setFileState = files => {
@@ -47,6 +47,7 @@ class NewFileForm extends Component {
   sendFile = (file, name, description, dateModified) => {
     let data = new FormData();
     data.append("file", file);
+    console.log(file, name, description, dateModified)
     data.append("file_name", name);
     data.append("file_description", description);
     data.append("file_dateModified", dateModified)
