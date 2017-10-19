@@ -96,7 +96,7 @@ export default class SideNav extends Component {
         <div className="sideNav">
 			<SideNavHeader />
 			<NewItemButton />
-			<ItemList data={tags} />
+			<ItemList data={files} />
         </div>
       );
     }
