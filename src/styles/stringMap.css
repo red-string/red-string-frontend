@@ -1,3 +1,22 @@
 .stringMap {
     float: right;
 }
+
+.nodePulse {
+    animation: nodePulse 3s infinite ease-out;
+}
+
+@keyframes nodePulse {
+    0%{
+        stroke-width: 1px;
+        stroke-opacity: 1;
+    }
+    90% {
+        stroke-width: 6px;
+        stroke-opacity: .2
+    }
+    100% {
+        stroke-width: 1px;
+        stroke-opacity: .5;
+    }
+}

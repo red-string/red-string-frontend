@@ -30,7 +30,7 @@ const files = [
 const tags = [
 	{
 		tag_id: 1,
-		file_id: [1, 2],
+		file_id: [1, 4],
 		tag_name: "Tag 1"
 	},
 	{
@@ -40,17 +40,17 @@ const tags = [
 	},
 	{
 		tag_id: 3,
-		file_id: [1, 3],
+		file_id: [1, 4],
 		tag_name: "Tag 3"
 	},
 	{
 		tag_id: 4,
-		file_id: [1, 3],
+		file_id: [1, 2],
 		tag_name: "Tag 4"
 	},
 	{
 		tag_id: 5,
-		file_id: [ 2, 3],
+		file_id: [2, 4],
 		tag_name: "Tag 5"
 	},
 	{
@@ -60,17 +60,17 @@ const tags = [
 	},
 	{
 		tag_id: 7,
-		file_id: [2, 3],
+		file_id: [3],
 		tag_name: "Tag 7"
 	},
 	{
 		tag_id: 8,
-		file_id: [2, 3],
+		file_id: [1, 4],
 		tag_name: "Tag 8"
 	},
 	{
 		tag_id: 9,
-		file_id: [1, 3],
+		file_id: [2, 3],
 		tag_name: "Tag 9"
 	},
 	{
@@ -96,7 +96,7 @@ export default class SideNav extends Component {
         <div className="sideNav">
 			<SideNavHeader />
 			<NewItemButton />
-			<ItemList data={tags} />
+			<ItemList data={files} />
         </div>
       );
     }

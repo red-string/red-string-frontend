@@ -21,7 +21,7 @@ export default class StringMap extends Component {
         return props.tags.map((tag)=>{
            return tag.file_id.map((id)=>{
                 return (
-                    <ForceGraphLink link={{ source: "File " + id, target: tag.tag_name }} stroke="red" />
+                    <ForceGraphLink link={{ source: "File " + id, target: tag.tag_name }} stroke="red"/>
             )})
         })
     }
@@ -35,7 +35,7 @@ export default class StringMap extends Component {
             simulationOptions={{
                 height: 800,
                 width: 1000,
-                animate: true,
+                animate: false,
                 strength: {
                     charge: -4000
                 }
