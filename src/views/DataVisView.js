@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StringMap from "../components/StringMap"
+import "../styles/FileView.css"
 import "../styles/stringMap.css"
 
 const files = [

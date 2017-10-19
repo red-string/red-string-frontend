@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../styles/FileView.css"
 import ReactFileReader from "react-file-reader";
 import axios from "axios";
 
@@ -45,7 +46,7 @@ class NewFileForm extends Component {
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
         <p>{instruction}</p>
         <ReactFileReader handleFiles={this._setFileState} fileTypes=".docx">
-          <button className="btn">Upload</button>
+          <button className="uploadBtn">Upload</button>
         </ReactFileReader>
       </div>
     );
