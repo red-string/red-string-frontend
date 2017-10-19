@@ -24,8 +24,12 @@ class NewFileForm extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log('yo, submitting ', this.state)
-    // this.sendFile(file, name)
+    let file = this.state.file;
+    let name = this.state.file_name;
+    let description = this.state.file_desc;
+    let dateModified = this.state.file_dateModified;
+    console.log('yo, submitting ', file, name, description, dateModified)
+    this.sendFile(file, name, description, dateModified)
   }
 
   setFileState = files => {
@@ -40,11 +44,13 @@ class NewFileForm extends Component {
     console.log("woo, I am setting ", this.state, " in state");
   };
 
-  sendFile = (file, name) => {
+  sendFile = (file, name, description, dateModified) => {
     let data = new FormData();
     data.append("file", file);
-    data.append("name", name);
-    data.append("description", "this is the file description I'm typing to test this")
+    console.log(file, name, description, dateModified)
+    data.append("file_name", name);
+    data.append("file_description", description);
+    data.append("file_dateModified", dateModified)
     console.log("this is the file I am sending", data);
     axios.post("/case/files/new", data).then(response => console.log(response));
   };
@@ -64,32 +70,31 @@ class NewFileForm extends Component {
       : "Select a file for upload";
     return (
       <div className="newFile">
+          <form>
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
-        <p>{instruction}</p>
-        <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
-          Upload
-        </ReactFileReader>
-        <input
-          type="text"
-          name="file_desc"
-          placeholder="Add description"
-          onChange={this.handleChange}
-          value={this.state.value}
-        />
-        <input
-          type="text"
-          name="file_name"
-          placeholder="Add file name"
-          onChange={this.handleChange}
-          value={this.state.value}
-        />
-        {/* <form action="/cases/files/new" method="POST"> */}
-        <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
-          <button className="btn">Upload</button>
-        </ReactFileReader>
+            <p>{instruction}</p>
+            <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
+              Upload
+            </ReactFileReader>
+            <input
+              type="text"
+              name="file_desc"
+              placeholder="Add description"
+              onChange={this.handleChange}
+              value={this.state.value}
+            />
+            <input
+              type="text"
+              name="file_name"
+              placeholder="Add file name"
+              onChange={this.handleChange}
+              value={this.state.value}
+            />
 
-        {/* </form> */}
-      </div>
+            <button onClick={this.handleSubmit}>Submit</button>
+
+          </form>
+        </div>
     );
   }
 }
