@@ -60,14 +60,8 @@ class NewFileForm extends Component {
       <div className="newFile">
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
         <p>{instruction}</p>
-<<<<<<< HEAD
-        <ReactFileReader handleFiles={this._setFileState} fileTypes=".docx">
-          <button className="uploadBtn">Upload</button>
-=======
-        {/* <form action="/cases/files/new" method="POST"> */}
         <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
-          <button className="btn">Upload</button>
->>>>>>> 0e5e383f0f23ad1284976bfba0090df23d60e3ff
+          Upload
         </ReactFileReader>
         <input
           type="text"
