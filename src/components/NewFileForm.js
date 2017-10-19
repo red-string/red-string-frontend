@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactFileReader from "react-file-reader";
-import axios from "axios"
+import axios from "axios";
 
 class NewFileForm extends Component {
   constructor(props) {
@@ -14,6 +14,13 @@ class NewFileForm extends Component {
   }
 }
 
+handleChange = (evt) => {
+  let inputName = evt.target.name;
+  this.setState({
+    [inputName] : evt.target.value
+  })
+}
+
 setFileState = (files) => {
   let file = files[0]
   this.setState({
@@ -22,18 +29,30 @@ setFileState = (files) => {
     file_dateModified: file.lastModifiedDate
   })
   this.readFiles(file);
+  console.log('woo')
 }
 
-readFiles = (file) => {
-  console.log('yayyyyy', file)
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    let text = reader.result;
-    console.log('done reading!');
+// reader.onload = function(event) {
+//     var contents = event.target.result;
+//     console.log("File contents: " + contents);
+// };
+//
+// reader.onerror = function(event) {
+//     console.error("File could not be read! Code " + event.target.error.code);
+// };
+//
+// reader.readAsText(file);
 
-  }
-  reader.readAsText(file)
-  axios.post('/case/files/new', file)
+readFiles = (file) => {
+  axios.post('/case/file/new', file)
+  // const reader = new FileReader();
+  // reader.onload = function(e) {
+  //   let text = reader.result;
+  //   axios.post('/case/files/new', text)
+  // }
+  // reader.readAsText(file)
+  //handle axios request in submit event handler?
+
 }
 
 
@@ -47,11 +66,13 @@ readFiles = (file) => {
       <div className="newFile">
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
         <p>{instruction}</p>
+        {/* <form action="/cases/files/new" method="POST"> */}
         <ReactFileReader
           handleFiles={this.setFileState} fileTypes='.docx'>
           <button className='btn'>Upload</button>
         </ReactFileReader>
-
+        <input type="text" name="file_desc" placeholder="Add description" onChange={this.handleChange} value={this.state.value}/>
+      {/* </form> */}
       </div>
     );
   }
