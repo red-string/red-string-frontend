@@ -6,3 +6,43 @@
   display: flex;
   flex-direction: column;
 }
+
+.newFileForm {
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.newFile {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 14em;
+  padding: 1em 5em 3em 5em;
+  border: 1px solid #afafaf;
+  background-color: #f3f3f3;
+}
+
+/* this class is created in html by the rfr component */
+/* that's why it doesnt show up in our written components */
+.react-file-reader {
+  background: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 3px;
+  padding: .35em .75em;
+  transition: .5s;
+}
+
+.react-file-reader:hover {
+  border: 1px solid #f73939;
+  transition: .3s;
+}
+
+.react-file-reader:active {
+  border: 1px solid #f73939;
+  background: rgba(246, 59, 59, 0.1);
+}

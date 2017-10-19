@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/FileView.css"
+import "../styles/NewFileForm.css"
 import ReactFileReader from "react-file-reader";
 import axios from "axios";
 
