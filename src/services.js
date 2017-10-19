@@ -17,7 +17,7 @@ export function getAllTagsFromFile(fileId){
 }
 
 export function getCaseById(caseId){
-  axios.get("/case/" + caseId.toString() ).then( res => {
+  axios.get("/case/" + caseId.toString()).then( res => {
     
   })
 }
