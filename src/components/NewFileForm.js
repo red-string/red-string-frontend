@@ -57,7 +57,7 @@ sendFile = (file, name) => {
 
 
   render() {
-    console.log("woo", this.state);
+    console.log("updated state", this.state);
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";
