@@ -35,7 +35,7 @@ export default class StringMap extends Component {
             simulationOptions={{
                 height: 800,
                 width: 1000,
-                animate: true,
+                animate: false,
                 strength: {
                     charge: -4000
                 }

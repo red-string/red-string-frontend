@@ -43,7 +43,7 @@ const tags = [
 	},
 	{
 		tag_id: 4,
-		file_id: [1, 3],
+		file_id: [2, 3],
 		tag_name: "Tag 4"
 	},
 	{
@@ -53,22 +53,22 @@ const tags = [
 	},
 	{
 		tag_id: 6,
-		file_id: [3, 4],
+		file_id: [1, 4],
 		tag_name: "Tag 6"
 	},
 	{
 		tag_id: 7,
-		file_id: [2, 3],
+		file_id: [1, 3],
 		tag_name: "Tag 7"
 	},
 	{
 		tag_id: 8,
-		file_id: [2, 3],
+		file_id: [2, 4],
 		tag_name: "Tag 8"
 	},
 	{
 		tag_id: 9,
-		file_id: [1, 3],
+		file_id: [1, 2],
 		tag_name: "Tag 9"
 	},
 	{
