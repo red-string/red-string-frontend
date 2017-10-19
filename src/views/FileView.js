@@ -7,8 +7,8 @@ export default class FileView extends Component {
   render() {
     return (
       <div className="newFileForm">
-        {<NewFileForm />}
-        <NewCaseForm />
+        <NewFileForm />
+        
       </div>
     )
   }
