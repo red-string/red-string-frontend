@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "../../styles/SideNav.css"
 
 const NewItemButton = (props) => {
     return (
-        <div className="addItemBtn">Add String</div>
+        <button className="addItemBtn">Add String</button>
     )
 }
 
