@@ -25,14 +25,17 @@ class NewFileForm extends Component {
   };
 
   _readFiles = file => {
-    console.log("yayyyyy", file);
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      let text = reader.result;
-      console.log("done reading!");
+    // console.log("yayyyyy", file);
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //   let text = reader.result;
+    //   console.log("done reading!");
+    // };
+    // reader.readAsText(file);
+    const passFile = {
+      file
     };
-    reader.readAsText(file);
-    axios.post("/case/files/new", file);
+    axios.post("/case/files/new", passFile);
   };
 
   render() {
