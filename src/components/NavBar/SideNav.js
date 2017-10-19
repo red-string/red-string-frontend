@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import SideNavHeader from "./SideNavHeader"
-import NewItemButton from "./NewItemButton"
-import ItemList from "./ItemList"
+import SideNavHeader from "./SideNavHeader";
+import NewItemButton from "./NewItemButton";
+import ItemList from "./ItemList";
+import axios from "axios";
 import "../../styles/SideNav.css"
 
 const files = [
@@ -91,6 +92,13 @@ const tags = [
 ];
 
 export default class SideNav extends Component {
+	// this.state={
+	// 	caseId: ""
+	// }
+
+	componentDidMount(){
+		axios.get("/case/:id")
+	}
     render() {
       return (
         <div className="sideNav">
