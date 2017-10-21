@@ -1,10 +1,15 @@
 import React from "react";
 
-export default function CaseItem(props) {
+const CaseItem = (props) => {
+
   return (
     <li className="CaseItem">
-      <h2>{props.case_name}</h2>
-      <p>{props.case_description}</p>
+      <button onClick={props._openCase} id={props.id}>
+        <h2>{props.name}</h2>
+        <p>{props.desc}</p>
+      </button>
     </li>
   );
 }
+
+export default CaseItem
