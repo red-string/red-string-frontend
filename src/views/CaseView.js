@@ -32,16 +32,15 @@ export default class CaseView extends Component {
   // Helper Functions
   //////////////////////
 
-  _openCase = (evt) => {
-    
-    // getAllFilesFromCase(evt).then(files => {
-    //   this.setState({
-    //     activeCase: "place",
-    //     caseFiles: files
-    //   })
-    // })
+  _openCase = (evt, case_id) => {
+    console.log(case_id);
+    getAllFilesFromCase(case_id).then(files => {
+      this.setState({
+        activeCase: case_id,
+        caseFiles: files
+      })
+    })
   }
-
 
   render() {
     return (
