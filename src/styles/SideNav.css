@@ -1,9 +1,6 @@
 .sideNav {
     width: 200px;
     height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
     background-color: #e6e6e6;
     border-right: 1px solid #808080;
     display: flex;

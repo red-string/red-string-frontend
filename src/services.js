@@ -1,12 +1,14 @@
+import axios from "axios";
+
 export function getAllCases(){
-  axios.get("/case").then((res)=>{
-      return "yeah"
+  return axios.get("/case").then((res)=>{
+     return res.data
   })
 }
 
 export function getAllFilesFromCase(caseId){
   axios.get("/case/files").then( res => {
-
+    return res.data
   })
 }
 

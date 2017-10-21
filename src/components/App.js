@@ -6,9 +6,17 @@ import FileView from "../views/FileView";
 import StringMap from "../components/StringMap";
 import SideNav from "../components/NavBar/SideNav"
 import { Switch, Route } from "react-router-dom";
+import {
+  getAllCases,
+  getAllFilesFromCase,
+  getAllTagsFromFile
+} from "../services.js";
 import "../styles/App.css";
 
 class App extends Component {
+  
+  
+
   render() {
     return (
       <div className="App">
