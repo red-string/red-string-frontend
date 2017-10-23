@@ -7,7 +7,7 @@ export function getAllCases(){
 }
 
 export function getAllFilesFromCase(caseId){
-  axios.get("/case/files").then( res => {
+  return axios.get("/case/" + caseId.toString()).then( res => {
     return res.data
   })
 }

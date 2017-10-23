@@ -26,6 +26,17 @@
     margin-bottom: 1.5em;
 }
 
+.CaseItem>button {
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    padding: 1em 1em 2em 1em;
+}
+
+.CaseItem>button:hover {
+    background-color: rgb(220, 220, 220);
+}
+
 .CaseItem h2 {
     font-size: 1.25em;
     color: #5f5f5f;
