@@ -6,24 +6,22 @@ export default class StringMap extends Component {
 
     createFileNodes = (props) => {
         return props.files.map((file)=> {
-            return <ForceGraphNode showLabel key={file.file_name + "fkey"} node={{ id: file.file_name, data: file.file_name }} fill="white" stroke="black" r="25" />
+            return <ForceGraphNode showLabel key={file.file_d3} node={{ id: file.file_d3, data: file.file_name }} fill="white" stroke="black" r="35" />
         })
     }
 
     createTagNodes = (props) => {
         return props.tags.map((tag)=>{
-            return <ForceGraphNode showLabel key={tag.tag_name + "tkey"} node={{ id: tag.tag_name, data: tag.tag_name }} fill="white" stroke="black" r="25" />
+            return <ForceGraphNode showLabel key={tag.file_d3} node={{ id: tag.tag_d3, data: tag.tag_name }} fill="white" stroke="black" r="25" />
         })
     }
 
     createLinks = (props) => {
         console.log(props);
         return props.tags.map((tag)=>{
-           return tag.file_id.map((id)=>{
                 return (
-                    <ForceGraphLink link={{ source: "File " + id, target: tag.tag_name }} stroke="red"/>
-            )})
-        })
+                    <ForceGraphLink link={{ source: "f" + tag.file_id, target: tag.tag_d3 }} stroke="red"/>
+        )})
     }
 
     render() {
