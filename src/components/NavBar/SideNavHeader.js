@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const SideNavHeader = (props) => {
     return (
-        <p className="navHeader">FILES</p>
+        <button className="navHeader" onClick={props._toggleHeader} >{props.text}</button>
     )
 }
 

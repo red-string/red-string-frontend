@@ -1,10 +1,18 @@
-.CaseView {
+.ViewCont {
     width: 100%;
-    height: 80vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.caseDisplay {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
 .CaseList {
@@ -12,7 +20,25 @@
     border-bottom: 1px solid #808080;
     padding: 2em;
     width: 55%;
+    height: 75%;
+    overflow-y: scroll;
 }
+
+.CaseList::-webkit-scrollbar {
+    background-color: #e6e6e6;
+    border-radius: 0;
+    width: .25em;
+}
+
+.CaseList::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 0;
+}
+
+.CaseList::-webkit-scrollbar-track {
+    background-color: #e6e6e6;
+}
+
 .CaseList ul {
     list-style: none;
     display: flex;
@@ -24,6 +50,18 @@
 .CaseItem {
     width: 45%;
     margin-bottom: 1.5em;
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    padding: 1em 1em 2em 1em;
+}
+
+.CaseItem a {
+    text-decoration: none;
+}
+
+.CaseItem:hover {
+    background-color: rgb(220, 220, 220);
 }
 
 .CaseItem h2 {

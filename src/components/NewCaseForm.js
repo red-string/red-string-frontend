@@ -33,6 +33,7 @@ export default class NewCaseForm extends Component {
             case_name: "",
             case_description: ""
         });
+        this.props._toggleForm();
     }
 
     render(){
@@ -40,7 +41,7 @@ export default class NewCaseForm extends Component {
             <div className="newCaseForm">
                 <input name="case_name" onChange={this.handleChange}  placeholder="Name Of Case" />
                 <input name="case_description" onChange={this.handleChange} placeholder="Brief Description" />
-                <button onClick={this.handleSubmit}>Create New Case</button>
+                <button onClick={this.handleSubmit}>Create New Case</button><button onClick={this.props._toggleForm}>Cancel</button>
             </div>
         )
     }

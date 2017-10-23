@@ -9,44 +9,34 @@ import {
 } from "../services.js";
 
 export default class CaseView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      cases: [],
-      activeCase: ""
+      displayForm: false
     };
-  }
-  componentWillMount() {
-    getAllCases().then(cases => {
-      this.setState({
-        cases: cases
-      });
-    });
-  }
-  componentDidUpdate() {
-    console.log(this.state);
   }
 
   ///////////////////////
   // Helper Functions
   //////////////////////
 
-  _openCase = evt => {
-    // getAllFilesFromCase(evt).then(files => {
-    //   this.setState({
-    //     activeCase: "place",
-    //     caseFiles: files
-    //   })
-    // })
+  _toggleForm = () => {
+    this.setState(prevState => {
+      return { displayForm: !prevState.displayForm };
+    });
   };
 
   render() {
     return (
-      <div className="CaseView">
-        {this.state.cases ? (
-          <CaseList cases={this.state.cases} _openCase={this._openCase} />
+      <div className="caseDisplay">
+        {this.state.displayForm ? (
+          <NewCaseForm _toggleForm={this._toggleForm} />
         ) : (
-          <NewCaseForm />
+          <CaseList
+            cases={this.props.appState.cases}
+            _openCase={this.props._openCase}
+            _toggleForm={this._toggleForm}
+          />
         )}
       </div>
     );
