@@ -1,16 +1,32 @@
-.NewCaseForm {
-    margin-left: 300px;
-  }
-  
-  .NewCaseForm form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .newCaseForm {
-    height: 100vh;
+.newCaseForm {
+    background-color: #e6e6e6;
+    border-bottom: 1px solid #808080;
+    padding: 2em;
+    width: 55%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-  }
+}
+
+.newCaseForm input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #808080;
+  padding: .2em .4em;
+  width: 60%;
+  margin-bottom: .3em;
+}
+
+.newCaseForm button {
+  text-align: left;
+  border: none;
+  background-color: rgb(220, 220, 220);
+  padding: .5em .5em .5em .5em;
+  display: inline;
+}
+.newCaseForm>button:hover {
+  background-color: rgb(202, 201, 201);
+}
+
+

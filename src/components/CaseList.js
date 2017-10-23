@@ -7,7 +7,9 @@ import {
 } from "../services.js";
 import "../styles/CaseView.css"
 
+
 const CaseList = (props)=>{
+  console.log("CL" , this.props);
     
     return (
       <div className="CaseList">
@@ -22,6 +24,7 @@ const CaseList = (props)=>{
                     />;
           })}
         </ul>
+        <button onClick={props._toggleForm}>New Case</button>
       </div>
     );
   }

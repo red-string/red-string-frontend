@@ -14,10 +14,40 @@ import {
 import "../styles/App.css";
 
 class App extends Component {
-  
-  
+  constructor(){
+    super();
+    this.state = {
+      cases: [],
+      activeCase: "",
+      caseFiles: []
+    }
+  }
+
+  componentWillMount(){
+    console.log("trying");
+    getAllCases().then(cases => {
+      this.setState({
+        cases: cases
+      })
+    })
+  }
+
+  ///////////////////////
+  // Helper Functions
+  //////////////////////
+
+  _openCase = (evt, case_id) => {
+    console.log(case_id);
+    getAllFilesFromCase(case_id).then(files => {
+      this.setState({
+        activeCase: case_id,
+        caseFiles: files
+      })
+    })
+  }
 
   render() {
+
     return (
       <div className="App">
         <SideNav />
@@ -25,7 +55,7 @@ class App extends Component {
           <Route exact path="/files" component={FileView} />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={DataVisView} />
-          <Route exact path="/cases" component={CaseView} />
+          <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} />} />
         </Switch>
       </div>
     );
