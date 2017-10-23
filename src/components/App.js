@@ -19,7 +19,9 @@ class App extends Component {
     this.state = {
       cases: [],
       activeCase: "",
-      caseFiles: []
+      activeFile: "",
+      caseFiles: [],
+      caseTags: []
     }
   }
 
@@ -37,7 +39,6 @@ class App extends Component {
   //////////////////////
 
   _openCase = (evt, case_id) => {
-    console.log(case_id);
     getAllFilesFromCase(case_id).then(files => {
       this.setState({
         activeCase: case_id,
@@ -45,14 +46,23 @@ class App extends Component {
       })
     })
   }
+  _chooseFile = (file_id) => {
+    this.setState({
+      activeFile: file_id
+    })
+  }
 
   render() {
 
     return (
       <div className="App">
-        <SideNav />
+        <SideNav
+        _chooseFile={this._chooseFile}
+        case={this.state.activeCase}
+        files={this.state.caseFiles}
+        tags="chyeah" />
         <Switch>
-          <Route exact path="/files" component={FileView} />
+          <Route exact path="/case" component={FileView} />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={DataVisView} />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} />} />

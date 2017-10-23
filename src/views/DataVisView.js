@@ -96,7 +96,6 @@ export default class DataVisView extends Component {
   render() {
     return (
 		<div className="ViewCont">
-			<SideNav />
 			<StringMap files={files} tags={tags}  />
 		</div>		
 	)

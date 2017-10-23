@@ -9,7 +9,6 @@ import "../styles/CaseView.css"
 
 
 const CaseList = (props)=>{
-  console.log("CL" , this.props);
     
     return (
       <div className="CaseList">
