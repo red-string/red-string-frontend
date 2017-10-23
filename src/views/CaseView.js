@@ -28,7 +28,6 @@ export default class CaseView extends Component {
   
 
   render() {
-    console.log("CV", this.props);
     return (
         <div className="caseDisplay" >
         {
