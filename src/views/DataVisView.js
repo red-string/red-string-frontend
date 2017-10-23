@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StringMap from "../components/StringMap"
+import SideNav from "../components/NavBar/SideNav"
 import "../styles/FileView.css"
 import "../styles/stringMap.css"
 
@@ -93,7 +94,12 @@ const tags = [
 
 export default class DataVisView extends Component {
   render() {
-    return <StringMap files={files} tags={tags}  />
+    return (
+		<div className="ViewCont">
+			<SideNav />
+			<StringMap files={files} tags={tags}  />
+		</div>		
+	)
   }
 }
 
