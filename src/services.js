@@ -12,6 +12,12 @@ export function getAllFilesFromCase(caseId){
   })
 }
 
+export function getAllTagsFromCase(caseId){
+  return axios.get("/" + caseId.toString() + "/files/tags").then( res => {
+    return res.data
+  })
+}
+
 export function getAllTagsFromFile(fileId){
   axios.get("/file/tags").then( res => {
     
