@@ -73,7 +73,7 @@ class NewFileForm extends Component {
           <form>
         {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
             <p>{instruction}</p>
-            <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
+            <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx" className="fileUpload">
               Upload
             </ReactFileReader>
             <input

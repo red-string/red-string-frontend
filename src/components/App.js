@@ -9,7 +9,8 @@ import { Switch, Route } from "react-router-dom";
 import {
   getAllCases,
   getAllFilesFromCase,
-  getAllTagsFromFile
+  getAllTagsFromFile,
+  getAllTagsFromCase
 } from "../services.js";
 import "../styles/App.css";
 
@@ -26,12 +27,15 @@ class App extends Component {
   }
 
   componentWillMount(){
-    console.log("trying");
     getAllCases().then(cases => {
       this.setState({
         cases: cases
       })
     })
+  }
+
+  componentDidUpdate(){
+    console.log("App State", this.state);
   }
 
   ///////////////////////
@@ -40,9 +44,12 @@ class App extends Component {
 
   _openCase = (evt, case_id) => {
     getAllFilesFromCase(case_id).then(files => {
-      this.setState({
-        activeCase: case_id,
-        caseFiles: files
+      getAllTagsFromCase(case_id).then(tags => {
+        this.setState({
+          activeCase: case_id,
+          caseFiles: files,
+          caseTags: tags
+        })
       })
     })
   }
@@ -60,9 +67,9 @@ class App extends Component {
         _chooseFile={this._chooseFile}
         case={this.state.activeCase}
         files={this.state.caseFiles}
-        tags="chyeah" />
+        tags={this.state.caseTags} />
         <Switch>
-          <Route exact path="/case" component={FileView} />
+          <Route exact path="/files" component={FileView} />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={DataVisView} />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} />} />

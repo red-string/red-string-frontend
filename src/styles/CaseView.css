@@ -20,14 +20,14 @@
     border-bottom: 1px solid #808080;
     padding: 2em;
     width: 55%;
-    height: 75%;
+    height: 65%;
     overflow-y: scroll;
 }
 
 .CaseList::-webkit-scrollbar {
     background-color: #e6e6e6;
     border-radius: 0;
-    width: .25em;
+    width: 1px;
 }
 
 .CaseList::-webkit-scrollbar-thumb {

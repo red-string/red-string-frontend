@@ -13,36 +13,34 @@ export default class SideNav extends Component {
 		}
 	}
 
-	componentDidMount(){
-		axios.get("/case/:id")
-	}
-
 	_toggleHeader = () => {
 		this.setState( prevState => {
 			return { displayFiles: !prevState.displayFiles }
 		})
 	}
 
-    render() {
-      return (
-        <div className="sideNav">
-			<SideNavHeader
-			text={
-				this.state.displayFiles
-				? "Files"
-				: "Tags"
-				}
-			_toggleHeader={this._toggleHeader}
-			/>
-			<NewItemButton />
-			<ItemList
-			_chooseFile={this.props._chooseFile}
-			data={
-				this.state.displayFiles
-				? this.props.files
-				: this.props.tags
-				} />
-        </div>
-      );
-    }
+	render() {
+		console.log("SideNavProps", this.props);
+		return (
+			<div className="sideNav">
+		<SideNavHeader
+		text={
+			this.state.displayFiles
+			? "Files"
+			: "Tags"
+			}
+		_toggleHeader={this._toggleHeader}
+		/>
+		<NewItemButton />
+		<ItemList
+		_chooseFile={this.props._chooseFile}
+		/* _chooseTag={this.props._chooseTag} */
+		data={
+			this.state.displayFiles
+			? this.props.files
+			: this.props.tags
+			} />
+			</div>
+		);
+	}
   }

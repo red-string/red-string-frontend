@@ -15,16 +15,33 @@
   align-items: center;
 }
 
-
-.newFile {
+.newFile form {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
   align-items: center;
-  height: 14em;
-  padding: 1em 5em 3em 5em;
+  padding: 1em 5em 2em 5em;
   border: 1px solid #afafaf;
   background-color: #f3f3f3;
+}
+
+.newFile input {
+  padding: .35em .75em;
+  display: block;
+}
+
+.newFile button {
+  background: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 3px;
+  padding: .35em .75em;
+  transition: .5s;
+  margin: .5em 0;
+}
+
+.newFile button:hover {
+  border: 1px solid #f73939;
+  transition: .3s;
 }
 
 /* this class is created in html by the rfr component */
@@ -35,6 +52,7 @@
   border-radius: 3px;
   padding: .35em .75em;
   transition: .5s;
+  margin: .5em 0;
 }
 
 .react-file-reader:hover {
