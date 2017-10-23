@@ -18,6 +18,8 @@ export default class SideNav extends Component {
 			return { displayFiles: !prevState.displayFiles }
 		})
 	}
+	
+	
 
 	render() {
 		console.log("SideNavProps", this.props);
@@ -31,7 +33,7 @@ export default class SideNav extends Component {
 			}
 		_toggleHeader={this._toggleHeader}
 		/>
-		<NewItemButton />
+		<NewItemButton _toggleUpload={this.props._toggleUpload} />
 		<ItemList
 		_chooseFile={this.props._chooseFile}
 		/* _chooseTag={this.props._chooseTag} */

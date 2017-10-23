@@ -90,9 +90,7 @@ class NewFileForm extends Component {
               onChange={this.handleChange}
               value={this.state.value}
             />
-
             <button onClick={this.handleSubmit}>Submit</button>
-
           </form>
         </div>
     );

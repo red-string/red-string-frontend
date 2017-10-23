@@ -48,7 +48,8 @@ class App extends Component {
         this.setState({
           activeCase: case_id,
           caseFiles: files,
-          caseTags: tags
+          caseTags: tags,
+          displayUpload: false
         })
       })
     })
@@ -59,6 +60,12 @@ class App extends Component {
     })
   }
 
+  _toggleUpload = () => {
+		this.setState( prevState => {
+			return { displayUpload: !prevState.displayUpload }
+		})
+	}
+
   render() {
 
     return (
@@ -67,9 +74,10 @@ class App extends Component {
         _chooseFile={this._chooseFile}
         case={this.state.activeCase}
         files={this.state.caseFiles}
-        tags={this.state.caseTags} />
+        tags={this.state.caseTags} 
+        _toggleUpload={this._toggleUpload} />
         <Switch>
-          <Route exact path="/files" component={FileView} />
+          <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } /> } />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={DataVisView} />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} />} />
