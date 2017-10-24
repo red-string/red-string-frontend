@@ -21,13 +21,24 @@
   justify-content: space-around;
   align-items: center;
   padding: 1em 5em 2em 5em;
-  border: 1px solid #afafaf;
-  background-color: #f3f3f3;
+  border-bottom: 1px solid #808080;
+  background-color: hsl(0, 0%, 95%);
 }
 
 .newFile input {
+  border: none;
+  border-bottom: 1px solid #808080;
   padding: .35em .75em;
+  margin-bottom: .15em;
   display: block;
+  transition: .2s;
+}
+
+.newFile input:focus {
+  transition: .2s;
+  outline: none;
+  color: #f73939;
+  border-bottom: 1px solid #f73939;
 }
 
 .newFile button {

@@ -20,18 +20,13 @@ export default class SideNav extends Component {
 	}
 
 	render() {
-		console.log("SideNavProps", this.props);
 		return (
 			<div className="sideNav">
 		<SideNavHeader
-		text={
-			this.state.displayFiles
-			? "Files"
-			: "Tags"
-			}
+		displayFiles={this.state.displayFiles}
 		_toggleHeader={this._toggleHeader}
 		/>
-		<NewItemButton />
+		<NewItemButton _toggleUpload={this.props._toggleUpload} />
 		<ItemList
 		_chooseFile={this.props._chooseFile}
 		/* _chooseTag={this.props._chooseTag} */

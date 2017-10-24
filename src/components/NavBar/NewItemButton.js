@@ -3,7 +3,7 @@ import "../../styles/SideNav.css"
 
 const NewItemButton = (props) => {
     return (
-        <button className="addItemBtn">Add String</button>
+        <button className="addItemBtn" onClick={props._toggleUpload} >Add File</button>
     )
 }
 
