@@ -47,14 +47,14 @@ class NewFileForm extends Component {
   };
 
   sendFile = (file, name, description, dateModified, case_id) => {
-    let data = {};
-    data.file = file;
-    data.name = name;
-    data.description = description;
-    data.dateModified = dateModified;
-    data.case_id = case_id;
+    let data = new FormData();
+    data.append("file", file);
+    data.append("description", description);
+    data.append("dateModified", dateModified);
+    data.append("case_id", case_id);
+    data.append("name", name);
     console.log("data object", data);
-    axios.post("/case/" + case_id + "/new", data).then(response => console.log("Working"));
+    axios.post("/case/" + case_id + "/new", data).then(response => console.log(response));
   };
 
   // const reader = new FileReader();
