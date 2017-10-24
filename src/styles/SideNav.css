@@ -29,6 +29,31 @@
     color: #5f5f5f;
 }
 
+.headerEl {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.arrow-up {
+    margin-left: .3em;
+    border-bottom: 10px solid #f73939;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    width: 0;
+    height: 0;
+}
+
+.arrow-down {
+    margin-left: .3em;
+    border-top: 10px solid #f73939;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    width: 0;
+    height: 0;
+}
+
 .headerUnTransform {
     transform: translateY(0px);
     transition: .6s;
