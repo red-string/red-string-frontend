@@ -16,9 +16,11 @@
   padding: .2em .4em;
   width: 60%;
   margin-bottom: .3em;
+  transition: .2s;
 }
 
 .newCaseForm input:focus {
+  transition: .2s;
   outline: none;
   color: #f73939;
   border-bottom: 1px solid #f73939;
