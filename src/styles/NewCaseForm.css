@@ -1,5 +1,5 @@
 .newCaseForm {
-    background-color: #e6e6e6;
+    background-color: hsl(0, 0%, 95%);
     border-bottom: 1px solid #808080;
     padding: 2em;
     width: 55%;
@@ -10,7 +10,7 @@
 }
 
 .newCaseForm input {
-  background: none;
+  background: hsl(0, 0%, 100%);
   border: none;
   border-bottom: 1px solid #808080;
   padding: .2em .4em;
@@ -18,15 +18,25 @@
   margin-bottom: .3em;
 }
 
+.newCaseForm input:focus {
+  outline: none;
+  color: #f73939;
+  border-bottom: 1px solid #f73939;
+}
+
 .newCaseForm button {
-  text-align: left;
-  border: none;
-  background-color: rgb(220, 220, 220);
-  padding: .5em .5em .5em .5em;
-  display: inline;
+  background: #ffffff;
+  border: 1px solid #afafaf;
+  border-radius: 3px;
+  padding: .35em .75em;
+  transition: .5s;
+  margin: .25em auto;
 }
 .newCaseForm>button:hover {
-  background-color: rgb(202, 201, 201);
+  border: 1px solid #f73939;
+  transition: .3s;
 }
+
+
 
 
