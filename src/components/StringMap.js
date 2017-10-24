@@ -35,7 +35,7 @@ export default class StringMap extends Component {
                 width: 1100,
                 animate: true,
                 strength: {
-                    charge: -3000
+                    charge: -2500
                 }
         }}>
             {this.createTagNodes(this.props)}

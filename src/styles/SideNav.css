@@ -1,7 +1,7 @@
 .sideNav {
     width: 200px;
     height: 100vh;
-    background-color: #e6e6e6;
+    background-color: hsl(0, 0%, 95%);
     border-right: 1px solid #808080;
     display: flex;
     flex-flow: column nowrap;
@@ -11,13 +11,32 @@
 }
 
 .navHeader {
-    font-size: 28px;
-    font-family: 'Roboto', sans-serif;
-    color: #5f5f5f;
+    height: 32px;
+    overflow: hidden;
     margin-bottom: 5px;
     text-align: left;
     background: transparent;
     border: none;
+}
+
+.navHeader:focus {
+    outline: none;
+}
+
+.navHeader p {
+    font-size: 28px;
+    font-family: 'Roboto', sans-serif;
+    color: #5f5f5f;
+}
+
+.headerUnTransform {
+    transform: translateY(0px);
+    transition: .6s;
+}
+
+.headerTransform {
+    transform: translateY(-32px);
+    transition: .6s;
 }
 
 .addItemBtn {
