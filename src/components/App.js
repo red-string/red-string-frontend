@@ -42,6 +42,14 @@ class App extends Component {
   // Helper Functions
   //////////////////////
 
+  getCasesAndSetState = () => {
+    getAllCases().then(cases => {
+      this.setState({
+        cases: cases
+      })
+    })
+  }
+
   _openCase = (evt, case_id) => {
     getAllFilesFromCase(case_id).then(files => {
       getAllTagsFromCase(case_id).then(tags => {
@@ -80,7 +88,7 @@ class App extends Component {
           <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } activeCase={this.state.activeCase} /> } />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={() => <DataVisView files={this.state.caseFiles} tags={this.state.caseTags} /> } />
-          <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} /> } />
+          <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} getAndSet={this.getCasesAndSetState} /> } />
         </Switch>
       </div>
     );

@@ -13,7 +13,7 @@ export default class NewCaseForm extends Component {
     }
 
     componentDidUpdate(){
-
+        
     }
 
     handleChange = (evt) => {
@@ -23,7 +23,7 @@ export default class NewCaseForm extends Component {
         })
     }
 
-    handleSubmit = () => {
+    handleSubmit = async () => {
         let newCase = {}
         newCase.case_description = this.state.case_description;
         newCase.case_name = this.state.case_name;
@@ -33,6 +33,7 @@ export default class NewCaseForm extends Component {
             case_name: "",
             case_description: ""
         });
+        await this.props.getAndSet();
         this.props._toggleForm();
     }
 

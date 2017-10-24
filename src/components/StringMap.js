@@ -34,6 +34,7 @@ export default class StringMap extends Component {
             return <ForceGraphNode showLabel key={file.file_d3} node={{ id: file.file_d3, data: file.file_name }} fill="lightgrey" stroke="black" r="35" />
         })
     }
+
     createNodesFromFileTags = props => {
         return props.files.map( file => {
             return file.tags.map( tag => {
@@ -41,6 +42,7 @@ export default class StringMap extends Component {
             }
         )}
     )}
+
     createLinksFromFileTags = (props) => {
         return props.files.map( file => {
             return file.tags.map( tag => {
