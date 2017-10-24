@@ -22,7 +22,6 @@ export default class SideNav extends Component {
 	
 
 	render() {
-		console.log("SideNavProps", this.props);
 		return (
 			<div className="sideNav">
 		<SideNavHeader

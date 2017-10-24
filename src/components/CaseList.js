@@ -23,7 +23,7 @@ const CaseList = (props)=>{
                     />;
           })}
         </ul>
-        <button onClick={props._toggleForm}>New Case</button>
+        <button onClick={props._toggleForm} className="newCaseBtn">New Case</button>
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default class FileView extends Component {
       <div className="newFileForm ViewCont">
         {
           this.props.upload
-          ? <NewFileForm />
+          ? <NewFileForm activeCase={this.props.activeCase} />
           : null
         }
       </div>

@@ -49,14 +49,13 @@ class App extends Component {
           activeCase: case_id,
           caseFiles: files,
           caseTags: tags,
+          parentNode: {},
+          childNodes: [],
+          previousParent: {},
+          previousChildren: [],
           displayUpload: false
         })
       })
-    })
-  }
-  _chooseFile = (file_id) => {
-    this.setState({
-      activeFile: file_id
     })
   }
 
@@ -71,13 +70,14 @@ class App extends Component {
     return (
       <div className="App">
         <SideNav
-        _chooseFile={this._chooseFile}
-        case={this.state.activeCase}
-        files={this.state.caseFiles}
-        tags={this.state.caseTags} 
-        _toggleUpload={this._toggleUpload} />
+          _chooseFile={this._chooseFile}
+          case={this.state.activeCase}
+          files={this.state.caseFiles}
+          tags={this.state.caseTags} 
+          _toggleUpload={this._toggleUpload}
+        />
         <Switch>
-          <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } /> } />
+          <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } activeCase={this.state.activeCase} /> } />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={() => <DataVisView files={this.state.caseFiles} tags={this.state.caseTags} /> } />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} /> } />

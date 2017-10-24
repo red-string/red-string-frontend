@@ -16,7 +16,7 @@
 }
 
 .CaseList {
-    background-color: #e6e6e6;
+    background-color: hsl(0, 0%, 95%);
     border-bottom: 1px solid #808080;
     padding: 2em;
     width: 55%;
@@ -25,18 +25,18 @@
 }
 
 .CaseList::-webkit-scrollbar {
-    background-color: #e6e6e6;
+    background-color: hsl(0, 0%, 95%);
     border-radius: 0;
-    width: 1px;
+    width: 2px;
 }
 
 .CaseList::-webkit-scrollbar-thumb {
-    background-color: #808080;
+    background-color: #f73939;
     border-radius: 0;
 }
 
 .CaseList::-webkit-scrollbar-track {
-    background-color: #e6e6e6;
+    background-color: hsl(0, 0%, 95%);
 }
 
 .CaseList ul {
@@ -54,6 +54,8 @@
     border: none;
     background-color: transparent;
     padding: 1em 1em 2em 1em;
+    transition: .3s;
+    border-left: 0px solid #f73939;
 }
 
 .CaseItem a {
@@ -61,7 +63,9 @@
 }
 
 .CaseItem:hover {
-    background-color: rgb(220, 220, 220);
+    transition: .4s;
+    background-color: hsl(0, 0%, 90%);
+    border-left: 3px solid #f73939;
 }
 
 .CaseItem h2 {
@@ -73,3 +77,17 @@
     font-size: .8em;
     color: #868686;
 }
+
+.newCaseBtn {
+    background: #ffffff;
+    border: 1px solid #afafaf;
+    border-radius: 3px;
+    padding: .35em .75em;
+    transition: .5s;
+    margin: .5em auto;
+  }
+  
+  .newCaseBtn:hover {
+    border: 1px solid #f73939;
+    transition: .3s;
+  }
