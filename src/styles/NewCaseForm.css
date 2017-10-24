@@ -34,6 +34,7 @@
   transition: .5s;
   margin: .25em auto;
 }
+
 .newCaseForm>button:hover {
   border: 1px solid #f73939;
   transition: .3s;

@@ -18,18 +18,12 @@ export default class SideNav extends Component {
 			return { displayFiles: !prevState.displayFiles }
 		})
 	}
-	
-	
 
 	render() {
 		return (
 			<div className="sideNav">
 		<SideNavHeader
-		text={
-			this.state.displayFiles
-			? "Files"
-			: "Tags"
-			}
+		displayFiles={this.state.displayFiles}
 		_toggleHeader={this._toggleHeader}
 		/>
 		<NewItemButton _toggleUpload={this.props._toggleUpload} />
