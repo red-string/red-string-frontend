@@ -55,7 +55,10 @@ class NewFileForm extends Component {
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     console.log("data object", data);
-    axios.post("/case/" + case_id + "/new", data).then(response => console.log(response));
+    axios.post("/case/" + case_id + "/new", data).then(response => { 
+      console.log(response);
+      this.props.refreshFileList()
+    });
   };
 
   // const reader = new FileReader();

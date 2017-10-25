@@ -22,19 +22,18 @@ export default class SideNav extends Component {
 	render() {
 		return (
 			<div className="sideNav">
-		<SideNavHeader
-		displayFiles={this.state.displayFiles}
-		_toggleHeader={this._toggleHeader}
-		/>
-		<NewItemButton _toggleUpload={this.props._toggleUpload} />
-		<ItemList
-		_chooseFile={this.props._chooseFile}
-		/* _chooseTag={this.props._chooseTag} */
-		data={
-			this.state.displayFiles
-			? this.props.files
-			: this.props.tags
-			} />
+				<SideNavHeader
+					displayFiles={this.state.displayFiles}
+					_toggleHeader={this._toggleHeader}
+				/>
+				<NewItemButton _toggleUpload={this.props._toggleUpload} />
+				<ItemList
+					_chooseFile={this.props._chooseFile}
+					/* _chooseTag={this.props._chooseTag} */
+					data={
+						this.state.displayFiles
+						? this.props.files
+						: this.props.tags }/>
 			</div>
 		);
 	}

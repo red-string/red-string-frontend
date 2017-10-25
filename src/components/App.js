@@ -50,6 +50,14 @@ class App extends Component {
     })
   }
 
+  refreshFileList = () => {
+    getAllFilesFromCase(this.state.activeCase).then(files => {
+      this.setState({
+        caseFiles: files
+      })
+    })
+  }
+
   _openCase = (evt, case_id) => {
     getAllFilesFromCase(case_id).then(files => {
       getAllTagsFromCase(case_id).then(tags => {
@@ -85,7 +93,7 @@ class App extends Component {
           _toggleUpload={this._toggleUpload}
         />
         <Switch>
-          <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } activeCase={this.state.activeCase} /> } />
+          <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } activeCase={this.state.activeCase} refreshFileList={this.refreshFileList} /> } />
           <Route exact path="/tags" component={TagView} />
           <Route exact path="/graph" component={() => <DataVisView files={this.state.caseFiles} tags={this.state.caseTags} /> } />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} getAndSet={this.getCasesAndSetState} /> } />
