@@ -11,6 +11,7 @@ class NewFileForm extends Component {
       file_name: "",
       file: "",
       file_desc: "",
+      file_type: "",
       file_dateModified: "",
       case_id: ""
     };
@@ -30,7 +31,8 @@ class NewFileForm extends Component {
     let description = this.state.file_desc;
     let dateModified = this.state.file_dateModified;
     let case_id = this.state.case_id;
-    this.sendFile(file, name, description, dateModified, case_id);
+    let file_type = this.state.file_type;
+    this.sendFile(file, name, description, dateModified, case_id, file_type);
   };
 
   setFileState = files => {
@@ -46,13 +48,14 @@ class NewFileForm extends Component {
     });
   };
 
-  sendFile = (file, name, description, dateModified, case_id) => {
+  sendFile = (file, name, description, dateModified, case_id, file_type) => {
     let data = new FormData();
     data.append("file", file);
     data.append("description", description);
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     data.append("name", name);
+    data.append("file_type", file_type)
     console.log("data object", data);
     axios
       .post("/case/" + case_id + "/new", data)
@@ -76,12 +79,13 @@ class NewFileForm extends Component {
         <form>
           {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
           <p>{instruction}</p>
-          <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
+          <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx, .pdf">
             <p>Upload</p>
           </ReactFileReader>
-          <select name="type" value="File Type">
-            <option name="docx">Word Document (.docx)</option>
-            <option name="pdf">PDF</option>
+          <select name="file_type" onChange={this.handleChange}>
+            <option value="docx">Word Document (.docx)</option>
+            <option value="pdf">PDF</option>
+            <option value="input">Manually enter text</option>
           </select>
           <input
             type="text"
