@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/NewFileForm.css"
+import "../styles/NewFileForm.css";
 import ReactFileReader from "react-file-reader";
 import { Link } from 'react-router-dom';
 import axios from "axios";
@@ -17,14 +17,14 @@ class NewFileForm extends Component {
     };
   }
 
-  handleChange = (evt) => {
+  handleChange = evt => {
     let inputName = evt.target.name;
     this.setState({
       [inputName]: evt.target.value
     });
   };
 
-  handleSubmit = (evt) => {
+  handleSubmit = evt => {
     evt.preventDefault();
     let file = this.state.file;
     let name = this.state.file_name;
@@ -32,7 +32,7 @@ class NewFileForm extends Component {
     let dateModified = this.state.file_dateModified;
     let case_id = this.state.case_id;
     this.sendFile(file, name, description, dateModified, case_id);
-  }
+  };
 
   setFileState = files => {
     console.log(files);
@@ -55,11 +55,11 @@ class NewFileForm extends Component {
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     console.log("data object", data);
+
     axios.post("/case/" + case_id + "/new", data).then(response => { 
       console.log(response);
       this.props.refreshFileList()
     });
-  };
 
   // const reader = new FileReader();
   // reader.onload = function(e) {
