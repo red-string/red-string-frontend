@@ -24,11 +24,13 @@ export default class NewCaseForm extends Component {
         newCase.case_description = this.state.case_description;
         newCase.case_name = this.state.case_name;
         console.log("Submitting This Case", newCase);
-        axios.post("/case/new", newCase).then(res => console.log(res))
-        this.setState({
-            case_name: "",
-            case_description: ""
-        });
+        axios.post("/case/new", newCase).then(res => {
+            console.log(res)
+            this.setState({
+                case_name: "",
+                case_description: ""
+            });
+        })
         await this.props.getAndSet();
         this.props._toggleForm();
     }

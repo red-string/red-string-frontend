@@ -60,6 +60,7 @@ class NewFileForm extends Component {
       console.log(response);
       this.props.refreshFileList()
     });
+  }
 
   // const reader = new FileReader();
   // reader.onload = function(e) {
@@ -69,7 +70,7 @@ class NewFileForm extends Component {
   // reader.readAsText(file)
   //handle axios request in submit event handler?
 
-  render() {
+  render(){
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";
@@ -104,7 +105,7 @@ class NewFileForm extends Component {
         }
         </div>
     );
-  }
+  } 
 }
 
 export default NewFileForm;
