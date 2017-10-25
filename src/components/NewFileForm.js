@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/NewFileForm.css";
 import ReactFileReader from "react-file-reader";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 class NewFileForm extends Component {
@@ -49,15 +50,16 @@ class NewFileForm extends Component {
   sendFile = (file, name, description, dateModified, case_id) => {
     let data = new FormData();
     data.append("file", file);
+    data.append("name", name);
     data.append("description", description);
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
-    data.append("name", name);
     console.log("data object", data);
-    axios
-      .post("/case/" + case_id + "/new", data)
-      .then(response => console.log(response));
-  };
+
+    axios.post("/case/" + case_id + "/new", data).then(response => { 
+      console.log(response);
+      this.props.refreshFileList()
+    });
 
   // const reader = new FileReader();
   // reader.onload = function(e) {
@@ -73,33 +75,34 @@ class NewFileForm extends Component {
       : "Select a file for upload";
     return (
       <div className="newFile">
-        <form>
-          {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
-          <p>{instruction}</p>
-          <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
-            <p>Upload</p>
-          </ReactFileReader>
-          <select name="type" value="File Type">
-            <option name="docx">Word Document (.docx)</option>
-            <option name="pdf">PDF</option>
-          </select>
-          <input
-            type="text"
-            name="file_name"
-            placeholder="Add file name"
-            onChange={this.handleChange}
-            value={this.state.file_name}
-          />
-          <input
-            type="text"
-            name="file_desc"
-            placeholder="Add description"
-            onChange={this.handleChange}
-            value={this.state.file_desc}
-          />
-          <button onClick={this.handleSubmit}>Submit</button>
-        </form>
-      </div>
+        { this.props.activeCase ? 
+          <form>
+              <p>{instruction}</p>
+              <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx">
+                <p>Upload</p>
+              </ReactFileReader>
+              <input
+                type="text"
+                name="file_name"
+                placeholder="Add file name"
+                onChange={this.handleChange}
+                value={this.state.file_name.value}
+              />
+              <input
+                type="text"
+                name="file_desc"
+                placeholder="Add description"
+                onChange={this.handleChange}
+                value={this.state.file_desc.value}
+              />
+              <button onClick={this.handleSubmit}>Submit</button>
+            </form>
+            : <div>
+                <p>Please go back and open a case</p>
+                <Link to="/">Go Back</Link>
+              </div>
+        }
+        </div>
     );
   }
 }

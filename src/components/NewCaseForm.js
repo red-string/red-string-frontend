@@ -12,10 +12,6 @@ export default class NewCaseForm extends Component {
         }
     }
 
-    componentDidUpdate(){
-
-    }
-
     handleChange = (evt) => {
         let val = evt.target.value;
         this.setState({
@@ -23,8 +19,8 @@ export default class NewCaseForm extends Component {
         })
     }
 
-    handleSubmit = () => {
-        let newCase = {}
+    handleSubmit = async () => {
+        let newCase = {};
         newCase.case_description = this.state.case_description;
         newCase.case_name = this.state.case_name;
         console.log("Submitting This Case", newCase);
@@ -33,6 +29,7 @@ export default class NewCaseForm extends Component {
             case_name: "",
             case_description: ""
         });
+        await this.props.getAndSet();
         this.props._toggleForm();
     }
 

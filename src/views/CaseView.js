@@ -28,17 +28,14 @@ export default class CaseView extends Component {
 
   render() {
     return (
-      <div className="caseDisplay">
-        {this.state.displayForm ? (
-          <NewCaseForm _toggleForm={this._toggleForm} />
-        ) : (
-          <CaseList
-            cases={this.props.appState.cases}
-            _openCase={this.props._openCase}
-            _toggleForm={this._toggleForm}
-          />
-        )}
-      </div>
+        <div className="caseDisplay" >
+        {
+          this.state.displayForm 
+          ? <NewCaseForm _toggleForm={this._toggleForm} getAndSet={this.props.getAndSet} />
+          : <CaseList cases={this.props.appState.cases} _openCase={this.props._openCase} _toggleForm={this._toggleForm} />
+        }
+        </div>
+
     );
   }
 }
