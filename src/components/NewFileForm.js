@@ -80,6 +80,7 @@ class NewFileForm extends Component {
               <p>Upload</p>
             </ReactFileReader>
             <select name="file_type" onChange={this.handleChange}>
+              <option selected>Select a filetype...</option>
               <option value="docx">Word Document (.docx)</option>
               <option value="pdf">PDF</option>
               <option value="input">Manually enter text</option>
