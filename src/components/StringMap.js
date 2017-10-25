@@ -4,25 +4,53 @@ import { InteractiveForceGraph, ForceGraph, ForceGraphNode, ForceGraphLink } fro
 
 export default class StringMap extends Component {
 
-    createFileNodes = (props) => {
+    // file_d3
+    // tags: [{ tag, d3 }]
+    // file_name
+    // file_description
+
+    // createFileNodes = (props) => {
+    //     return props.files.map((file)=> {
+    //         return <ForceGraphNode showLabel key={file.file_d3} node={{ id: file.file_d3, data: file.file_name }} fill="lightgrey" stroke="black" r="35" />
+    //     })
+    // }
+
+    // createTagNodes = (props) => {
+    //     return props.tags.map((tag)=>{
+    //         return <ForceGraphNode showLabel key={tag.file_d3} node={{ id: tag.tag_d3, data: tag.tag }} fill="white" stroke="black" r="25" />
+    //     })
+    // }
+
+    // createLinks = (props) => {
+    //     console.log(props);
+    //     return props.tags.map((tag)=>{
+    //         return (
+    //             <ForceGraphLink key={tag.file_id + tag.tag_d3} link={{ source: "f" + tag.file_id, target: tag.tag_d3 }} stroke="red"/>
+    //     )})
+    // }
+
+    createNodesFromFile = (props) => {
         return props.files.map((file)=> {
             return <ForceGraphNode showLabel key={file.file_d3} node={{ id: file.file_d3, data: file.file_name }} fill="lightgrey" stroke="black" r="35" />
         })
     }
 
-    createTagNodes = (props) => {
-        return props.tags.map((tag)=>{
-            return <ForceGraphNode showLabel key={tag.file_d3} node={{ id: tag.tag_d3, data: tag.tag }} fill="white" stroke="black" r="25" />
-        })
-    }
+    createNodesFromFileTags = props => {
+        return props.files.map( file => {
+            return file.tags.map( tag => {
+                return <ForceGraphNode showLabel key={tag.tag_d3} node={{ id: tag.tag_d3, data: tag.tag }} fill="lightgrey" stroke="black" r="35" />
+            }
+        )}
+    )}
 
-    createLinks = (props) => {
-        console.log(props);
-        return props.tags.map((tag)=>{
-                return (
-                    <ForceGraphLink key={tag.file_id + tag.tag_d3} link={{ source: "f" + tag.file_id, target: tag.tag_d3 }} stroke="red"/>
-        )})
-    }
+    createLinksFromFileTags = (props) => {
+        return props.files.map( file => {
+            return file.tags.map( tag => {
+                return <ForceGraphLink key={tag.tag_d3} link={{ source:file.file_d3, target: tag.tag_d3 }} stroke="red"/>
+            }
+        )}
+    )}
+
 
     render() {
       return (
@@ -38,8 +66,8 @@ export default class StringMap extends Component {
                     charge: -2500
                 }
         }}>
-            {this.createTagNodes(this.props)}
-            {this.createFileNodes(this.props)}
+            {this.createNodesFromFile(this.props)}
+            {this.createNodesFromFileTags(this.props)}
             {this.createLinks(this.props)}
         </InteractiveForceGraph>
       )

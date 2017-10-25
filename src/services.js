@@ -60,9 +60,9 @@ export function getLastTagId(){
   })
 }
 
-export function getFilesThatShareTag(caseId, tagId){
-  axios.get("/case/files").then( res => {
-    
+export function getFilesThatShareTag( case_id, tag_id ){
+  return axios.get("/" + case_id + "/files/tags/" + tag_id).then( res => {
+    return res.data
   })
 }
 

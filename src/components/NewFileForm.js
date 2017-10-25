@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../styles/NewFileForm.css";
 import ReactFileReader from "react-file-reader";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 class NewFileForm extends Component {
@@ -51,16 +52,18 @@ class NewFileForm extends Component {
   sendFile = (file, name, description, dateModified, case_id, file_type) => {
     let data = new FormData();
     data.append("file", file);
+    data.append("name", name);
     data.append("description", description);
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     data.append("name", name);
     data.append("file_type", file_type)
     console.log("data object", data);
-    axios
-      .post("/case/" + case_id + "/new", data)
-      .then(response => console.log(response));
-  };
+
+    axios.post("/case/" + case_id + "/new", data).then(response => {
+      console.log(response);
+      this.props.refreshFileList()
+    });
 
   // const reader = new FileReader();
   // reader.onload = function(e) {
