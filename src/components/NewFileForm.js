@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "../styles/NewFileForm.css";
 import ReactFileReader from "react-file-reader";
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from "axios";
 
 class NewFileForm extends Component {
@@ -20,9 +20,7 @@ class NewFileForm extends Component {
 
   handleChange = evt => {
     let inputName = evt.target.name;
-    this.setState({
-      [inputName]: evt.target.value
-    });
+    this.setState({[inputName]: evt.target.value});
   };
 
   handleSubmit = evt => {
@@ -41,12 +39,7 @@ class NewFileForm extends Component {
     let file = files[0];
     let name = file.name;
     let file_dateModified = file.lastModifiedDate;
-    this.setState({
-      file: file,
-      file_name: name,
-      file_dateModified: file_dateModified,
-      case_id: this.props.activeCase
-    });
+    this.setState({file: file, file_name: name, file_dateModified: file_dateModified, case_id: this.props.activeCase});
   };
 
   sendFile = (file, name, description, dateModified, case_id, file_type) => {
@@ -57,58 +50,47 @@ class NewFileForm extends Component {
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     data.append("name", name);
-    data.append("file_type", file_type)
+    data.append("file_type", file_type);
     console.log("data object", data);
 
     axios.post("/case/" + case_id + "/new", data).then(response => {
       console.log(response);
       this.props.refreshFileList()
-    });
+    })
+  };
 
-  // const reader = new FileReader();
-  // reader.onload = function(e) {
-  //   let text = reader.result;
-  //   axios.post('/case/files/new', text)
-  // }
-  // reader.readAsText(file)
-  //handle axios request in submit event handler?
+    // const reader = new FileReader();
+    // reader.onload = function(e) {
+    //   let text = reader.result;
+    //   axios.post('/case/files/new', text)
+    // }
+    // reader.readAsText(file)
+    //handle axios request in submit event handler?
 
-  render() {
-    let instruction = this.state.file_name
-      ? "You have selected this file for upload: " + this.state.file_name
-      : "Select a file for upload";
-    return (
-      <div className="newFile">
-        <form>
-          {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
-          <p>{instruction}</p>
-          <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx, .pdf">
-            <p>Upload</p>
-          </ReactFileReader>
-          <select name="file_type" onChange={this.handleChange}>
-            <option value="docx">Word Document (.docx)</option>
-            <option value="pdf">PDF</option>
-            <option value="input">Manually enter text</option>
-          </select>
-          <input
-            type="text"
-            name="file_name"
-            placeholder="Add file name"
-            onChange={this.handleChange}
-            value={this.state.file_name}
-          />
-          <input
-            type="text"
-            name="file_desc"
-            placeholder="Add description"
-            onChange={this.handleChange}
-            value={this.state.file_desc}
-          />
-          <button onClick={this.handleSubmit}>Submit</button>
-        </form>
-      </div>
-    );
+    render() {
+      let instruction = this.state.file_name
+        ? "You have selected this file for upload: " + this.state.file_name
+        : "Select a file for upload";
+      return (
+        <div className="newFile">
+          <form>
+            {/* <input type="file" name="file" onchange="handleFiles(this.files)"/> */}
+            <p>{instruction}</p>
+            <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx, .pdf">
+              <p>Upload</p>
+            </ReactFileReader>
+            <select name="file_type" onChange={this.handleChange}>
+              <option value="docx">Word Document (.docx)</option>
+              <option value="pdf">PDF</option>
+              <option value="input">Manually enter text</option>
+            </select>
+            <input type="text" name="file_name" placeholder="Add file name" onChange={this.handleChange} value={this.state.file_name}/>
+            <input type="text" name="file_desc" placeholder="Add description" onChange={this.handleChange} value={this.state.file_desc}/>
+            <button onClick={this.handleSubmit}>Submit</button>
+          </form>
+        </div>
+      );
+    }
   }
-}
 
-export default NewFileForm;
+  export default NewFileForm;
