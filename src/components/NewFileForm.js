@@ -30,7 +30,7 @@ class NewFileForm extends Component {
     let name = this.state.file_name;
     let description = this.state.file_desc;
     let dateModified = this.state.file_dateModified;
-    let case_id = this.state.case_id
+    let case_id = this.state.case_id;
     this.sendFile(file, name, description, dateModified, case_id);
   }
 

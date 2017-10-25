@@ -52,8 +52,11 @@ class App extends Component {
 
   refreshFileList = () => {
     getAllFilesFromCase(this.state.activeCase).then(files => {
-      this.setState({
-        caseFiles: files
+      getAllTagsFromCase(this.state.activeCase).then(tags => {
+        this.setState({
+          caseFiles: files,
+          caseTags: tags
+        })
       })
     })
   }

@@ -74,12 +74,12 @@
 
 .headerUnTransform {
     transform: translateY(0px);
-    transition: .6s;
+    transition: .3s;
 }
 
 .headerTransform {
     transform: translateY(-32px);
-    transition: .6s;
+    transition: .3s;
 }
 
 .addItemBtn {
