@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SideNav from "../components/NavBar/SideNav";
-import NewCaseForm from '../components/NewCaseForm'
+import NewCaseForm from "../components/NewCaseForm";
 import CaseList from "../components/CaseList";
 import {
   getAllCases,
@@ -9,11 +9,11 @@ import {
 } from "../services.js";
 
 export default class CaseView extends Component {
-  constructor(props){
-    super(props)
-    this.state={
+  constructor(props) {
+    super(props);
+    this.state = {
       displayForm: false
-    }
+    };
   }
 
   ///////////////////////
@@ -21,21 +21,24 @@ export default class CaseView extends Component {
   //////////////////////
 
   _toggleForm = () => {
-    this.setState((prevState)=>{
-      return { displayForm: !prevState.displayForm }
-    })
-  }
-  
+    this.setState(prevState => {
+      return { displayForm: !prevState.displayForm };
+    });
+  };
 
   render() {
     return (
-        <div className="caseDisplay" >
-        {
-          this.state.displayForm 
-          ? <NewCaseForm _toggleForm={this._toggleForm} />
-          : <CaseList cases={this.props.appState.cases} _openCase={this.props._openCase} _toggleForm={this._toggleForm} />
-        }
-        </div>
+      <div className="caseDisplay">
+        {this.state.displayForm ? (
+          <NewCaseForm _toggleForm={this._toggleForm} />
+        ) : (
+          <CaseList
+            cases={this.props.appState.cases}
+            _openCase={this.props._openCase}
+            _toggleForm={this._toggleForm}
+          />
+        )}
+      </div>
     );
   }
 }
