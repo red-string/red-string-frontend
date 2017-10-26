@@ -5,7 +5,11 @@ import { InteractiveForceGraph, ForceGraphNode, ForceGraphLink } from 'react-vis
 export default class StringMap extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            mounted: false
+        }
     }
+
     // file_d3
     // tags: [{ tag, d3 }]
     // file_name
@@ -47,30 +51,44 @@ export default class StringMap extends Component {
     createNodesFromFileTags = tags => {
         return tags.map( tag => {
             console.log("TAGS MAPPIN", tag);
-            return
-            <ForceGraphNode
+            return (
+                <ForceGraphNode
                 showLabel
                 key={tag.tag_d3}
                 node={{ id: tag.tag_d3, data: tag.tag }} 
                 fill="lightgrey"
                 stroke="black"
                 r="35" />
+            )
+            
         }
     )}
 
     createLinksFromFileTags = (tags) => {
         return tags.map( tag => {
             console.log("LINKS LINKIN", tag);
-            return
-            <ForceGraphLink
-                key={tag.tag_d3}
-                link={{ source:tag.file_d3, target: tag.tag_d3 }}
-                stroke="red" />
+            return (
+                <ForceGraphLink
+                    key={tag.tag_d3}
+                    link={{ source:tags.file_d3, target: tag.tag_d3 }}
+                    stroke="red" />
+            )
         }
     )}
 
     componentWillMount(){
-        console.log(this.props);
+        console.log("Will mount");
+    }
+
+    componentDidReceiveProps(){
+        console.log("Will recieve Props");
+    }
+
+    componentDidMount(){
+        console.log("Mounted");
+        this.setState( prevState => {
+            return { mounted: !prevState.mounted }
+        })
     }
 
     render() {
