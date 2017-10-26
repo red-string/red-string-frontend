@@ -1,83 +1,66 @@
 import axios from "axios";
 
-export function getAllCases(dispatch){
-  return axios.get("/case").then((res)=>{
-     return dispatch(res.data)
-  })
+export function getAllCases(dispatch) {
+  return axios.get("/case").then(res => {
+    return dispatch({ action: "GET_ALL_CASES", payload: res.data });
+  });
 }
 
-export function getAllFilesFromCase(caseId){
-  return axios.get("/case/" + caseId.toString()).then( res => {
-    return res.data
-  })
+export function getAllFilesFromCase(caseId) {
+  return axios.get("/case/" + caseId.toString()).then(res => {
+    return res.data;
+  });
 }
 
-export function getAllTagsFromCase(caseId){
-  return axios.get("/" + caseId.toString() + "/files/tags").then( res => {
-    return res.data
-  })
+export function getAllTagsFromCase(caseId) {
+  return axios.get("/" + caseId.toString() + "/files/tags").then(res => {
+    return res.data;
+  });
 }
 
-export function getFileById(fileId){
-  return axios.get("/file/" + fileId.toString()).then( res => {
-    return res.data
-  })
+export function getFileById(fileId) {
+  return axios.get("/file/" + fileId.toString()).then(res => {
+    return res.data;
+  });
 }
 
-export function getTagsThatShareFiles( case_id, file_id ){
-  return axios.get("/case/" + case_id + "/" + file_id).then( res => {
-    return res.data
-  })
+export function getTagsThatShareFiles(case_id, file_id) {
+  return axios.get("/case/" + case_id + "/" + file_id).then(res => {
+    return res.data;
+  });
 }
 
-export function getFilesThatShareTag( case_id, tag_id ){
-  return axios.get("/" + case_id + "/files/tags/" + tag_id).then( res => {
-    return res.data
-  })
+export function getFilesThatShareTag(case_id, tag_id) {
+  return axios.get("/" + case_id + "/files/tags/" + tag_id).then(res => {
+    return res.data;
+  });
 }
-
 
 ////////////// BLANKS ///////////////
 
-
-export function getAllTagsFromFile(fileId){
-  axios.get("/file/tags").then( res => {
-    
-  })
+export function getAllTagsFromFile(fileId) {
+  axios.get("/file/tags").then(res => {});
 }
 
-export function getCaseById(caseId){
-  axios.get("/case/" + caseId.toString()).then( res => {
-    
-  })
+export function getCaseById(caseId) {
+  axios.get("/case/" + caseId.toString()).then(res => {});
 }
 
-
-export function getTagById(tagId){
-  axios.get("/tag/" + tagId.toString()).then( res => {
-    
-  })
+export function getTagById(tagId) {
+  axios.get("/tag/" + tagId.toString()).then(res => {});
 }
 
-export function getLastCaseId(){
-  axios.get("/case/files").then( res => {
-    
-  })
+export function getLastCaseId() {
+  axios.get("/case/files").then(res => {});
 }
 
-export function getLastFileId(){
-  axios.get("/case/files").then( res => {
-    
-  })
+export function getLastFileId() {
+  axios.get("/case/files").then(res => {});
 }
 
-export function getLastTagId(){
-  axios.get("/case/files").then( res => {
-    
-  })
+export function getLastTagId() {
+  axios.get("/case/files").then(res => {});
 }
-
-
 
 // function getAllCases() {
 //     return new Promise((resolve, reject) => {
@@ -86,7 +69,7 @@ export function getLastTagId(){
 //       });
 //     });
 //   }
-  
+
 //   function getAllFilesFromCase(caseId) {
 //     return new Promise((resolve, reject) => {
 //       File.query()
@@ -96,7 +79,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getAllTagsFromFile(fileId) {
 //     return new Promise((resolve, reject) => {
 //       Tag.query()
@@ -106,7 +89,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getAllTagsFromCase(caseId) {
 //     return new Promise((resolve, reject) => {
 //       Tag.query()
@@ -116,9 +99,9 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   //===================================== Get Last CaseId, FileId, TagId
-  
+
 //   function getLastCaseId() {
 //     return new Promise((resolve, reject) => {
 //       Case.query()
@@ -130,7 +113,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getLastFileId() {
 //     return new Promise((resolve, reject) => {
 //       File.query()
@@ -142,7 +125,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getLastTagId() {
 //     return new Promise((resolve, reject) => {
 //       Tag.query()
@@ -154,9 +137,9 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   //============================================ Get Individual
-  
+
 //   function getCaseById(caseId) {
 //     return new Promise((resolve, reject) => {
 //       Case.query()
@@ -166,7 +149,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getFileById(fileId) {
 //     return new Promise((resolve, reject) => {
 //       File.query()
@@ -176,7 +159,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   function getTagById(tagId) {
 //     return new Promise((resolve, reject) => {
 //       Tag.query()
@@ -186,7 +169,7 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   // ============================================ Get Shared
 //   // Going to have to mess around with this one once we actually get some data
 //   function getFilesThatShareTag(caseId, tag) {
@@ -200,9 +183,9 @@ export function getLastTagId(){
 //         });
 //     });
 //   }
-  
+
 //   // ============================================= Get Multiple
-  
+
 //   function getMultipleFiles(fileIdArray) {
 //     return new Promise((resolve, reject) => {});
 //   }

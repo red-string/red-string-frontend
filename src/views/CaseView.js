@@ -17,7 +17,15 @@ class CaseView extends Component {
       displayForm: false
     };
   }
+<<<<<<< HEAD
   
+=======
+
+  componentDidMount() {
+    this.props.fetchCases;
+  }
+
+>>>>>>> 4d4c47c0cdaff40c600f7f73d66b5787600705a6
   ///////////////////////
   // Helper Functions
   //////////////////////
