@@ -4,17 +4,21 @@ import ReactFileReader from "react-file-reader";
 import {Link} from 'react-router-dom';
 import axios from "axios";
 
+
 class NewFileForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      fileOpen: false,
+      textOpen: false,
       file_name: "",
       file: "",
       file_desc: "",
       file_type: "",
       file_dateModified: "",
-      case_id: ""
+      case_id: "",
+      file_text: ""
     };
   }
 
@@ -58,6 +62,25 @@ class NewFileForm extends Component {
     });
   }
 
+  toggleVisible = (evt) => {
+    evt.preventDefault();
+    let evtName = evt.target.name;
+    this.setState({
+      [evtName]: true
+    })
+}
+  // setClass = () => {
+  //   let inputClassName = "";
+  //   console.log()
+  //   if (this.state.user_input === "textOpen") {
+  //     return inputClassName = {display: 'block'}
+  //   }
+  //   else if (this.state.user_input === "fileOpen") {
+  //     return hey = "show me the file upload!"
+  //   }
+  //   else return;
+  // }
+
     // const reader = new FileReader();
     // reader.onload = function(e) {
     //   let text = reader.result;
@@ -66,26 +89,42 @@ class NewFileForm extends Component {
     // reader.readAsText(file)
     //handle axios request in submit event handler?
 
-  render(){
-    let instruction = this.state.file_name
-      ? "You have selected this file for upload: " + this.state.file_name
-      : "Select a file for upload";
-    return (
-      <div className="newFile">
-        { this.props.activeCase ? 
+    render() {
+      console.log("selected input: ", this.state.user_input)
+      let instruction = this.state.file_name
+        ? "You have selected this file for upload: " + this.state.file_name
+        : "Select a file for upload";
+      const hiding = {
+        display: 'none'
+      }
+      const shown = {
+        display: 'block'
+      }
+
+
+      return (
+        <div className="newFile">
           <form>
-            <p>{instruction}</p>
-            <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx, .pdf">
-              <p>Upload</p>
-            </ReactFileReader>
-            <select name="file_type" onChange={this.handleChange}>
-              <option selected>Select a filetype...</option>
-              <option value="docx">Word Document (.docx)</option>
-              <option value="pdf">PDF</option>
-              <option value="input">Manually enter text</option>
-            </select>
+            <button onClick={this.toggleVisible} name="textOpen">Manually enter text</button>
+            <button onClick={this.toggleVisible} name="fileOpen">Upload a file</button>
+            <div className="fileOpen" style={this.state.fileOpen ? shown : hiding}>
+              <p>{instruction}</p>
+              <ReactFileReader handleFiles={this.setFileState} fileTypes=".docx, .pdf">
+                <p>Upload</p>
+              </ReactFileReader>
+
+              <select name="file_type" onChange={this.handleChange} required>
+                <option>Select a filetype...</option>
+                <option value="docx">Word Document (.docx)</option>
+                <option value="pdf">PDF</option>
+              </select>
+            </div>
+            <div className="textOpen" style={this.state.textOpen ? shown : hiding}>
+              <textarea name="input" cols="30" rows="10" placeholder="Enter your text here..." onChange={this._handleChange} value={this.state.file_text} />
+            </div>
             <input type="text" name="file_name" placeholder="Add file name" onChange={this.handleChange} value={this.state.file_name}/>
             <input type="text" name="file_desc" placeholder="Add description" onChange={this.handleChange} value={this.state.file_desc}/>
+
             <button onClick={this.handleSubmit}>Submit</button>
           </form>
           : "Please go back and pick a case"
