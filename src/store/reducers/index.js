@@ -83,6 +83,6 @@ const reducers = function(state = initialState, action) {
     //     })
     // break;
     }
-} 
+}
 
 export default reducers;
