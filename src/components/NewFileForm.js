@@ -39,7 +39,7 @@ class NewFileForm extends Component {
   };
 
   setFileState = files => {
-    console.log(files);
+
     let file = files[0];
     let name = file.name;
     let file_dateModified = file.lastModifiedDate;
@@ -53,15 +53,14 @@ class NewFileForm extends Component {
     data.append("description", description);
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
-    data.append("name", name);
     data.append("file_type", file_type);
-    console.log("data object", data);
+
 
     axios.post("/case/" + case_id + "/new", data).then(response => {
-      console.log(response);
+
       this.props.refreshFileList()
-    })
-  };
+    });
+  }
 
   toggleVisible = (evt) => {
     evt.preventDefault();
@@ -128,9 +127,11 @@ class NewFileForm extends Component {
 
             <button onClick={this.handleSubmit}>Submit</button>
           </form>
+          : "Please go back and pick a case"
+        }
         </div>
-      );
-    }
-  }
+    );
+  } 
+}
 
   export default NewFileForm;

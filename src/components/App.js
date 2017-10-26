@@ -5,12 +5,14 @@ import TagView from "../views/TagView";
 import FileView from "../views/FileView";
 import StringMap from "../components/StringMap";
 import SideNav from "../components/NavBar/SideNav"
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import {
   getAllCases,
   getAllFilesFromCase,
   getAllTagsFromFile,
-  getAllTagsFromCase
+  getAllTagsFromCase,
+  getTagsThatShareFiles,
+  getFileById
 } from "../services.js";
 import "../styles/App.css";
 
@@ -22,7 +24,11 @@ class App extends Component {
       activeCase: "",
       activeFile: "",
       caseFiles: [],
-      caseTags: []
+      caseTags: [],
+      parentNode: {},
+      childNodes: [],
+      previousParent: {},
+      previousChildren: []
     }
   }
 
@@ -35,7 +41,7 @@ class App extends Component {
   }
 
   componentDidUpdate(){
-    console.log("App State", this.state);
+    console.log(this.state);
   }
 
   ///////////////////////
@@ -68,12 +74,22 @@ class App extends Component {
           activeCase: case_id,
           caseFiles: files,
           caseTags: tags,
-          parentNode: {},
-          childNodes: [],
-          previousParent: {},
-          previousChildren: [],
           displayUpload: false
         })
+      })
+    })
+  }
+
+  _setParentAndChildNodes = (case_id, file_id) => {
+    getTagsThatShareFiles( case_id, file_id ).then( file => {
+      console.log(file);
+      this.setState((prevState)=>{
+        return {
+          parentNode: file,
+          childNodes: file.tags,
+          previousChildren: prevState.childNodes,
+          previousParent: prevState.parentNode
+        }
       })
     })
   }
@@ -85,11 +101,10 @@ class App extends Component {
 	}
 
   render() {
-
     return (
       <div className="App">
         <SideNav
-          _chooseFile={this._chooseFile}
+          _setParentAndChildNodes={this._setParentAndChildNodes}
           case={this.state.activeCase}
           files={this.state.caseFiles}
           tags={this.state.caseTags} 
@@ -98,7 +113,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/files" component={() => <FileView upload={ this.state.displayUpload } activeCase={this.state.activeCase} refreshFileList={this.refreshFileList} /> } />
           <Route exact path="/tags" component={TagView} />
-          <Route exact path="/graph" component={() => <DataVisView files={this.state.caseFiles} tags={this.state.caseTags} /> } />
+          <Route exact path="/graph" component={() => <DataVisView pNode={this.state.parentNode} cNode={this.state.childNode} /> } />
           <Route exact path="/" component={() => <CaseView _openCase={this._openCase} appState={this.state} getAndSet={this.getCasesAndSetState} /> } />
         </Switch>
       </div>
