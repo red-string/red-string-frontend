@@ -1,5 +1,18 @@
 import { combineReducers } from 'redux';
-import {} from "../actions/index.js";
+import { 
+    GET_ALL_CASES,
+    OPEN_CASE,
+    REFRESH_FILE_LIST,
+    SET_PARENT_AND_CHILD_NODES
+} from "../constants.js";
+import {
+    getAllCases,
+    getAllFilesFromCase,
+    getAllTagsFromFile,
+    getAllTagsFromCase,
+    getTagsThatShareFiles,
+    getFileById
+  } from "../../services.js";
 
 const initialState = {
     cases: [],
@@ -15,7 +28,7 @@ const initialState = {
 
 const reducers = function( state = initialState, action ){
     switch (action.type){
-        case GET_ALL_CASES:
+        case 'GET_ALL_CASES':
             return getAllCases().then(retrievedCases => {
                 return Object.assign({}, state, {
                     cases: retrievedCases
@@ -48,7 +61,7 @@ const reducers = function( state = initialState, action ){
         break;
 
         case SET_PARENT_AND_CHILD_NODES:
-            return getTagsThatShareFiles( case_id, file_id ).then( file => {
+            return getTagsThatShareFiles( action.payload, action.payload ).then( file => {
                 return Object.assign({}, state, {
                     parentNode: file,
                     childNodes: file.tags
@@ -71,3 +84,5 @@ const reducers = function( state = initialState, action ){
     // break;
     }
 } 
+
+export default reducers;
