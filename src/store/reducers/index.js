@@ -5,6 +5,7 @@ import {
   REFRESH_FILE_LIST,
   SET_PARENT_AND_CHILD_NODES
 } from "../constants.js";
+import update from "immutability-helper";
 import {
   getAllCases,
   getAllFilesFromCase,
@@ -28,13 +29,10 @@ const initialState = {
 
 const reducers = function(state = initialState, action) {
   switch (action.type) {
-    case "GET_ALL_CASES":
-      return getAllCases().then(retrievedCases => {
-        return Object.assign({}, state, {
-          cases: retrievedCases
-        });
+    case GET_ALL_CASES:
+      return update(state, {
+        cases: { $set: action.payload }
       });
-      break;
 
     case OPEN_CASE:
       return getAllFilesFromCase(action.payload).then(files => {
@@ -72,6 +70,9 @@ const reducers = function(state = initialState, action) {
         });
       });
       break;
+
+    default:
+      return state;
 
     ///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
     //     case CREATE_GRAPH:

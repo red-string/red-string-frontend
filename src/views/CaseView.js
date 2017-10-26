@@ -13,6 +13,7 @@ class CaseView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cases: [],
       displayForm: false
     };
   }
@@ -37,7 +38,7 @@ class CaseView extends Component {
           />
         ) : (
           <CaseList
-            cases={this.props.appState.cases}
+            cases={this.state.cases}
             _openCase={this.props._openCase}
             _toggleForm={this._toggleForm}
           />
@@ -48,16 +49,15 @@ class CaseView extends Component {
 }
 
 function mapStateToProps(state) {
-  state;
   // return {
-  //   isAuthenticated: this.state.isAuthenticated
+  //   cases: state.cases
   // };
 }
 
 const mapDispatchToProps = dispatch => {
-  // return {
-  //   fetchData: url => dispatch(itemsFetchData(url))
-  // };
+  return {
+    getCases: () => dispatch(getAllCases())
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CaseView);
