@@ -27,9 +27,10 @@ const initialState = {
   previousChildren: []
 };
 
-const reducers = function(state = initialState, action) {
+const reducers = function getAllCasesReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
+      console.log("action GET ALL CASES in Reducers.js");
       return update(state, {
         cases: { $set: action.payload }
       });
