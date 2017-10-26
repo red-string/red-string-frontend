@@ -26,7 +26,6 @@ const initialState = {
   previousChildren: []
 };
 
-
 const reducers = function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
@@ -83,8 +82,13 @@ const reducers = function(state = initialState, action) {
     //         cases: action.payload
     //     })
     // break;
+<<<<<<< HEAD
   }
 };
 
+=======
+    }
+}
+>>>>>>> 3dd9ad6a2f2f0209428c528160286e7e53d3d85a
 
 export default reducers;
