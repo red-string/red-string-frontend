@@ -18,6 +18,28 @@ export function getAllTagsFromCase(caseId){
   })
 }
 
+export function getFileById(fileId){
+  return axios.get("/file/" + fileId.toString()).then( res => {
+    return res.data
+  })
+}
+
+export function getTagsThatShareFiles( case_id, file_id ){
+  return axios.get("/case/" + case_id + "/" + file_id).then( res => {
+    return res.data
+  })
+}
+
+export function getFilesThatShareTag( case_id, tag_id ){
+  return axios.get("/" + case_id + "/files/tags/" + tag_id).then( res => {
+    return res.data
+  })
+}
+
+
+////////////// BLANKS ///////////////
+
+
 export function getAllTagsFromFile(fileId){
   axios.get("/file/tags").then( res => {
     
@@ -30,11 +52,6 @@ export function getCaseById(caseId){
   })
 }
 
-export function getFileById(fileId){
-  axios.get("/file/" + fileId.toString()).then( res => {
-    
-  })
-}
 
 export function getTagById(tagId){
   axios.get("/tag/" + tagId.toString()).then( res => {
@@ -60,11 +77,7 @@ export function getLastTagId(){
   })
 }
 
-export function getFilesThatShareTag( case_id, tag_id ){
-  return axios.get("/" + case_id + "/files/tags/" + tag_id).then( res => {
-    return res.data
-  })
-}
+
 
 // function getAllCases() {
 //     return new Promise((resolve, reject) => {

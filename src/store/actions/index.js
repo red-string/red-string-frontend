@@ -12,5 +12,6 @@ const makeActionCreator = function (actionType) {
 export const getAllCases = makeActionCreator(GET_ALL_CASES);
 export const openCase = makeActionCreator(OPEN_CASE);
 export const refreshFileList = makeActionCreator(REFRESH_FILE_LIST);
+export const setParentAndChildNodes = makeActionCreator(SET_PARENT_AND_CHILD_NODES);
 export const createGraph = makeActionCreator(CREATE_GRAPH);
 export const updateGraph = makeActionCreator(UPDATE_GRAPH);
