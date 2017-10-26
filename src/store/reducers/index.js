@@ -48,17 +48,26 @@ const reducers = function( state = initialState, action ){
         break;
 
         case SET_PARENT_AND_CHILD_NODES:
-            return Object.assign({}, state, {
-                cases: action.payload
+            return getTagsThatShareFiles( case_id, file_id ).then( file => {
+                return Object.assign({}, state, {
+                    parentNode: file,
+                    childNodes: file.tags
+                    //MAKE THIS APPLY PREVIOUS NODES
+                })
             })
         break;
 
-        case UPDATE_GRAPH:
-            return Object.assign({}, state, {
-                cases: action.payload
-            })
-        break;
-        
+///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
+    //     case CREATE_GRAPH:
+    //         return Object.assign({}, state, {
+    //             cases: action.payload
+    //         })
+    //     break;
 
+    //     case UPDATE_GRAPH:
+    //     return Object.assign({}, state, {
+    //         cases: action.payload
+    //     })
+    // break;
     }
 } 
