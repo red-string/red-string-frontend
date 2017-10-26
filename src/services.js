@@ -1,9 +1,8 @@
 import axios from "axios";
+import { getAllCases } from "./store/actions";
 
-export function getAllCases(dispatch) {
-  return axios.get("/case").then(res => {
-    return dispatch({ action: "GET_ALL_CASES", payload: res.data });
-  });
+export function getAllCasesService(dispatch) {
+  return axios.get("/case").then(res => dispatch(getAllCases(res.data)));
 }
 
 export function getAllFilesFromCase(caseId) {

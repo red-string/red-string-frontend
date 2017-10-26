@@ -4,7 +4,7 @@ import SideNav from "../components/NavBar/SideNav";
 import NewCaseForm from "../components/NewCaseForm";
 import CaseList from "../components/CaseList";
 import {
-  getAllCases,
+  getAllCasesService,
   getAllFilesFromCase,
   getAllTagsFromFile
 } from "../services.js";
@@ -19,7 +19,7 @@ class CaseView extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCases;
+    this.props.getCases();
   }
 
   ///////////////////////
@@ -60,7 +60,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCases: () => dispatch(getAllCases())
+    getCases: () => dispatch(getAllCasesService())
   };
 };
 
