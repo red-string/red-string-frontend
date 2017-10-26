@@ -3,7 +3,7 @@ import "../styles/NewFileForm.css";
 import ReactFileReader from "react-file-reader";
 import {Link} from 'react-router-dom';
 import axios from "axios";
-import TextInput from "./TextInput"
+
 
 class NewFileForm extends Component {
   constructor(props) {
