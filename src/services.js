@@ -1,17 +1,13 @@
 import axios from "axios";
-// import { dispatch } from "redux-thunk"
+import { getAllCases } from "./store/actions";
 
-export function getAllCases() {
-  // axios.get("/case").then(res => {
-  //   return dispatch({ action: "GET_ALL_CASES", payload: res.data });
-  console.log("getAllCases fired in services.js");
+export function getAllCasesService() {
   return dispatch => {
-    axios.get("/case")
-      .then(res => {
-        console.log(res.data);
-        dispatch(getAllCases(res.data))
-    })
-  }
+    axios.get("/case").then(res => {
+      console.log("data", res);
+      dispatch(getAllCases(res.data));
+    });
+  };
 }
 
 // export function getAllCasesService() {
