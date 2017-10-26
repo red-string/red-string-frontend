@@ -31,20 +31,22 @@ export default class StringMap extends Component {
     //     )})
     // }
 
-    createNodesFromFile = (pNode) => {
+    createNodesFromFile = (file) => {
+        console.log("NODE NODIN");
         return (
             <ForceGraphNode
                 showLabel
-                key={pNode.file_d3}
-                node={{ id: pNode.file_d3, data: pNode.file_name }}
+                key={file.file_d3}
+                node={{ id: file.file_d3, data: file.file_name }}
                 fill="lightgrey"
                 stroke="black"
                 r="35" />
         )
     }
 
-    createNodesFromFileTags = props => {
-        return props.cNode.map( tag => {
+    createNodesFromFileTags = tags => {
+        return tags.map( tag => {
+            console.log("TAGS MAPPIN", tag);
             return
             <ForceGraphNode
                 showLabel
@@ -56,8 +58,9 @@ export default class StringMap extends Component {
         }
     )}
 
-    createLinksFromFileTags = (props) => {
-        return props.cNode.map( tag => {
+    createLinksFromFileTags = (tags) => {
+        return tags.map( tag => {
+            console.log("LINKS LINKIN", tag);
             return
             <ForceGraphLink
                 key={tag.tag_d3}
@@ -66,9 +69,11 @@ export default class StringMap extends Component {
         }
     )}
 
+    componentWillMount(){
+        console.log(this.props);
+    }
 
     render() {
-
       return (
         <InteractiveForceGraph 
             className="stringMap"
@@ -82,9 +87,9 @@ export default class StringMap extends Component {
                     charge: -2500
                 }
         }}>
-            {this.createNodesFromFile(this.props.pNode)}
-            {this.createNodesFromFileTags(this.props)}
-            {this.createLinksFromFileTags(this.props)}
+            {this.createNodesFromFile(this.props.files)}
+            {this.createNodesFromFileTags(this.props.tags)}
+            {this.createLinksFromFileTags(this.props.tags)}
         </InteractiveForceGraph>
       )
     }

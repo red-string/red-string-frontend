@@ -55,8 +55,8 @@ export function setParentAndChildNodesService(case_id, ID, type) {
         dispatch(setParentAndChildNodes(payload));
       });
     } else if (type === "file") {
-      axios.get("/" + case_id + "/files/tags/" + ID).then(res => {
-        console.log("files", res.data);
+      axios.get("/case/" + case_id + "/" + ID).then(res => {
+        console.log("files", res);
         const parent = res.data;
         const child = res.data.tags;
         const payload = { parent, child };

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 import SideNavHeader from "./SideNavHeader";
 import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
@@ -34,6 +35,7 @@ class SideNav extends Component {
           data={this.state.displayFiles ? this.props.caseFiles : this.props.caseTags}
           activeCase={this.props.activeCase}
         />
+        <Link to="/graph" > GRAPH </ Link>
       </div>
     );
   }

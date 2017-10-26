@@ -62,10 +62,7 @@ class App extends Component {
             exact
             path="/graph"
             component={() => (
-              <DataVisView
-                pNode={this.state.parentNode}
-                cNode={this.state.childNode}
-              />
+              <DataVisView />
             )}
           />
           <Route
