@@ -27,52 +27,68 @@ const initialState = {
   previousChildren: []
 };
 
-const reducers = function(state = initialState, action) {
+const reducers = function getAllCasesReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
-      return update(state, {
-        cases: { $set: action.payload }
-      });
+      return update(state, { cases: { $set: action.payload } });
 
     case OPEN_CASE:
-      return getAllFilesFromCase(action.payload).then(files => {
-        getAllTagsFromCase(action.payload).then(tags => {
-          return Object.assign({}, state, {
-            activeCase: action.payload,
-            caseFiles: files,
-            caseTags: tags,
-            displayUpload: false
-          });
-        });
+      return update(state, {
+        activeCase: { $set: action.payload.active },
+        caseFiles: { $set: action.payload.files },
+        caseTags: { $set: action.payload.tags },
+        displayUpload: { $set: false }
       });
-      break;
-
     case REFRESH_FILE_LIST:
-      return getAllFilesFromCase(state.activeCase).then(files => {
-        getAllTagsFromCase(state.activeCase).then(tags => {
-          return Object.assign({}, state, {
-            caseFiles: files,
-            caseTags: tags
-          });
-        });
+      return update(state, {
+        caseFiles: { $set: action.payload.files },
+        caseTags: { $set: action.payload.tags }
       });
-      break;
 
     case SET_PARENT_AND_CHILD_NODES:
-      return getTagsThatShareFiles(
-        action.payload,
-        action.payload
-      ).then(file => {
-        return Object.assign({}, state, {
-          parentNode: file,
-          childNodes: file.tags
-          //MAKE THIS APPLY PREVIOUS NODES
-        });
+      return update(state, {
+        parentNode: { $set: action.payload.parent },
+        childNodes: { $set: action.payload.child }
       });
-      break;
 
     default:
       return state;
+
+    // case OPEN_CASE:
+    //   return getAllFilesFromCase(action.payload).then(files => {
+    //     getAllTagsFromCase(action.payload).then(tags => {
+    //       return Object.assign({}, state, {
+    //         activeCase: action.payload,
+    //         caseFiles: files,
+    //         caseTags: tags,
+    //         displayUpload: false
+    //       });
+    //     });
+    //   });
+    //   break;
+
+    // case REFRESH_FILE_LIST:
+    //   return getAllFilesFromCase(state.activeCase).then(files => {
+    //     getAllTagsFromCase(state.activeCase).then(tags => {
+    //       return Object.assign({}, state, {
+    //         caseFiles: files,
+    //         caseTags: tags
+    //       });
+    //     });
+    //   });
+
+    // case SET_PARENT_AND_CHILD_NODES:
+    //   return getTagsThatShareFiles(
+    //     action.payload,
+    //     action.payload
+    //   ).then(file => {
+    //     return Object.assign({}, state, {
+    //       parentNode: file,
+    //       childNodes: file.tags
+    //       //MAKE THIS APPLY PREVIOUS NODES
+    //     });
+    //   });
+    //   break;
 
     ///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
     //     case CREATE_GRAPH:
@@ -86,7 +102,7 @@ const reducers = function(state = initialState, action) {
     //         cases: action.payload
     //     })
     // break;
-  }
-};
+    }
+}
 
 export default reducers;

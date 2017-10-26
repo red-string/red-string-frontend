@@ -1,5 +1,10 @@
 import axios from "axios";
-import { getAllCases } from "./store/actions";
+import {
+  getAllCases,
+  refreshFileList,
+  openCase,
+  setParentAndChildNodes
+} from "./store/actions";
 
 export function getAllCasesService() {
   return dispatch => {
@@ -10,61 +15,106 @@ export function getAllCasesService() {
   };
 }
 
-export function getAllFilesFromCase(caseId) {
-  return axios.get("/case/" + caseId.toString()).then(res => {
-    return res.data;
-  });
+export function openCaseService(caseId) {
+  return dispatch => {
+    axios.get("/case/" + caseId.toString()).then(res => {
+      const files = res.data;
+      axios.get("/" + caseId.toString() + "/files/tags").then(resp => {
+        const tags = resp.data;
+        const payload = {
+          active: caseId,
+          tags,
+          files
+        };
+        dispatch(openCase(payload));
+      });
+    });
+  };
 }
 
-export function getAllTagsFromCase(caseId) {
-  return axios.get("/" + caseId.toString() + "/files/tags").then(res => {
-    return res.data;
-  });
+export function refreshFileListService(caseId) {
+  return dispatch => {
+    axios.get("/case/" + caseId.toString()).then(res => {
+      const files = res.data;
+      axios.get("/" + caseId.toString() + "/files/tags").then(resp => {
+        const tags = resp.data;
+        const payload = { tags, files };
+        dispatch(refreshFileList(payload));
+      });
+    });
+  };
 }
 
-export function getFileById(fileId) {
-  return axios.get("/file/" + fileId.toString()).then(res => {
-    return res.data;
-  });
+export function setParentAndChildNodesService(case_id, ID, type) {
+  return dispatch => {
+    if (type === "tag") {
+      axios.get("/case/" + case_id + "/" + ID).then(res => {
+        console.log("tags", res.data);
+        const tags = res.data;
+        const payload = { tags };
+        dispatch(setParentAndChildNodes(payload));
+      });
+    } else if (type === "file") {
+      axios.get("/" + case_id + "/files/tags/" + ID).then(res => {
+        console.log("files", res.data);
+        const parent = res.data;
+        const child = res.data.tags;
+        const payload = { parent, child };
+        dispatch(setParentAndChildNodes(payload));
+      });
+    }
+  };
 }
 
-export function getTagsThatShareFiles(case_id, file_id) {
-  return axios.get("/case/" + case_id + "/" + file_id).then(res => {
-    return res.data;
-  });
-}
+// function getAllTagsFromCase(caseId) {
+//   return axios.get("/" + caseId.toString() + "/files/tags").then(res => {
+//     return res.data;
+//   });
+// }
 
-export function getFilesThatShareTag(case_id, tag_id) {
-  return axios.get("/" + case_id + "/files/tags/" + tag_id).then(res => {
-    return res.data;
-  });
-}
+// function getFileById(fileId) {
+//   return axios.get("/file/" + fileId.toString()).then(res => {
+//     return res.data;
+//   });
+// }
 
-////////////// BLANKS ///////////////
+// function getTagsThatShareFiles(case_id, file_id) {
+//   return axios.get("/case/" + case_id + "/" + file_id).then(res => {
+//     return res.data;
+//   });
+// }
 
-export function getAllTagsFromFile(fileId) {
-  axios.get("/file/tags").then(res => {});
-}
+// function getFilesThatShareTag(case_id, tag_id) {
+//   return axios.get("/" + case_id + "/files/tags/" + tag_id).then(res => {
+//     return res.data;
+//   });
+// }
 
-export function getCaseById(caseId) {
-  axios.get("/case/" + caseId.toString()).then(res => {});
-}
+// ////////////// BLANKS ///////////////
 
-export function getTagById(tagId) {
-  axios.get("/tag/" + tagId.toString()).then(res => {});
-}
+// function getAllTagsFromFile(fileId) {
+//   axios.get("/file/tags").then(res => {});
+// }
 
-export function getLastCaseId() {
-  axios.get("/case/files").then(res => {});
-}
+// function getCaseById(caseId) {
+//   axios.get("/case/" + caseId.toString()).then(res => {});
+// }
 
-export function getLastFileId() {
-  axios.get("/case/files").then(res => {});
-}
+// function getTagById(tagId) {
+//   axios.get("/tag/" + tagId.toString()).then(res => {});
+// }
 
-export function getLastTagId() {
-  axios.get("/case/files").then(res => {});
-}
+// function getLastCaseId() {
+//   axios.get("/case/files").then(res => {});
+// }
+
+// function getLastFileId() {
+//   axios.get("/case/files").then(res => {});
+// }
+
+// function getLastTagId() {
+//   axios.get("/case/files").then(res => {});
+// }
 
 // function getAllCases() {
 //     return new Promise((resolve, reject) => {
