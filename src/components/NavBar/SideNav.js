@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import SideNavHeader from "./SideNavHeader";
 import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
-
+import { setParentAndChildNodesService } from "../../services.js"
 import axios from "axios";
 import "../../styles/SideNav.css";
 
@@ -30,9 +30,9 @@ class SideNav extends Component {
         />
         <NewItemButton _toggleUpload={this.props._toggleUpload} />
         <ItemList
-          _chooseFile={this.props._chooseFile}
-          /* _chooseTag={this.props._chooseTag} */
-          data={this.state.displayFiles ? this.props.files : this.props.tags}
+          setParentAndChildNodes={this.props.setParentAndChildNodes}
+          data={this.state.displayFiles ? this.props.caseFiles : this.props.caseTags}
+          activeCase={this.props.activeCase}
         />
       </div>
     );
@@ -40,16 +40,17 @@ class SideNav extends Component {
 }
 
 function mapStateToProps(state) {
-  state;
-  // return {
-  //   isAuthenticated: this.state.isAuthenticated
-  // };
+  return {
+    caseFiles: state.caseFiles,
+    caseTags: state.caseTags,
+    activeCase: state.activeCase
+  };
 }
 
 const mapDispatchToProps = dispatch => {
-  // return {
-  //   fetchData: url => dispatch(itemsFetchData(url))
-  // };
+  return {
+    setParentAndChildNodes: (case_id, id, type) => dispatch(setParentAndChildNodesService(case_id, id, type))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideNav);

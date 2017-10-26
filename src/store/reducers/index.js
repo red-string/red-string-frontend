@@ -27,7 +27,7 @@ const initialState = {
   previousChildren: []
 };
 
-const reducers = function(state = initialState, action) {
+const reducers = function getAllCasesReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
       return update(state, { cases: { $set: action.payload } });
@@ -39,7 +39,6 @@ const reducers = function(state = initialState, action) {
         caseTags: { $set: action.payload.tags },
         displayUpload: { $set: false }
       });
-
     case REFRESH_FILE_LIST:
       return update(state, {
         caseFiles: { $set: action.payload.files },
@@ -103,7 +102,7 @@ const reducers = function(state = initialState, action) {
     //         cases: action.payload
     //     })
     // break;
-  }
-};
+    }
+}
 
 export default reducers;

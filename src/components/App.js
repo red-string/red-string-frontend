@@ -25,8 +25,10 @@ class App extends Component {
   }
 
   componentWillMount() {
-    //GET CASES DISPATCH
+    
   }
+
+  
   ///////////////////////
   // Helper Functions
   //////////////////////
@@ -40,13 +42,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <SideNav
-          _setParentAndChildNodes={this._setParentAndChildNodes}
-          case={this.state.activeCase}
-          files={this.state.caseFiles}
-          tags={this.state.caseTags} 
+        <SideNav
           _toggleUpload={this._toggleUpload}
-        /> */}
+        />
         <Switch>
           <Route
             exact

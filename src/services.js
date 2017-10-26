@@ -45,16 +45,18 @@ export function refreshFileListService(caseId) {
   };
 }
 
-export function setParentAndChildNodesService(case_id, ID, fileOrTag) {
+export function setParentAndChildNodesService(case_id, ID, type) {
   return dispatch => {
-    if (fileOrTag === "tag") {
+    if (type === "tag") {
       axios.get("/case/" + case_id + "/" + ID).then(res => {
+        console.log("tags", res.data);
         const tags = res.data;
         const payload = { tags };
         dispatch(setParentAndChildNodes(payload));
       });
-    } else if (fileOrTag === "file") {
+    } else if (type === "file") {
       axios.get("/" + case_id + "/files/tags/" + ID).then(res => {
+        console.log("files", res.data);
         const parent = res.data;
         const child = res.data.tags;
         const payload = { parent, child };
