@@ -1,4 +1,4 @@
-import {GET_ALL_CASES, OPEN_CASE, REFRESH_FILE_LIST, CREATE_GRAPH, UPDATE_GRAPH} from '../constants';
+import {GET_ALL_CASES, OPEN_CASE, REFRESH_FILE_LIST, CREATE_GRAPH, UPDATE_GRAPH, SET_PARENT_AND_CHILD_NODES} from '../constants';
 
 const makeActionCreator = function (actionType) {
   return function (payload) {
