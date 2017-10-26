@@ -130,11 +130,11 @@ class NewFileForm extends Component {
 
             <button onClick={this.handleSubmit}>Submit</button>
           </form>
-          : "Please go back and pick a case"
+          {/* : "Please go back and pick a case" */}
         }
         </div>
     );
-  } 
+  }
 }
 
   export default NewFileForm;
