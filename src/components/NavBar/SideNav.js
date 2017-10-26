@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import SideNavHeader from "./SideNavHeader";
 import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
-import axios from "axios";
 import "../../styles/SideNav.css"
 
 export default class SideNav extends Component {
@@ -25,15 +24,16 @@ export default class SideNav extends Component {
 				<SideNavHeader
 					displayFiles={this.state.displayFiles}
 					_toggleHeader={this._toggleHeader}
-				/>
+					/>
 				<NewItemButton _toggleUpload={this.props._toggleUpload} />
 				<ItemList
-					_chooseFile={this.props._chooseFile}
-					/* _chooseTag={this.props._chooseTag} */
+					_setParentAndChildNodes={this.props._setParentAndChildNodes}
+					case={this.props.case}
 					data={
 						this.state.displayFiles
 						? this.props.files
-						: this.props.tags }/>
+						: this.props.tags }
+					/>	
 			</div>
 		);
 	}

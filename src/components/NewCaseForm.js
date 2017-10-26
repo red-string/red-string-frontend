@@ -23,9 +23,9 @@ export default class NewCaseForm extends Component {
         let newCase = {};
         newCase.case_description = this.state.case_description;
         newCase.case_name = this.state.case_name;
-        console.log("Submitting This Case", newCase);
+
         axios.post("/case/new", newCase).then(res => {
-            console.log(res)
+
             this.setState({
                 case_name: "",
                 case_description: ""
