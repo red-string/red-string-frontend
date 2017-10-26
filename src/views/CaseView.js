@@ -19,7 +19,7 @@ class CaseView extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCases;
+    this.props.getCases();
   }
 
   ///////////////////////
@@ -53,12 +53,13 @@ class CaseView extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state)
   return {
     cases: state.cases
   };
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getCases: () => dispatch(getAllCases())
   };

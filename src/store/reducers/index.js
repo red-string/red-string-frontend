@@ -1,3 +1,4 @@
+import update from 'immutability-helper';
 import { combineReducers } from 'redux';
 import {
     GET_ALL_CASES,
@@ -30,8 +31,8 @@ const reducers = function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
       return getAllCases().then(retrievedCases => {
-        return Object.assign({}, state, {
-          cases: retrievedCases
+        return update(state, {
+          cases: {$set: retrievedCases}
         });
       });
       break;
