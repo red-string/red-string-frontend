@@ -47,7 +47,7 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         });
       });
       break;
-
+      
     case REFRESH_FILE_LIST:
       return getAllFilesFromCase(state.activeCase).then(files => {
         getAllTagsFromCase(state.activeCase).then(tags => {

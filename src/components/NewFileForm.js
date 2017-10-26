@@ -35,7 +35,8 @@ class NewFileForm extends Component {
     let dateModified = this.state.file_dateModified;
     let case_id = this.state.case_id;
     let file_type = this.state.file_type;
-    this.sendFile(file, name, description, dateModified, case_id, file_type);
+    let file_text = this.state.file_text
+    this.sendFile(file, name, description, dateModified, case_id, file_type, file_text);
   };
 
   setFileState = files => {
@@ -46,7 +47,7 @@ class NewFileForm extends Component {
     this.setState({file: file, file_name: name, file_dateModified: file_dateModified, case_id: this.props.activeCase});
   };
 
-  sendFile = (file, name, description, dateModified, case_id, file_type) => {
+  sendFile = (file, name, description, dateModified, case_id, file_type, file_text) => {
     let data = new FormData();
     data.append("file", file);
     data.append("name", name);
@@ -54,6 +55,8 @@ class NewFileForm extends Component {
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
     data.append("file_type", file_type);
+    data.append("file_type", file_type);
+    data.append("file_text", file_text);
 
 
     axios.post("/case/" + case_id + "/new", data).then(response => {
