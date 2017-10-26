@@ -2,12 +2,12 @@ import axios from "axios";
 import { getAllCases } from "./store/actions";
 
 export function getAllCasesService() {
-  return function(dispatch) {
-    return axios.get("/case").then(res => {
-      console.log(res.data)
-      dispatch(getAllCases(res.data))
-    })
-  }
+  return dispatch => {
+    axios.get("/case").then(res => {
+      console.log("data", res);
+      dispatch(getAllCases(res.data));
+    });
+  };
 }
 // (dispatch) {
 //   return axios.get("/case").then(res =>
