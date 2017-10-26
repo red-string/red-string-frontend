@@ -9,10 +9,6 @@ export function getAllCasesService() {
     });
   };
 }
-// (dispatch) {
-//   return axios.get("/case").then(res =>
-//      dispatch(getAllCases(res.data)));
-// }
 
 export function getAllFilesFromCase(caseId) {
   return axios.get("/case/" + caseId.toString()).then(res => {

@@ -65,10 +65,10 @@ class NewFileForm extends Component {
   toggleVisible = (evt) => {
     evt.preventDefault();
     let evtName = evt.target.name;
-    this.setState(prevState => {
-      return {[evtName]: !prevState[evtName]}
+    this.setState({
+      [evtName]: true
     })
-  }
+}
   // setClass = () => {
   //   let inputClassName = "";
   //   console.log()

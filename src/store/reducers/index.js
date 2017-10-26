@@ -1,19 +1,19 @@
-import update from 'immutability-helper';
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import {
-    GET_ALL_CASES,
-    OPEN_CASE,
-    REFRESH_FILE_LIST,
-    SET_PARENT_AND_CHILD_NODES
+  GET_ALL_CASES,
+  OPEN_CASE,
+  REFRESH_FILE_LIST,
+  SET_PARENT_AND_CHILD_NODES
 } from "../constants.js";
+import update from "immutability-helper";
 import {
-    getAllCasesService,
-    getAllFilesFromCase,
-    getAllTagsFromFile,
-    getAllTagsFromCase,
-    getTagsThatShareFiles,
-    getFileById
-  } from "../../services.js";
+  getAllCases,
+  getAllFilesFromCase,
+  getAllTagsFromFile,
+  getAllTagsFromCase,
+  getTagsThatShareFiles,
+  getFileById
+} from "../../services.js";
 
 const initialState = {
   cases: [],
@@ -30,12 +30,9 @@ const initialState = {
 const reducers = function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
-      return getAllCasesService().then(retrievedCases => {
-        return update(state, {
-          cases: {$set: retrievedCases}
-        });
+      return update(state, {
+        cases: { $set: action.payload }
       });
-      break;
 
     case OPEN_CASE:
       return getAllFilesFromCase(action.payload).then(files => {
@@ -61,15 +58,21 @@ const reducers = function(state = initialState, action) {
       });
       break;
 
-        case SET_PARENT_AND_CHILD_NODES:
-            return getTagsThatShareFiles( action.payload, action.payload ).then( file => {
-                return Object.assign({}, state, {
-                    parentNode: file,
-                    childNodes: file.tags
-                    //MAKE THIS APPLY PREVIOUS NODES
-                })
-            })
-        break;
+    case SET_PARENT_AND_CHILD_NODES:
+      return getTagsThatShareFiles(
+        action.payload,
+        action.payload
+      ).then(file => {
+        return Object.assign({}, state, {
+          parentNode: file,
+          childNodes: file.tags
+          //MAKE THIS APPLY PREVIOUS NODES
+        });
+      });
+      break;
+
+    default:
+      return state;
 
     ///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
     //     case CREATE_GRAPH:
@@ -83,9 +86,7 @@ const reducers = function(state = initialState, action) {
     //         cases: action.payload
     //     })
     // break;
-
   }
 };
-
 
 export default reducers;

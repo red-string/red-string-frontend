@@ -58,7 +58,7 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getCases: () => dispatch(getAllCasesService())
   };
