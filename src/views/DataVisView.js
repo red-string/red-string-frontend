@@ -25,4 +25,10 @@ function mapStateToProps(state) {
   // };
 }
 
-export default connect(mapStateToProps)(DataVisView);
+const mapDispatchToProps = dispatch => {
+  // return {
+  //   fetchData: url => dispatch(itemsFetchData(url))
+  // };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataVisView);
