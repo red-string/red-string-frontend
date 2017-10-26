@@ -10,25 +10,26 @@ class DataVisView extends Component {
   }
 
   render() {
+    console.log("DataVis Props: ", this.props);
     return (
       <div className="ViewCont">
-        <StringMap files={this.props.files} tags={this.props.tags} />
+        <StringMap files={this.props.parentNode} tags={this.props.childNodes} />
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  state;
-  // return {
-  //   isAuthenticated: this.state.isAuthenticated
-  // };
+  return {
+    parentNode: state.parentNode,
+    childNodes: state.childNodes
+  };
 }
 
 const mapDispatchToProps = dispatch => {
-  // return {
-  //   fetchData: url => dispatch(itemsFetchData(url))
-  // };
+  return {
+    //fetchData: url => dispatch(itemsFetchData(url))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DataVisView);
