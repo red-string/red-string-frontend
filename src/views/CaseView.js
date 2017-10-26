@@ -17,7 +17,7 @@ class CaseView extends Component {
       displayForm: false
     };
   }
-
+  
   ///////////////////////
   // Helper Functions
   //////////////////////
@@ -49,9 +49,9 @@ class CaseView extends Component {
 }
 
 function mapStateToProps(state) {
-  // return {
-  //   cases: state.cases
-  // };
+  return {
+    cases: state.cases
+  };
 }
 
 const mapDispatchToProps = dispatch => {

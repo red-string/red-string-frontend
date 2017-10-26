@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export function getAllCases(){
+export function getAllCases(dispatch){
   return axios.get("/case").then((res)=>{
-     return res.data
+     return dispatch(res.data)
   })
 }
 
