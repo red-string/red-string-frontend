@@ -1,29 +1,34 @@
 import React, { Component } from "react";
-import StringMap from "../components/StringMap"
-import SideNav from "../components/NavBar/SideNav"
-import "../styles/FileView.css"
-import "../styles/stringMap.css"
-import {
-  getTagsThatShareFiles
-} from "../services.js";
+import { connect } from "react-redux";
+import StringMap from "../components/StringMap";
+import "../styles/FileView.css";
+import "../styles/stringMap.css";
 
-export default class DataVisView extends Component {
-	constructor(props){
-		super(props);
-	}
-
-	componentDidMount(){
-		console.log(this.props);
-		console.log(this.state);
-		//getTagsThatShareFiles( )
-	}
+class DataVisView extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (
-		<div className="ViewCont">
-			{/* <StringMap pNode={this.props.pNode} cNode={this.props.cNode} /> */}
-		</div>
-	)
+      <div className="ViewCont">
+        <StringMap files={this.props.files} tags={this.props.tags} />
+      </div>
+    );
   }
 }
 
+function mapStateToProps(state) {
+  state;
+  // return {
+  //   isAuthenticated: this.state.isAuthenticated
+  // };
+}
+
+const mapDispatchToProps = dispatch => {
+  // return {
+  //   fetchData: url => dispatch(itemsFetchData(url))
+  // };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DataVisView);
