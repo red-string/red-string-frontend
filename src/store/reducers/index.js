@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { 
+import {
     GET_ALL_CASES,
     OPEN_CASE,
     REFRESH_FILE_LIST,
@@ -26,7 +26,7 @@ const initialState = {
   previousChildren: []
 };
 
-<<<<<<< HEAD
+
 const reducers = function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
@@ -36,17 +36,6 @@ const reducers = function(state = initialState, action) {
         });
       });
       break;
-=======
-const reducers = function( state = initialState, action ){
-    switch (action.type){
-        case 'GET_ALL_CASES':
-            return getAllCases().then(retrievedCases => {
-                return Object.assign({}, state, {
-                    cases: retrievedCases
-                }) 
-            })    
-        break;
->>>>>>> 0ecce8074a8c73844fed745d6217ec681c77948e
 
     case OPEN_CASE:
       return getAllFilesFromCase(action.payload).then(files => {
@@ -72,17 +61,6 @@ const reducers = function( state = initialState, action ){
       });
       break;
 
-<<<<<<< HEAD
-    case SET_PARENT_AND_CHILD_NODES:
-      return getTagsThatShareFiles(case_id, file_id).then(file => {
-        return Object.assign({}, state, {
-          parentNode: file,
-          childNodes: file.tags
-          //MAKE THIS APPLY PREVIOUS NODES
-        });
-      });
-      break;
-=======
         case SET_PARENT_AND_CHILD_NODES:
             return getTagsThatShareFiles( action.payload, action.payload ).then( file => {
                 return Object.assign({}, state, {
@@ -92,7 +70,6 @@ const reducers = function( state = initialState, action ){
                 })
             })
         break;
->>>>>>> 0ecce8074a8c73844fed745d6217ec681c77948e
 
     ///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
     //     case CREATE_GRAPH:
@@ -106,12 +83,8 @@ const reducers = function( state = initialState, action ){
     //         cases: action.payload
     //     })
     // break;
-<<<<<<< HEAD
   }
 };
-=======
-    }
-} 
+
 
 export default reducers;
->>>>>>> 0ecce8074a8c73844fed745d6217ec681c77948e
