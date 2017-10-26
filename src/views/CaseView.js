@@ -6,7 +6,8 @@ import CaseList from "../components/CaseList";
 import {
   getAllCasesService,
   getAllFilesFromCase,
-  getAllTagsFromFile
+  getAllTagsFromFile,
+  openCaseService
 } from "../services.js";
 
 class CaseView extends Component {
@@ -33,6 +34,10 @@ class CaseView extends Component {
     });
   };
 
+  _openCase = (case_id) => {
+    this.props.openCase(case_id);
+  }
+
   render() {
     return (
       <div className="caseDisplay">
@@ -43,8 +48,8 @@ class CaseView extends Component {
           />
         ) : (
           <CaseList
-            cases={this.state.cases}
-            _openCase={this.props._openCase}
+            cases={this.props.cases}
+            _openCase={this._openCase}
             _toggleForm={this._toggleForm}
           />
         )}
@@ -61,7 +66,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getCases: () => dispatch(getAllCasesService())
+    getCases: () => dispatch(getAllCasesService()),
+    openCase: (case_id) => dispatch(openCaseService(case_id))
   };
 };
 

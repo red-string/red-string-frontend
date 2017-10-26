@@ -5,7 +5,7 @@ import "../styles/FileView.css"
 
 export default class FileView extends Component {
   
-  componentDidUpdate(){
+  componentDidMount(){
 
   }
   

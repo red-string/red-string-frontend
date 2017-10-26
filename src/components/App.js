@@ -43,10 +43,6 @@ class App extends Component {
     return (
       <div className="App">
         <SideNav
-          /* _setParentAndChildNodes={this._setParentAndChildNodes}
-          case={this.state.activeCase}
-          files={this.state.caseFiles}
-          tags={this.state.caseTags} */
           _toggleUpload={this._toggleUpload}
         />
         <Switch>
