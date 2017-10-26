@@ -53,7 +53,6 @@ class CaseView extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state)
   return {
     cases: state.cases
   };

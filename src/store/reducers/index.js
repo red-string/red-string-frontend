@@ -7,7 +7,7 @@ import {
     SET_PARENT_AND_CHILD_NODES
 } from "../constants.js";
 import {
-    getAllCases,
+    getAllCasesService,
     getAllFilesFromCase,
     getAllTagsFromFile,
     getAllTagsFromCase,
@@ -30,7 +30,7 @@ const initialState = {
 const reducers = function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CASES:
-      return getAllCases().then(retrievedCases => {
+      return getAllCasesService().then(retrievedCases => {
         return update(state, {
           cases: {$set: retrievedCases}
         });
