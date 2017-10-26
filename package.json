@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",
+    "immutability-helper": "^2.4.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-file-reader": "^1.1.2",
