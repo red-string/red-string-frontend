@@ -36,7 +36,6 @@ class NewFileForm extends Component {
     let case_id = this.state.case_id;
     let file_type = this.state.file_type;
     let file_text = this.state.file_text;
-    console.log('this is the file type on the frontend', file_type)
     this.sendFile(file, name, description, dateModified, case_id, file_type, file_text);
   };
 
@@ -93,6 +92,7 @@ class NewFileForm extends Component {
     //handle axios request in submit event handler?
 
     render() {
+      console.log(this.state.file_text)
       console.log("selected input: ", this.state.user_input)
       let instruction = this.state.file_name
         ? "You have selected this file for upload: " + this.state.file_name
@@ -123,7 +123,7 @@ class NewFileForm extends Component {
               </select>
             </div>
             <div className="textOpen" style={this.state.textOpen ? shown : hiding}>
-              <textarea name="input" cols="30" rows="10" placeholder="Enter your text here..." onChange={this._handleChange} value={this.state.file_text} />
+              <textarea name="file_text" cols="30" rows="10" placeholder="Enter your text here..." onChange={this.handleChange} value={this.state.file_text} />
             </div>
             <input type="text" name="file_name" placeholder="Add file name" onChange={this.handleChange} value={this.state.file_name}/>
             <input type="text" name="file_desc" placeholder="Add description" onChange={this.handleChange} value={this.state.file_desc}/>
