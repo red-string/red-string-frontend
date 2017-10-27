@@ -11,7 +11,8 @@ class StringMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      route: []
+      route: this.props.route,
+      didMount: false
     };
   }
 
@@ -20,14 +21,14 @@ class StringMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      route: nextProps.route
-    });
+    // this.setState({
+    //   route: nextProps.route
+    // });
   }
 
   routeNodeCreator = () => {
-    if (this.props.route) {
-      const route = this.props.route;
+    if (this.state.route) {
+      const route = this.state.route;
       return route.map(node => {
         return (
           <ForceGraphNode
@@ -46,7 +47,7 @@ class StringMap extends Component {
   };
 
   childNodeCreator = () => {
-    if (this.props.route.length) {
+    if (this.state.route.length) {
       const currentIndex = this.props.route.length - 1;
       const currentNode = this.props.route[currentIndex];
       let type;
@@ -65,11 +66,6 @@ class StringMap extends Component {
             fill="lightgrey"
             stroke="black"
             r="35"
-            onClick={this.props.createRoute(
-              this.props.activeCase,
-              child.id,
-              type
-            )}
           />
         );
       });
@@ -79,11 +75,11 @@ class StringMap extends Component {
   };
 
   routeLinkCreator = () => {
-    if (this.props.route.length > 1) {
-      return this.props.route.map((item, ind) => {
+    if (this.state.route.length > 1) {
+      return this.state.route.map((item, ind) => {
         console.log("this is item", item);
         let oldInd = ind - 1;
-        let prev = this.props.route[oldInd];
+        let prev = this.state.route[oldInd];
         return (
           <ForceGraphLink
             key={item.d3}
@@ -98,9 +94,9 @@ class StringMap extends Component {
   };
 
   childLinkCreator = () => {
-    if (this.props.route.length) {
-      let currentIndex = this.props.route.length - 1;
-      let currentNode = this.props.route[currentIndex];
+    if (this.state.route.length) {
+      let currentIndex = this.state.route.length - 1;
+      let currentNode = this.state.route[currentIndex];
       console.log("Current node", currentNode);
       return currentNode.children.map(child => {
         return (
