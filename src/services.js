@@ -68,9 +68,10 @@ export function setParentAndChildNodesService(case_id, ID, type) {
 }
 
 export function setRouteService(case_id, id, type ){
+  console.log(arguments);
   return dispatch => {
     if (type === "tag") {
-      axios.get("/case/" + case_id + "/" + id).then(res => {
+      axios.get("/" + case_id + "/files/tags/" + id).then(res => {
         console.log("tags", res.data);
         const tags = res.data;
         const payload = {tags};

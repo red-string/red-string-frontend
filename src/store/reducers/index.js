@@ -44,8 +44,11 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
 
     case SET_ROUTE:
       console.log("Action.payload", action.payload);
+      let arr = state.route
+      arr.push(action.payload.parent)
+      console.log(arr);
       return update(state, {
-        route: { $push: action.payload }
+        route: { $push: arr }
       });
 
     default:
