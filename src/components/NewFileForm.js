@@ -35,7 +35,8 @@ class NewFileForm extends Component {
     let dateModified = this.state.file_dateModified;
     let case_id = this.state.case_id;
     let file_type = this.state.file_type;
-    let file_text = this.state.file_text
+    let file_text = this.state.file_text;
+    console.log('this is the file type on the frontend', file_type)
     this.sendFile(file, name, description, dateModified, case_id, file_type, file_text);
   };
 
@@ -54,7 +55,6 @@ class NewFileForm extends Component {
     data.append("description", description);
     data.append("dateModified", dateModified);
     data.append("case_id", case_id);
-    data.append("file_type", file_type);
     data.append("file_type", file_type);
     data.append("file_text", file_text);
 
@@ -134,7 +134,7 @@ class NewFileForm extends Component {
         }
         </div>
     );
-  } 
+  }
 }
 
   export default NewFileForm;
