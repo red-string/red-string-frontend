@@ -1,4 +1,4 @@
-import {GET_ALL_CASES, OPEN_CASE, REFRESH_FILE_LIST, CREATE_GRAPH, UPDATE_GRAPH, SET_PARENT_AND_CHILD_NODES} from '../constants';
+import {GET_ALL_CASES, OPEN_CASE, REFRESH_FILE_LIST, CREATE_GRAPH, UPDATE_GRAPH, SET_PARENT_AND_CHILD_NODES, SET_ROUTE} from '../constants';
 
 const makeActionCreator = function (actionType) {
   return function (payload) {
@@ -9,6 +9,7 @@ const makeActionCreator = function (actionType) {
   }
 }
 
+export const setRoute = makeActionCreator(SET_ROUTE);
 export const getAllCases = makeActionCreator(GET_ALL_CASES);
 export const openCase = makeActionCreator(OPEN_CASE);
 export const refreshFileList = makeActionCreator(REFRESH_FILE_LIST);

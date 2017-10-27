@@ -3,7 +3,8 @@ import {
   getAllCases,
   refreshFileList,
   openCase,
-  setParentAndChildNodes
+  setParentAndChildNodes,
+  setRoute
 } from "./store/actions";
 
 export function getAllCasesService() {
@@ -65,6 +66,29 @@ export function setParentAndChildNodesService(case_id, ID, type) {
     }
   };
 }
+
+export function setRouteService(case_id, id, type ){
+  console.log(arguments);
+  return dispatch => {
+    if (type === "tag") {
+      axios.get("/" + case_id + "/files/tags/" + id).then(res => {
+        console.log("tags", res.data);
+        const tags = res.data;
+        const payload = {tags};
+        dispatch(setRoute(payload));
+      });
+    } else if (type === "file") {
+      axios.get("/case/" + case_id + "/" + id).then(res => {
+        console.log("files", res);
+        const parent = res.data;
+        const child = res.data.tags;
+        const payload = { parent, child };
+        dispatch(setRoute(payload));
+      });
+    }
+  };
+}
+
 
 // function getAllTagsFromCase(caseId) {
 //   return axios.get("/" + caseId.toString() + "/files/tags").then(res => {
