@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import SideNavHeader from "./SideNavHeader";
 import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
-import { setParentAndChildNodesService } from "../../services.js"
+import { setRouteService } from "../../services.js"
 import axios from "axios";
 import "../../styles/SideNav.css";
 
@@ -22,6 +22,10 @@ class SideNav extends Component {
     });
   };
 
+  _triggerRoute = (case_id, id, type) => {
+    this.props.setRoute(case_id, id, type)
+  }
+  
   render() {
     return (
       <div className="sideNav">
@@ -31,7 +35,7 @@ class SideNav extends Component {
         />
         <NewItemButton _toggleUpload={this.props._toggleUpload} />
         <ItemList
-          setParentAndChildNodes={this.props.setParentAndChildNodes}
+          _triggerRoute={this._triggerRoute}
           data={this.state.displayFiles ? this.props.caseFiles : this.props.caseTags}
           activeCase={this.props.activeCase}
         />
@@ -51,7 +55,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setParentAndChildNodes: (case_id, id, type) => dispatch(setParentAndChildNodesService(case_id, id, type))
+    setRoute: (case_id, id, type) => dispatch(setRouteService(case_id, id, type))
   };
 };
 

@@ -3,17 +3,10 @@ import {
   GET_ALL_CASES,
   OPEN_CASE,
   REFRESH_FILE_LIST,
-  SET_PARENT_AND_CHILD_NODES
+  SET_PARENT_AND_CHILD_NODES,
+  SET_ROUTE
 } from "../constants.js";
 import update from "immutability-helper";
-import {
-  getAllCases,
-  getAllFilesFromCase,
-  getAllTagsFromFile,
-  getAllTagsFromCase,
-  getTagsThatShareFiles,
-  getFileById
-} from "../../services.js";
 
 const initialState = {
   cases: [],
@@ -21,10 +14,7 @@ const initialState = {
   activeFile: "",
   caseFiles: [],
   caseTags: [],
-  parentNode: {},
-  childNodes: [],
-  previousParent: {},
-  previousChildren: []
+  route: []
 };
 
 const reducers = function getAllCasesReducer(state = initialState, action) {
@@ -39,6 +29,7 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         caseTags: { $set: action.payload.tags },
         displayUpload: { $set: false }
       });
+
     case REFRESH_FILE_LIST:
       return update(state, {
         caseFiles: { $set: action.payload.files },
@@ -51,8 +42,18 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         childNodes: { $set: action.payload.child }
       });
 
+    case SET_ROUTE:
+      console.log("Action.payload", action.payload);
+      return update(state, {
+        route: { $push: action.payload }
+      });
+
     default:
       return state;
+
+
+
+
 
     // case OPEN_CASE:
     //   return getAllFilesFromCase(action.payload).then(files => {
