@@ -27,19 +27,19 @@ class StringMap extends Component {
 
   routeNodeCreator = () => {
     if (this.props.route) {
-      let currentIndex = this.props.route.length - 1;
-      let currentNode = this.props.route[currentIndex];
-      console.log(currentNode);
-      return (
-        <ForceGraphNode
-          showLabel
-          key={currentNode.d3}
-          node={{ id: currentNode.d3, data: currentNode.name }}
-          fill="lightgrey"
-          stroke="black"
-          r="35"
-        />
-      );
+      const route = this.props.route;
+      return route.map(node => {
+        return (
+          <ForceGraphNode
+            showLabel
+            key={node.d3}
+            node={{ id: node.d3, data: node.name }}
+            fill="lightgrey"
+            stroke="black"
+            r="35"
+          />
+        );
+      });
     } else {
       return <div />;
     }
