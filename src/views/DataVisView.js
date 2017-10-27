@@ -10,7 +10,6 @@ class DataVisView extends Component {
   }
 
   render() {
-    console.log("DataVis Props: ", this.props);
     return (
       <div className="ViewCont">
         <StringMap />

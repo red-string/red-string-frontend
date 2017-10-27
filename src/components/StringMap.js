@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   InteractiveForceGraph,
   ForceGraphNode,
   ForceGraphLink
 } from "react-vis-force";
 
-export default class StringMap extends Component {
+class StringMap extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -13,8 +14,8 @@ export default class StringMap extends Component {
     }
   }
   
-  componentDidUpdate() {
-    console.log(this.props);
+  componentDidMount() {
+    console.log("StringMap Props: ", this.props);
   }
 
   componentWillReceiveProps(nextProps){
@@ -39,8 +40,9 @@ export default class StringMap extends Component {
   }
 
   childNodeCreator = () => {
-    let currentIndex = this.state.route.length - 1
-    let currentNode = this.state.route[currentIndex]
+    let currentIndex = this.props.route.length -1
+    let currentNode = this.props.route[currentIndex]
+    console.log(this.props.route);
     return currentNode.children.map( child => {
       return (
         <ForceGraphNode
@@ -56,19 +58,24 @@ export default class StringMap extends Component {
   }
 
   routeLinkCreator = () => {
-    return this.state.route.map( item => {
-      return (
-        <ForceGraphLink
-          key={ item.d3 }
-          link={{ source: item.d3, target: item.d3 }}
-          stroke="red"
-        />
-    )})
+    console.log(this.props.route.length)
+    if(this.props.route.length > 1 ){
+      return this.props.route.map( (item, ind) => {
+        let oldInd = ind - 1
+        let prev = this.props.route[oldInd]
+        return (
+          <ForceGraphLink
+            key={ item.d3 }
+            link={{ source: item.d3, target: prev.d3 }}
+            stroke="red"
+          />
+      )})
+    }
   }
 
   childLinkCreator = () => {
-    let currentIndex = this.state.route.length - 1
-    let currentNode = this.state.route[currentIndex]
+    let currentIndex = this.props.route.length - 1
+    let currentNode = this.props.route[currentIndex]
     return currentNode.children.map( child => {
       return (
         <ForceGraphLink
@@ -81,7 +88,6 @@ export default class StringMap extends Component {
   }
 
   render() {
-    console.log("HELLO", this.state);
     return (
       <InteractiveForceGraph
         className="stringMap"
@@ -107,9 +113,11 @@ export default class StringMap extends Component {
 
 function mapStateToProps(state) {
   return {
-    route: state.route,
+    route: state.route
   };
 }
+
+export default connect(mapStateToProps)(StringMap);
 
 // createNodesFromFile = file => {
 //   console.log("NODE NODIN");
