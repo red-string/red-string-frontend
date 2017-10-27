@@ -67,14 +67,14 @@ export function setParentAndChildNodesService(case_id, ID, type) {
   };
 }
 
-export function setRouteService(case_id, id, type ){
+export function setRouteService(case_id, id, type) {
   console.log(arguments);
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
         console.log("tags", res.data);
         const tags = res.data;
-        const payload = {tags};
+        const payload = { tags };
         dispatch(setRoute(payload));
       });
     } else if (type === "file") {
@@ -88,7 +88,6 @@ export function setRouteService(case_id, id, type ){
     }
   };
 }
-
 
 // function getAllTagsFromCase(caseId) {
 //   return axios.get("/" + caseId.toString() + "/files/tags").then(res => {

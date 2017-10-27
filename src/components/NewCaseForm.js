@@ -31,7 +31,6 @@ export default class NewCaseForm extends Component {
                 case_description: ""
             });
         })
-        await this.props.getAndSet();
         this.props._toggleForm();
     }
 
