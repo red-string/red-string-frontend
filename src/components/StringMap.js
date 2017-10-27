@@ -5,6 +5,7 @@ import {
   ForceGraphNode,
   ForceGraphLink
 } from "react-vis-force";
+import { setRouteService } from "../services";
 
 class StringMap extends Component {
   constructor(props) {
@@ -46,10 +47,16 @@ class StringMap extends Component {
 
   childNodeCreator = () => {
     if (this.props.route.length) {
-      let currentIndex = this.props.route.length - 1;
-      let currentNode = this.props.route[currentIndex];
-      console.log(this.props.route);
+      const currentIndex = this.props.route.length - 1;
+      const currentNode = this.props.route[currentIndex];
+      let type;
       return currentNode.children.map(child => {
+        console.log("Child", child);
+        if (child.d3[0] === "t") {
+          type = "tag";
+        } else {
+          type = "file";
+        }
         return (
           <ForceGraphNode
             showLabel
@@ -58,6 +65,11 @@ class StringMap extends Component {
             fill="lightgrey"
             stroke="black"
             r="35"
+            onClick={this.props.createRoute(
+              this.props.activeCase,
+              child.id,
+              type
+            )}
           />
         );
       });
@@ -128,13 +140,21 @@ class StringMap extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    createRoute: (caseId, id, type) =>
+      dispatch(setRouteService(caseId, id, type))
+  };
+};
+
 function mapStateToProps(state) {
   return {
+    activeCase: state.activeCase,
     route: state.route
   };
 }
 
-export default connect(mapStateToProps)(StringMap);
+export default connect(mapStateToProps, mapDispatchToProps)(StringMap);
 
 // createNodesFromFile = file => {
 //   console.log("NODE NODIN");
