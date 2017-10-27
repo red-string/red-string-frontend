@@ -13,7 +13,7 @@ class DataVisView extends Component {
     console.log("DataVis Props: ", this.props);
     return (
       <div className="ViewCont">
-        <StringMap files={this.props.parentNode} tags={this.props.childNodes} />
+        <StringMap />
       </div>
     );
   }
@@ -21,8 +21,7 @@ class DataVisView extends Component {
 
 function mapStateToProps(state) {
   return {
-    parentNode: state.parentNode,
-    childNodes: state.childNodes
+    route: state.route
   };
 }
 
