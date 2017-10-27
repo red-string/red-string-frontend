@@ -9,83 +9,100 @@ import {
 class StringMap extends Component {
   constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       route: []
-    }
+    };
   }
-  
+
   componentDidMount() {
     console.log("StringMap Props: ", this.props);
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     this.setState({
       route: nextProps.route
-    })
+    });
   }
 
   routeNodeCreator = () => {
-    return this.state.route.map( item => {
+    if (this.props.route) {
+      let currentIndex = this.props.route.length - 1;
+      let currentNode = this.props.route[currentIndex];
+      console.log(currentNode);
       return (
         <ForceGraphNode
           showLabel
-          key={item.d3}
-          node={{ id: item.d3, data: item.name }}
+          key={currentNode.d3}
+          node={{ id: currentNode.d3, data: currentNode.name }}
           fill="lightgrey"
           stroke="black"
           r="35"
         />
-      )
-    })
-  }
+      );
+    } else {
+      return <div />;
+    }
+  };
 
   childNodeCreator = () => {
-    let currentIndex = this.props.route.length -1
-    let currentNode = this.props.route[currentIndex]
-    console.log(this.props.route);
-    return currentNode.children.map( child => {
-      return (
-        <ForceGraphNode
-          showLabel
-          key={child.d3}
-          node={{ id: child.d3, data: child.name }}
-          fill="lightgrey"
-          stroke="black"
-          r="35"
-        />
-      )
-    })
-  }
+    if (this.props.route.length) {
+      let currentIndex = this.props.route.length - 1;
+      let currentNode = this.props.route[currentIndex];
+      console.log(this.props.route);
+      return currentNode.children.map(child => {
+        return (
+          <ForceGraphNode
+            showLabel
+            key={child.d3}
+            node={{ id: child.d3, data: child.name }}
+            fill="lightgrey"
+            stroke="black"
+            r="35"
+          />
+        );
+      });
+    } else {
+      return <div />;
+    }
+  };
 
   routeLinkCreator = () => {
-    console.log(this.props.route.length)
-    if(this.props.route.length > 1 ){
-      return this.props.route.map( (item, ind) => {
-        let oldInd = ind - 1
-        let prev = this.props.route[oldInd]
+    if (this.props.route.length > 1) {
+      return this.props.route.map((item, ind) => {
+        console.log("this is item", item);
+        let oldInd = ind - 1;
+        let prev = this.props.route[oldInd];
         return (
           <ForceGraphLink
-            key={ item.d3 }
+            key={item.d3}
             link={{ source: item.d3, target: prev.d3 }}
             stroke="red"
           />
-      )})
+        );
+      });
+    } else {
+      return <div />;
     }
-  }
+  };
 
   childLinkCreator = () => {
-    let currentIndex = this.props.route.length - 1
-    let currentNode = this.props.route[currentIndex]
-    return currentNode.children.map( child => {
-      return (
-        <ForceGraphLink
-        key={ child.d3 }
-        link={{ source: child.d3, target: currentNode.d3 }}
-        stroke="red"
-      />
-      )
-    })
-  }
+    if (this.props.route.length) {
+      let currentIndex = this.props.route.length - 1;
+      let currentNode = this.props.route[currentIndex];
+      console.log("Current node", currentNode);
+      return currentNode.children.map(child => {
+        return (
+          <ForceGraphLink
+            key={child.d3}
+            link={{ source: child.d3, target: currentNode.d3 }}
+            stroke="red"
+          />
+        );
+      });
+    } else {
+      return <div />;
+    }
+  };
 
   render() {
     return (
