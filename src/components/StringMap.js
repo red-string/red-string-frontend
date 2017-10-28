@@ -5,7 +5,7 @@ import {
   ForceGraphNode,
   ForceGraphLink
 } from "react-vis-force";
-import { setRouteService } from "../services";
+import { setRouteService, sideDisplayService } from "../services";
 
 class StringMap extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class StringMap extends Component {
 
   componentDidMount() {
     console.log("StringMap Props: ", this.props);
+    this.props.sideNav("graph");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -139,7 +140,8 @@ class StringMap extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     createRoute: (caseId, id, type) =>
-      dispatch(setRouteService(caseId, id, type))
+      dispatch(setRouteService(caseId, id, type)),
+    sideNav: () => dispatch(sideDisplayService())
   };
 };
 
@@ -151,46 +153,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(StringMap);
-
-// createNodesFromFile = file => {
-//   console.log("NODE NODIN");
-//   return (
-//     <ForceGraphNode
-//       showLabel
-//       key={file.file_d3}
-//       node={{ id: file.file_d3, data: file.file_name }}
-//       fill="lightgrey"
-//       stroke="black"
-//       r="35"
-//     />
-//   );
-// };
-
-// createNodesFromFileTags = tags => {
-//   return tags.map(tag => {
-//     console.log("TAGS MAPPIN", tag);
-//     return (
-//       <ForceGraphNode
-//         showLabel
-//         key={tag.tag_d3}
-//         node={{ id: tag.tag_d3, data: tag.tag }}
-//         fill="white"
-//         stroke="black"
-//         r="25"
-//       />
-//     );
-//   });
-// };
-
-// createLinksFromFileTags = tags => {
-//   return tags.map(tag => {
-//     console.log("LINKS LINKIN", tag);
-//     return (
-//       <ForceGraphLink
-//         key={ tag.tag_d3 }
-//         link={{ source: tag.file_d3, target: tag.tag_d3 }}
-//         stroke="red"
-//       />
-//     );
-//   });
-// };

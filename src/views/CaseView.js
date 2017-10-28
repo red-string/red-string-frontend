@@ -7,7 +7,8 @@ import {
   getAllCasesService,
   getAllFilesFromCase,
   getAllTagsFromFile,
-  openCaseService
+  openCaseService,
+  sideDisplayService
 } from "../services.js";
 
 class CaseView extends Component {
@@ -21,6 +22,7 @@ class CaseView extends Component {
 
   componentDidMount() {
     this.props.getCases();
+    this.props.sideNav("cases");
   }
 
   ///////////////////////
@@ -33,9 +35,9 @@ class CaseView extends Component {
     });
   };
 
-  _openCase = (case_id) => {
+  _openCase = case_id => {
     this.props.openCase(case_id);
-  }
+  };
 
   render() {
     return (
@@ -66,7 +68,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getCases: () => dispatch(getAllCasesService()),
-    openCase: (case_id) => dispatch(openCaseService(case_id))
+    sideNav: display => dispatch(sideDisplayService(display)),
+    openCase: case_id => dispatch(openCaseService(case_id))
   };
 };
 
