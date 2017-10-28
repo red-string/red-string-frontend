@@ -20,7 +20,6 @@ class CaseView extends Component {
   }
 
   componentDidMount() {
-    console.log("CaseView did mount");
     this.props.getCases();
   }
 
