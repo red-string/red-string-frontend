@@ -5,7 +5,8 @@ import {
   REFRESH_FILE_LIST,
   SET_PARENT_AND_CHILD_NODES,
   SET_ROUTE,
-  SIDE_DISPLAY
+  SIDE_DISPLAY,
+  CLEAR_ROUTE
 } from "../constants.js";
 import update from "immutability-helper";
 
@@ -49,6 +50,7 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         route: { $push: [action.payload.parent] }
       });
 
+<<<<<<< HEAD
     case SIDE_DISPLAY:
       return update(state, {
         sideDisplayContent: { $set: action.payload }
@@ -58,5 +60,65 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
       return state;
     }
 }
+=======
+    case CLEAR_ROUTE:
+      return update(state, {
+        route: { $set: [] }
+      });
+
+    default:
+      return state;
+
+    // case OPEN_CASE:
+    //   return getAllFilesFromCase(action.payload).then(files => {
+    //     getAllTagsFromCase(action.payload).then(tags => {
+    //       return Object.assign({}, state, {
+    //         activeCase: action.payload,
+    //         caseFiles: files,
+    //         caseTags: tags,
+    //         displayUpload: false
+    //       });
+    //     });
+    //   });
+    //   break;
+
+    // case REFRESH_FILE_LIST:
+    //   return getAllFilesFromCase(state.activeCase).then(files => {
+    //     getAllTagsFromCase(state.activeCase).then(tags => {
+    //       return Object.assign({}, state, {
+    //         caseFiles: files,
+    //         caseTags: tags
+    //       });
+    //     });
+    //   });
+
+    // case SET_PARENT_AND_CHILD_NODES:
+    //   return getTagsThatShareFiles(
+    //     action.payload,
+    //     action.payload
+    //   ).then(file => {
+    //     return Object.assign({}, state, {
+    //       parentNode: file,
+    //       childNodes: file.tags
+    //       //MAKE THIS APPLY PREVIOUS NODES
+    //     });
+    //   });
+    //   break;
+
+    ///////////////////THESE ARENT NEEDED FOR THE MOMENT/////////////////
+    //     case CREATE_GRAPH:
+    //         return Object.assign({}, state, {
+    //             cases: action.payload
+    //         })
+    //     break;
+
+    //     case UPDATE_GRAPH:
+    //     return Object.assign({}, state, {
+    //         cases: action.payload
+    //     })
+    // break;
+  }
+};
+>>>>>>> 37d64be124aa158157f51082578ccacd3e1a94a4
 
 export default reducers;
