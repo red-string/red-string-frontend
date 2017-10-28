@@ -36,8 +36,9 @@ class NewFileForm extends Component {
     let dateModified = this.state.file_dateModified;
     let case_id = this.props.activeCase;
     let file_type = this.state.file_type;
+    if (file_text !== "") {
+      file_type = "input" }
     let file_text = this.state.file_text;
-    console.log("this is the file type on the frontend", file_type);
     this.sendFile(
       file,
       name,
@@ -91,28 +92,10 @@ class NewFileForm extends Component {
       [evtName]: true
     });
   };
-  // setClass = () => {
-  //   let inputClassName = "";
-  //   console.log()
-  //   if (this.state.user_input === "textOpen") {
-  //     return inputClassName = {display: 'block'}
-  //   }
-  //   else if (this.state.user_input === "fileOpen") {
-  //     return hey = "show me the file upload!"
-  //   }
-  //   else return;
-  // }
 
-  // const reader = new FileReader();
-  // reader.onload = function(e) {
-  //   let text = reader.result;
-  //   axios.post('/case/files/new', text)
-  // }
-  // reader.readAsText(file)
-  //handle axios request in submit event handler?
 
   render() {
-    console.log("selected input: ", this.state.user_input);
+    console.log("text: ", this.state);
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";
@@ -155,11 +138,11 @@ class NewFileForm extends Component {
             style={this.state.textOpen ? shown : hiding}
           >
             <textarea
-              name="input"
+              name="file_text"
               cols="30"
               rows="10"
               placeholder="Enter your text here..."
-              onChange={this._handleChange}
+              onChange={this.handleChange}
               value={this.state.file_text}
             />
           </div>
