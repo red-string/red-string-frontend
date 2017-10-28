@@ -17,7 +17,7 @@ class SideNav extends Component {
   }
 
   componentDidUpdate(){
-    console.log(this.props.sideDisplay);
+    console.log(this.props.sideDisplayContent);
   }
 
 
@@ -36,7 +36,8 @@ class SideNav extends Component {
 
 ///////////////////////////////////////
 // This function is for handling what is displaying on the sidebar.
-// This is changed by calling a dispatch with the appropriate string as an argument
+//It should be passed sideDisplay from this.props.
+// sideDisplay is changed by calling a dispatch with the appropriate string as an argument
 // when the corresponding component mounts. See FileView lifecycle method.
 
   _handleDisplayContent = (display) => {
@@ -81,7 +82,7 @@ class SideNav extends Component {
         <NewItemButton _toggleUpload={this.props._toggleUpload} />
         <ItemList
           _triggerRoute={this._triggerRoute}
-          data={this._handleDisplayContent(this.props.sideDisplay)}
+          data={this._handleDisplayContent(this.props.sideDisplayContent)}
           page={this.props.sideDisplay}
           activeCase={this.props.activeCase}
         />
@@ -98,7 +99,7 @@ function mapStateToProps(state) {
     caseFiles: state.caseFiles,
     caseTags: state.caseTags,
     activeCase: state.activeCase,
-    sideDisplay: state.sideDisplay,
+    sideDisplayContent: state.sideDisplayContent,
     cases: state.cases
   };
 }

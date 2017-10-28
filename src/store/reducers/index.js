@@ -16,7 +16,7 @@ const initialState = {
   caseFiles: [],
   caseTags: [],
   route: [],
-  sideDisplay: "case"
+  sideDisplayContent: "case"
 };
 
 const reducers = function getAllCasesReducer(state = initialState, action) {
@@ -51,7 +51,7 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
 
     case SIDE_DISPLAY:
       return update(state, {
-        sideDisplay: { $set: action.payload }
+        sideDisplayContent: { $set: action.payload }
     });
 
     default:

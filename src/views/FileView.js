@@ -28,7 +28,7 @@ class FileView extends Component {
 function mapStateToProps(state) {
   return {
     caseFiles: state.caseFiles,
-    sideDisplay: state.sideDisplay,
+    sideDisplayContent: state.sideDisplayContent,
     cases: state.cases
   };
 }
