@@ -17,7 +17,6 @@ class StringMap extends Component {
   }
 
   componentDidMount() {
-    console.log("StringMap Props: ", this.props);
     this.props.sideNav("graph");
   }
 
@@ -53,7 +52,6 @@ class StringMap extends Component {
       const currentNode = this.props.route[currentIndex];
       let type;
       return currentNode.children.map(child => {
-        console.log("Child", child);
         if (child.d3[0] === "t") {
           type = "tag";
         } else {
@@ -78,7 +76,6 @@ class StringMap extends Component {
   routeLinkCreator = () => {
     if (this.state.route.length > 1) {
       return this.state.route.map((item, ind) => {
-        console.log("this is item", item);
         let oldInd = ind - 1;
         let prev = this.state.route[oldInd];
         return (
@@ -98,7 +95,6 @@ class StringMap extends Component {
     if (this.state.route.length) {
       let currentIndex = this.state.route.length - 1;
       let currentNode = this.state.route[currentIndex];
-      console.log("Current node", currentNode);
       return currentNode.children.map(child => {
         return (
           <ForceGraphLink

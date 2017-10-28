@@ -112,7 +112,6 @@ class NewFileForm extends Component {
   //handle axios request in submit event handler?
 
   render() {
-    console.log("selected input: ", this.state.user_input);
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";

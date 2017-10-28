@@ -6,18 +6,19 @@ import {
   SET_PARENT_AND_CHILD_NODES,
   SET_ROUTE,
   SIDE_DISPLAY,
-  CLEAR_ROUTE
+  CLEAR_ROUTE,
+  SET_FILE_FOCUS
 } from "../constants.js";
 import update from "immutability-helper";
 
 const initialState = {
   cases: [],
   activeCase: "",
-  activeFile: "",
   caseFiles: [],
   caseTags: [],
   route: [],
-  sideDisplayContent: "case"
+  sideDisplayContent: "case",
+  focusedFile: null
 };
 
 const reducers = function getAllCasesReducer(state = initialState, action) {
@@ -59,6 +60,12 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
       return update(state, {
         route: { $set: [] }
       });
+    
+    case SET_FILE_FOCUS:
+      return update(state, {
+        focusedFile: { $set: action.payload }
+      });
+
 
     default:
       return state;
