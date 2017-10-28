@@ -4,7 +4,8 @@ import {
   OPEN_CASE,
   REFRESH_FILE_LIST,
   SET_PARENT_AND_CHILD_NODES,
-  SET_ROUTE
+  SET_ROUTE,
+  CLEAR_ROUTE
 } from "../constants.js";
 import update from "immutability-helper";
 
@@ -48,12 +49,13 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         route: { $push: [action.payload.parent] }
       });
 
+    case CLEAR_ROUTE:
+      return update(state, {
+        route: { $set: [] }
+      });
+
     default:
       return state;
-
-
-
-
 
     // case OPEN_CASE:
     //   return getAllFilesFromCase(action.payload).then(files => {
@@ -103,7 +105,7 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
     //         cases: action.payload
     //     })
     // break;
-    }
-}
+  }
+};
 
 export default reducers;
