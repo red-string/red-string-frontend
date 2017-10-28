@@ -4,7 +4,8 @@ import {
   refreshFileList,
   openCase,
   setRoute,
-  sideDisplay
+  sideDisplay,
+  setFileFocus
 } from "./store/actions";
 
 export function getAllCasesService() {
@@ -49,14 +50,12 @@ export function setRouteService(case_id, id, type) {
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
-        console.log("tags", res.data);
         const parent = res.data;
         const payload = { parent };
         dispatch(setRoute(payload));
       });
     } else if (type === "file") {
       axios.get("/case/" + case_id + "/" + id).then(res => {
-        console.log("files", res);
         const parent = res.data;
         const payload = { parent };
         dispatch(setRoute(payload));
@@ -68,5 +67,14 @@ export function setRouteService(case_id, id, type) {
 export function sideDisplayService(display) {
   return dispatch => {
     dispatch(sideDisplay(display));
+  };
+}
+
+export function setFileFocusService(file_id) {
+  return dispatch => {
+    axios.get("/file/" + file_id).then(res => {
+      let file = res.data[0]
+      dispatch(setFileFocus(file));
+    });
   };
 }

@@ -7,7 +7,8 @@ import ItemList from "./ItemList";
 import {
   setRouteService,
   sideDisplayService,
-  selectedChildService
+  selectedChildService,
+  setFileFocusService
 } from "../../services.js";
 import axios from "axios";
 import "../../styles/SideNav.css";
@@ -21,7 +22,7 @@ class SideNav extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.sideDisplayContent);
+    
   }
 
   ///////////////////////////////////////
@@ -33,7 +34,8 @@ class SideNav extends Component {
     });
   };
 
-  _triggerRoute = (case_id, id, type) => {
+  _triggerRouteAndFocus = (case_id, id, type) => {
+    this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
 
@@ -55,13 +57,12 @@ class SideNav extends Component {
         });
 
       case "files":
-        console.log("Files triggered in switch");
         return this.props.caseFiles.map(item => {
           return (
             <li
               key={item.file_id}
               onClick={() =>
-                this._triggerRoute(this.props.activeCase, item.file_id, "file")}
+                this._triggerRouteAndFocus(this.props.activeCase, item.file_id, "file")}
             >
               {item.file_name}
             </li>
@@ -98,7 +99,6 @@ class SideNav extends Component {
         });
 
       default:
-        console.log("Default triggered in switch");
         return this.props.cases.map(item => {
           return <li key={item.case_id}>{item.case_name}</li>;
         });
@@ -143,7 +143,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setRoute: (case_id, id, type) =>
       dispatch(setRouteService(case_id, id, type)),
-    sideDisplay: display => dispatch(sideDisplayService(display))
+    sideDisplay: display => dispatch(sideDisplayService(display)),
+    setFileFocus: id => dispatch(setFileFocusService(id))
   };
 };
 

@@ -1,0 +1,17 @@
+.FileDetail {
+    background-color: hsl(0, 0%, 95%);
+    border-bottom: 1px solid #808080;
+    padding: 2em;
+    width: 55%;
+    height: 65%;
+    overflow-y: scroll;
+}
+
+.focus-heading {
+    font-size: 2em;
+}
+
+.focus-subheading p {
+    font-size: .8em;
+    margin-bottom: .5em;
+}

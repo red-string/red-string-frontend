@@ -94,7 +94,6 @@ class NewFileForm extends Component {
 
 
   render() {
-    console.log("text: ", this.state);
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";

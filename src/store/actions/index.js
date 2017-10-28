@@ -7,7 +7,8 @@ import {
   SET_PARENT_AND_CHILD_NODES,
   SET_ROUTE,
   CLEAR_ROUTE,
-  SIDE_DISPLAY
+  SIDE_DISPLAY,
+  SET_FILE_FOCUS
 } from "../constants";
 
 const makeActionCreator = function(actionType) {
@@ -19,6 +20,7 @@ const makeActionCreator = function(actionType) {
   };
 };
 
+export const setFileFocus = makeActionCreator(SET_FILE_FOCUS)
 export const sideDisplay = makeActionCreator(SIDE_DISPLAY);
 export const setRoute = makeActionCreator(SET_ROUTE);
 export const getAllCases = makeActionCreator(GET_ALL_CASES);
