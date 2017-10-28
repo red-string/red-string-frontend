@@ -139,9 +139,7 @@ class StringMap extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createRoute: (caseId, id, type) =>
-      dispatch(setRouteService(caseId, id, type)),
-    sideNav: () => dispatch(sideDisplayService())
+    sideNav: display => dispatch(sideDisplayService(display))
   };
 };
 
