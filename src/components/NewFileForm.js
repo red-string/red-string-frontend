@@ -30,14 +30,13 @@ class NewFileForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
+    console.log('state filetype on submit ', this.state.file_type)
     let file = this.state.file;
     let name = this.state.file_name;
     let description = this.state.file_desc;
     let dateModified = this.state.file_dateModified;
     let case_id = this.props.activeCase;
     let file_type = this.state.file_type;
-    if (file_text !== "") {
-      file_type = "input" }
     let file_text = this.state.file_text;
     this.sendFile(
       file,
