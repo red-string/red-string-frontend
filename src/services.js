@@ -4,13 +4,13 @@ import {
   refreshFileList,
   openCase,
   setParentAndChildNodes,
-  setRoute
+  setRoute,
+  sideDisplay
 } from "./store/actions";
 
 export function getAllCasesService() {
   return dispatch => {
     axios.get("/case").then(res => {
-      console.log("data", res);
       dispatch(getAllCases(res.data));
     });
   };
@@ -68,7 +68,6 @@ export function setParentAndChildNodesService(case_id, ID, type) {
 }
 
 export function setRouteService(case_id, id, type) {
-  console.log("args", arguments);
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
@@ -87,6 +86,12 @@ export function setRouteService(case_id, id, type) {
       });
     }
   };
+}
+
+export function sideDisplayService(display) {
+  return dispatch => {
+    dispatch(sideDisplay(display));
+  }
 }
 
 // function getAllTagsFromCase(caseId) {
