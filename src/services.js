@@ -50,16 +50,15 @@ export function setRouteService(case_id, id, type) {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
         console.log("tags", res.data);
-        const tags = res.data;
-        const payload = { tags };
+        const parent = res.data;
+        const payload = { parent };
         dispatch(setRoute(payload));
       });
     } else if (type === "file") {
       axios.get("/case/" + case_id + "/" + id).then(res => {
         console.log("files", res);
         const parent = res.data;
-        const child = res.data.tags;
-        const payload = { parent, child };
+        const payload = { parent };
         dispatch(setRoute(payload));
       });
     }
