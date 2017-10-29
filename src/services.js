@@ -102,7 +102,6 @@ export function setFileFocusService(file_id) {
   };
 }
 
-<<<<<<< HEAD
 function keepParent(d3Array, object) {
   const result = d3Array.filter(d3 => d3 === object.d3);
   if (result.length) return false;
@@ -120,10 +119,8 @@ function keptChildren(d3Array, childrenArray) {
   });
   return newChildren;
 }
-=======
-  export function clearRouteService() {
-    return dispatch => {
-        dispatch(clearRoute());
-    };
+export function clearRouteService() {
+  return dispatch => {
+    dispatch(clearRoute());
   };
->>>>>>> 05e38c5009bd2002fe438a70b3b1acfe9da37c6f
+}
