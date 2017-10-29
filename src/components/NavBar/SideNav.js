@@ -6,7 +6,8 @@ import ItemList from "./ItemList";
 import {
   setRouteService,
   sideDisplayService,
-  setFileFocusService
+  setFileFocusService,
+  clearRouteService
 } from "../../services.js";
 import "../../styles/SideNav.css";
 
@@ -37,6 +38,7 @@ class SideNav extends Component {
 
   _triggerRouteAndFocus = (case_id, id, type) => {
     console.log("This is the active case", case_id);
+    this.props.clearRoute();
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
@@ -149,7 +151,7 @@ class SideNav extends Component {
           page={this.props.sideDisplay}
           activeCase={this.props.activeCase}
         />
-        <Link to="/graph"> GRAPH </Link>
+        <Link to="/graph">GRAPH</Link>
       </div>
     );
   }
@@ -171,7 +173,8 @@ const mapDispatchToProps = dispatch => {
     setRoute: (case_id, id, type) =>
       dispatch(setRouteService(case_id, id, type)),
     sideDisplay: display => dispatch(sideDisplayService(display)),
-    setFileFocus: id => dispatch(setFileFocusService(id))
+    setFileFocus: id => dispatch(setFileFocusService(id)),
+    clearRoute: () => dispatch(clearRouteService())
   };
 };
 

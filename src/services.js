@@ -5,7 +5,8 @@ import {
   openCase,
   setRoute,
   sideDisplay,
-  setFileFocus
+  setFileFocus,
+  clearRoute
 } from "./store/actions";
 
 export function getAllCasesService() {
@@ -78,3 +79,9 @@ export function setFileFocusService(file_id) {
     });
   };
 }
+
+  export function clearRouteService() {
+    return dispatch => {
+        dispatch(clearRoute());
+    };
+  };
