@@ -98,7 +98,7 @@ class StringMap extends Component {
       return currentNode.children.map(child => {
         return (
           <ForceGraphLink
-            key={child.d3 + this.props.route.length}
+            key={child.d3 + this.props.route.length + child.d3}
             link={{ source: child.d3, target: currentNode.d3 }}
             stroke="red"
           />
