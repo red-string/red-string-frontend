@@ -21,9 +21,7 @@ class SideNav extends Component {
     };
   }
 
-  componentDidUpdate() {
-    
-  }
+  componentDidUpdate() {}
 
   ///////////////////////////////////////
   // helper functions
@@ -35,6 +33,7 @@ class SideNav extends Component {
   };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
+    console.log("This is the active case", case_id);
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
@@ -62,7 +61,11 @@ class SideNav extends Component {
             <li
               key={item.file_id}
               onClick={() =>
-                this._triggerRouteAndFocus(this.props.activeCase, item.file_id, "file")}
+                this._triggerRouteAndFocus(
+                  this.props.activeCase,
+                  item.file_id,
+                  "file"
+                )}
             >
               {item.file_name}
             </li>
@@ -91,7 +94,11 @@ class SideNav extends Component {
               className="childSelect"
               key={item.id}
               onClick={() =>
-                this._triggerRoute(this.props.acticeCase, item.id, "tag")}
+                this._triggerRouteAndFocus(
+                  this.props.activeCase,
+                  item.id,
+                  "tag"
+                )}
             >
               {item.name}
             </li>
