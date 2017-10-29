@@ -34,7 +34,7 @@ class StringMap extends Component {
         return (
           <ForceGraphNode
             showLabel
-            key={node.d3 + this.props.route.length}
+            key={node.d3}
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
