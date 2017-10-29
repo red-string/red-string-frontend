@@ -30,7 +30,7 @@ class NewFileForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log('state filetype on submit ', this.state.file_type)
+    console.log('state on submit ', this.state)
     let file = this.state.file;
     let name = this.state.file_name;
     let description = this.state.file_desc;
@@ -87,13 +87,31 @@ class NewFileForm extends Component {
   toggleVisible = evt => {
     evt.preventDefault();
     let evtName = evt.target.name;
-    this.setState({
-      [evtName]: true
-    });
-  };
+    if (evtName === "fileOpen") {
+      console.log('file opening');
+      this.setState(prevState => {
+        return {
+          fileOpen: !prevState[this.state.fileOpen],
+          textOpen: false
+        }
+      })
+
+    }
+    else if (evtName === "textOpen") {
+      console.log('text opening');
+      this.setState(prevState => {
+        return {
+          textOpen: !prevState[this.state.textOpen],
+          fileOpen: false
+        }
+      })
+    }
+  }
+
 
 
   render() {
+    console.log('toggle text', this.state.textOpen, "file", this.state.fileOpen)
     let instruction = this.state.file_name
       ? "You have selected this file for upload: " + this.state.file_name
       : "Select a file for upload";
@@ -103,6 +121,7 @@ class NewFileForm extends Component {
     const shown = {
       display: "block"
     };
+
 
     return (
       <div className="newFile">
