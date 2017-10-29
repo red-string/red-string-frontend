@@ -96,16 +96,29 @@ class SideNav extends Component {
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
-          return (
-            <li
-              className="childSelect"
-              key={item.id}
-              onClick={() =>
-                this._triggerRoute(this.props.activeCase, item.id, "tag")}
-            >
-              {item.name}
-            </li>
-          );
+          if(item.description){
+            return (
+              <li
+                className="childSelect"
+                key={item.id}
+                onClick={() =>
+                  this._triggerRoute(this.props.activeCase, item.id, "file")}
+              >
+                {item.name}
+              </li>
+            )
+          } else {
+            return (
+              <li
+                className="childSelect"
+                key={item.id}
+                onClick={() =>
+                  this._triggerRoute(this.props.activeCase, item.id, "tag")}
+              >
+                {item.name}
+              </li>
+            )
+          }
         });
 
       default:
