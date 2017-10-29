@@ -17,11 +17,17 @@ class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayFiles: true
+      displayFiles: true,
+      header: "Cases"
     };
   }
 
-  componentDidUpdate() {}
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      header: nextProps.sideDisplayContent
+    })
+  }
+
 
   ///////////////////////////////////////
   // helper functions
@@ -38,6 +44,10 @@ class SideNav extends Component {
     this.props.setRoute(case_id, id, type);
   };
 
+  _triggerRoute = (case_id, id, type) => {
+    this.props.setRoute(case_id, id, type);
+  };
+
   _updateGraph = id => {
     this.props.selectChild(id);
   };
@@ -50,12 +60,12 @@ class SideNav extends Component {
 
   _handleDisplayContent = display => {
     switch (display) {
-      case "case":
+      case "Cases":
         return this.props.cases.map(item => {
           return <li key={item.case_id}>{item.case_name}</li>;
         });
 
-      case "files":
+      case "Files":
         return this.props.caseFiles.map(item => {
           return (
             <li
@@ -72,7 +82,7 @@ class SideNav extends Component {
           );
         });
 
-      case "tags":
+      case "Tags":
         return this.props.caseTags.map(item => {
           return (
             <li
@@ -85,7 +95,7 @@ class SideNav extends Component {
           );
         });
 
-      case "graph":
+      case "Graph":
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
@@ -94,11 +104,7 @@ class SideNav extends Component {
               className="childSelect"
               key={item.id}
               onClick={() =>
-                this._triggerRouteAndFocus(
-                  this.props.activeCase,
-                  item.id,
-                  "tag"
-                )}
+                this._triggerRoute(this.props.activeCase, item.id, "tag")}
             >
               {item.name}
             </li>
@@ -118,11 +124,15 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sideNav">
+        <div className="icon-nav" >
+          <i className="fa fa-plus"></i>
+        </div>
         <SideNavHeader
           displayFiles={this.state.displayFiles}
           _toggleHeader={this._toggleHeader}
+          _toggleUpload={this.props._toggleUpload}
+          header={this.state.header}
         />
-        <NewItemButton _toggleUpload={this.props._toggleUpload} />
         <ItemList
           _triggerRoute={this._triggerRoute}
           data={this._handleDisplayContent(this.props.sideDisplayContent)}
