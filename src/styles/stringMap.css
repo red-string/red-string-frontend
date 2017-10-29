@@ -1,3 +1,12 @@
+.routeList {
+    height: 100vh;
+}
+
+.routeList>li {
+    color: blue;
+    margin: .5em .25em
+}
+
 .stringMap {
     float: right;
 }
