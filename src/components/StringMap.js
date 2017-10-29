@@ -118,7 +118,7 @@ class StringMap extends Component {
         labelAttr="data"
         simulationOptions={{
           height: 800,
-          width: 1100,
+          width: 900,
           animate: true,
           strength: {
             charge: -2500
