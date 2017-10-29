@@ -28,6 +28,18 @@ class NewFileForm extends Component {
     this.setState({ [inputName]: evt.target.value });
   };
 
+  clearState = () => {
+    this.setState({
+      file_name: "",
+      file: "",
+      file_desc: "",
+      file_type: "",
+      file_dateModified: "",
+      case_id: "",
+      file_text: ""
+    });
+  }
+
   handleSubmit = evt => {
     evt.preventDefault();
     console.log('state on submit ', this.state)
@@ -47,6 +59,7 @@ class NewFileForm extends Component {
       file_type,
       file_text
     );
+    this.clearState();
   };
 
   setFileState = files => {
