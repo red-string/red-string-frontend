@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CaseItem from "./CaseItem";
 import {
   getAllCases,
@@ -22,6 +23,7 @@ const FileDetail = (props)=>{
         ?<div>{file.file_text}</div>
         : null
       }
+      <Link to="/graph"> GRAPH </Link>
     </div>
   );
 }
