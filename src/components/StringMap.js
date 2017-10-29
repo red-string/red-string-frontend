@@ -29,6 +29,7 @@ class StringMap extends Component {
   routeNodeCreator = () => {
     if (this.state.route) {
       const route = this.state.route;
+      console.log("This is route", route);
       return route.map(node => {
         return (
           <ForceGraphNode
