@@ -47,19 +47,41 @@ export function refreshFileListService(caseId) {
   };
 }
 
-export function setRouteService(case_id, id, type) {
+export function setRouteService(case_id, id, type, filterArray) {
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
         const parent = res.data;
-        const payload = { parent };
-        dispatch(setRoute(payload));
+        if (filterArray) {
+          const filteredParent = keepParent(filterArray, parent);
+          if (!filteredParent) return false;
+          const newChildren = keptChildren(
+            filterArray,
+            filteredParent.children
+          );
+          filteredParent.children = newChildren;
+          const payload = filteredParent;
+          dispatch(setRoute(payload));
+        } else {
+          dispatch(setRoute(parent));
+        }
       });
     } else if (type === "file") {
       axios.get("/case/" + case_id + "/" + id).then(res => {
         const parent = res.data;
-        const payload = { parent };
-        dispatch(setRoute(payload));
+        if (filterArray) {
+          const filteredParent = keepParent(filterArray, parent);
+          if (!filteredParent) return false;
+          const newChildren = keptChildren(
+            filterArray,
+            filteredParent.children
+          );
+          filteredParent.children = newChildren;
+          const payload = filteredParent;
+          dispatch(setRoute(payload));
+        } else {
+          dispatch(setRoute(parent));
+        }
       });
     }
   };
@@ -74,14 +96,31 @@ export function sideDisplayService(display) {
 export function setFileFocusService(file_id) {
   return dispatch => {
     axios.get("/file/" + file_id).then(res => {
-      let file = res.data[0]
+      let file = res.data[0];
       dispatch(setFileFocus(file));
     });
   };
 }
 
-  export function clearRouteService() {
-    return dispatch => {
-        dispatch(clearRoute());
-    };
+function keepParent(d3Array, object) {
+  const result = d3Array.filter(d3 => d3 === object.d3);
+  if (result.length) return false;
+  return object;
+}
+
+function keptChildren(d3Array, childrenArray) {
+  const newChildren = [];
+  childrenArray.forEach(child => {
+    let keep = true;
+    for (let i = 0; i < d3Array.length; i++) {
+      if (d3Array[i] === child.d3) keep = false;
+    }
+    if (keep) newChildren.push(child);
+  });
+  return newChildren;
+}
+export function clearRouteService() {
+  return dispatch => {
+    dispatch(clearRoute());
   };
+}

@@ -20,12 +20,11 @@ class SideNav extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     this.setState({
       header: nextProps.sideDisplayContent
-    })
+    });
   }
-
 
   ///////////////////////////////////////
   // helper functions
@@ -43,8 +42,8 @@ class SideNav extends Component {
     this.props.setRoute(case_id, id, type);
   };
 
-  _triggerRoute = (case_id, id, type) => {
-    this.props.setRoute(case_id, id, type);
+  _triggerRoute = (case_id, id, type, array) => {
+    this.props.setRoute(case_id, id, type, array);
   };
 
   _updateGraph = id => {
@@ -95,31 +94,42 @@ class SideNav extends Component {
         });
 
       case "Graph":
+        console.log("ROUTE", this.props.route[this.props.route.length - 1]);
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
-          if(item.description){
+          if (item.description) {
             return (
               <li
                 className="childSelect"
                 key={item.id}
                 onClick={() =>
-                  this._triggerRoute(this.props.activeCase, item.id, "file")}
+                  this._triggerRoute(
+                    this.props.activeCase,
+                    item.id,
+                    "file",
+                    this.props.filterArray
+                  )}
               >
                 {item.name}
               </li>
-            )
+            );
           } else {
             return (
               <li
                 className="childSelect"
                 key={item.id}
                 onClick={() =>
-                  this._triggerRoute(this.props.activeCase, item.id, "tag")}
+                  this._triggerRoute(
+                    this.props.activeCase,
+                    item.id,
+                    "tag",
+                    this.props.filterArray
+                  )}
               >
                 {item.name}
               </li>
-            )
+            );
           }
         });
 
@@ -136,8 +146,8 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sideNav">
-        <div className="icon-nav" >
-          <i className="fa fa-plus"></i>
+        <div className="icon-nav">
+          <i className="fa fa-plus" />
         </div>
         <SideNavHeader
           displayFiles={this.state.displayFiles}
@@ -151,11 +161,7 @@ class SideNav extends Component {
           page={this.props.sideDisplay}
           activeCase={this.props.activeCase}
         />
-<<<<<<< HEAD
-        <Link to="/graph">GRAPH</Link>
-=======
         {/* <Link to="/graph"> GRAPH </Link> */}
->>>>>>> f96a522cd13128986e5516aff2ba1517a36dd8bf
       </div>
     );
   }
@@ -168,14 +174,15 @@ function mapStateToProps(state) {
     activeCase: state.activeCase,
     sideDisplayContent: state.sideDisplayContent,
     cases: state.cases,
-    route: state.route
+    route: state.route,
+    filterArray: state.filterUsed
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setRoute: (case_id, id, type) =>
-      dispatch(setRouteService(case_id, id, type)),
+    setRoute: (case_id, id, type, filterArray) =>
+      dispatch(setRouteService(case_id, id, type, filterArray)),
     sideDisplay: display => dispatch(sideDisplayService(display)),
     setFileFocus: id => dispatch(setFileFocusService(id)),
     clearRoute: () => dispatch(clearRouteService())

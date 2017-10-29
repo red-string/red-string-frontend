@@ -16,6 +16,7 @@ const initialState = {
   caseFiles: [],
   caseTags: [],
   route: [],
+  filterUsed: [],
   sideDisplayContent: "case",
   focusedFile: null
 };
@@ -39,15 +40,10 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
         caseTags: { $set: action.payload.tags }
       });
 
-    case SET_PARENT_AND_CHILD_NODES:
-      return update(state, {
-        parentNode: { $set: action.payload.parent },
-        childNodes: { $set: action.payload.child }
-      });
-
     case SET_ROUTE:
       return update(state, {
-        route: { $push: [action.payload.parent] }
+        route: { $push: [action.payload] },
+        filterUsed: { $push: [action.payload.d3] }
       });
 
     case SIDE_DISPLAY:
@@ -59,12 +55,11 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
       return update(state, {
         route: { $set: [] }
       });
-    
+
     case SET_FILE_FOCUS:
       return update(state, {
         focusedFile: { $set: action.payload }
       });
-
 
     default:
       return state;
