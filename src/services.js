@@ -46,12 +46,11 @@ export function refreshFileListService(caseId) {
   };
 }
 
-export function setRouteService(case_id, id, type) {
+export function setRouteService(case_id, id, type, filterArray) {
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
-        const parent = res.data;
-        const payload = { parent };
+        const payload = res.data;
         dispatch(setRoute(payload));
       });
     } else if (type === "file") {
@@ -73,7 +72,7 @@ export function sideDisplayService(display) {
 export function setFileFocusService(file_id) {
   return dispatch => {
     axios.get("/file/" + file_id).then(res => {
-      let file = res.data[0]
+      let file = res.data[0];
       dispatch(setFileFocus(file));
     });
   };
