@@ -17,7 +17,7 @@ class StringMap extends Component {
   }
 
   componentDidMount() {
-    this.props.sideNav("graph");
+    this.props.sideNav("Graph");
   }
 
   componentWillReceiveProps(nextProps) {
