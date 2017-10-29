@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/NewCaseForm.css"
-import ReactFileReader from "react-file-reader";
 import axios from "axios";
 
 export default class NewCaseForm extends Component {

@@ -1,6 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../styles/SideNav.css"
-import NewItemButton from "./NewItemButton"
 
 const SideNavHeader = (props) => {
 

@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import {
   GET_ALL_CASES,
   OPEN_CASE,
