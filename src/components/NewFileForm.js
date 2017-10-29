@@ -30,7 +30,7 @@ class NewFileForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log('state filetype on submit ', this.state.file_type)
+    console.log('state on submit ', this.state)
     let file = this.state.file;
     let name = this.state.file_name;
     let description = this.state.file_desc;
@@ -87,22 +87,43 @@ class NewFileForm extends Component {
   toggleVisible = evt => {
     evt.preventDefault();
     let evtName = evt.target.name;
-    this.setState({
-      [evtName]: true
-    });
-  };
+    if (evtName === "fileOpen") {
+      console.log('file opening');
+      this.setState(prevState => {
+        return {
+          fileOpen: !prevState[this.state.fileOpen],
+          textOpen: false
+        }
+      })
+
+    }
+    else if (evtName === "textOpen") {
+      console.log('text opening');
+      this.setState(prevState => {
+        return {
+          textOpen: !prevState[this.state.textOpen],
+          fileOpen: false
+        }
+      })
+    }
+  }
+
 
 
   render() {
-    let instruction = this.state.file_name
-      ? "You have selected this file for upload: " + this.state.file_name
+    const instruction = this.state.file_name
+      ? "You have selected a " + this.state.file_type + " file for upload"
       : "Select a file for upload";
+
+    const uploadType = this.state.file_type ? "." + this.state.file_type : "";
+    console.log(uploadType)
     const hiding = {
       display: "none"
     };
     const shown = {
       display: "block"
     };
+
 
     return (
       <div className="newFile">
@@ -118,18 +139,19 @@ class NewFileForm extends Component {
             style={this.state.fileOpen ? shown : hiding}
           >
             <p>{instruction}</p>
-            <ReactFileReader
-              handleFiles={this.setFileState}
-              fileTypes=".docx, .pdf"
-            >
-              <p>Upload</p>
-            </ReactFileReader>
+
 
             <select name="file_type" onChange={this.handleChange} required>
-              <option>Select a filetype...</option>
+              <option>Select a file type...</option>
               <option value="docx">Word Document (.docx)</option>
               <option value="pdf">PDF</option>
             </select>
+            <ReactFileReader
+              handleFiles={this.setFileState}
+              fileTypes={uploadType}
+            >
+              <p>Upload {uploadType}</p>
+            </ReactFileReader>
           </div>
           <div
             className="textOpen"
