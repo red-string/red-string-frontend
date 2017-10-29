@@ -16,14 +16,25 @@ class StringMap extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.sideNav("Graph");
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // this.setState({
+    //   route: nextProps.route
+    // });
+  }
+
   routeNodeCreator = () => {
-    if (this.state.route) {
-      const route = this.state.route;
+    if (this.props.route) {
+      const route = this.props.route;
+      console.log("This is route", route);
       return route.map(node => {
         return (
           <ForceGraphNode
             showLabel
-            key={node.d3 + route.length}
+            key={node.d3 + this.props.route.length}
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
@@ -37,7 +48,7 @@ class StringMap extends Component {
   };
 
   childNodeCreator = () => {
-    if (this.state.route.length) {
+    if (this.props.route.length) {
       const currentIndex = this.props.route.length - 1;
       const currentNode = this.props.route[currentIndex];
       let type;
@@ -50,7 +61,7 @@ class StringMap extends Component {
         return (
           <ForceGraphNode
             showLabel
-            key={child.d3 + this.state.route.length}
+            key={child.d3 + this.props.route.length}
             node={{ id: child.d3, data: child.name }}
             fill="lightgrey"
             stroke="black"
@@ -64,13 +75,12 @@ class StringMap extends Component {
   };
 
   routeLinkCreator = () => {
-    if (this.state.route.length > 1) {
-      return this.state.route.map((item, ind) => {
-        let oldInd = ind - 1;
-        let prev = this.state.route[oldInd];
+    if (this.props.route.length > 1) {
+      return this.props.route.map((item, ind) => {
+        let prev = this.props.route[this.props.route.length - 2];
         return (
           <ForceGraphLink
-            key={item.d3}
+            key={item.d3 + this.props.route.length}
             link={{ source: item.d3, target: prev.d3 }}
             stroke="red"
           />
@@ -82,13 +92,13 @@ class StringMap extends Component {
   };
 
   childLinkCreator = () => {
-    if (this.state.route.length) {
-      let currentIndex = this.state.route.length - 1;
-      let currentNode = this.state.route[currentIndex];
+    if (this.props.route.length) {
+      let currentIndex = this.props.route.length - 1;
+      let currentNode = this.props.route[currentIndex];
       return currentNode.children.map(child => {
         return (
           <ForceGraphLink
-            key={child.name}
+            key={child.d3 + this.props.route.length}
             link={{ source: child.d3, target: currentNode.d3 }}
             stroke="red"
           />
