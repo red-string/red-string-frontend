@@ -33,6 +33,7 @@ class SideNav extends Component {
   };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
+    console.log("This is the active case", case_id);
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
@@ -94,7 +95,7 @@ class SideNav extends Component {
               key={item.id}
               onClick={() =>
                 this._triggerRouteAndFocus(
-                  this.props.acticeCase,
+                  this.props.activeCase,
                   item.id,
                   "tag"
                 )}
