@@ -17,7 +17,8 @@ class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayFiles: true
+      displayFiles: true,
+      header: "Cases"
     };
   }
 
@@ -36,6 +37,10 @@ class SideNav extends Component {
 
   _triggerRouteAndFocus = (case_id, id, type) => {
     this.props.setFileFocus(id);
+    this.props.setRoute(case_id, id, type);
+  };
+
+  _triggerRoute = (case_id, id, type) => {
     this.props.setRoute(case_id, id, type);
   };
 
@@ -83,6 +88,9 @@ class SideNav extends Component {
         });
 
       case "graph":
+      this.setState({
+        header: "Graph"
+      })
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
@@ -91,7 +99,7 @@ class SideNav extends Component {
               className="childSelect"
               key={item.id}
               onClick={() =>
-                this._triggerRoute(this.props.acticeCase, item.id, "tag")}
+                this._triggerRoute(this.props.activeCase, item.id, "tag")}
             >
               {item.name}
             </li>
@@ -111,11 +119,15 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sideNav">
+        <div className="icon-nav" >
+          <i className="fa fa-plus"></i>
+        </div>
         <SideNavHeader
           displayFiles={this.state.displayFiles}
           _toggleHeader={this._toggleHeader}
+          _toggleUpload={this.props._toggleUpload}
+          header={this.state.header}
         />
-        <NewItemButton _toggleUpload={this.props._toggleUpload} />
         <ItemList
           _triggerRoute={this._triggerRoute}
           data={this._handleDisplayContent(this.props.sideDisplayContent)}
