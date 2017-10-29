@@ -87,7 +87,7 @@ class NewFileForm extends Component {
     evt.preventDefault();
     let evtName = evt.target.name;
     if (evtName === "fileOpen") {
-      console.log('file opening');
+      console.log('file opening', this.state.fileOpen);
       this.setState(prevState => {
         return {
           fileOpen: !prevState[this.state.fileOpen],
@@ -97,7 +97,7 @@ class NewFileForm extends Component {
 
     }
     else if (evtName === "textOpen") {
-      console.log('text opening');
+      console.log('text opening', this.state.textOpen);
       this.setState(prevState => {
         return {
           textOpen: !prevState[this.state.textOpen],
@@ -110,12 +110,12 @@ class NewFileForm extends Component {
 
 
   render() {
+    const inputSelected = (this.state.textOpen || this.state.fileOpen)
     const instruction = this.state.file_name
       ? "You have selected a " + this.state.file_type + " file for upload"
       : "Select a file for upload";
 
     const uploadType = this.state.file_type ? "." + this.state.file_type : "";
-    console.log(uploadType)
     const hiding = {
       display: "none"
     };
@@ -130,6 +130,7 @@ class NewFileForm extends Component {
           <button onClick={this.toggleVisible} name="textOpen">
             Manually enter text
           </button>
+          <p>or</p>
           <button onClick={this.toggleVisible} name="fileOpen">
             Upload a file
           </button>
@@ -137,7 +138,7 @@ class NewFileForm extends Component {
             className="fileOpen"
             style={this.state.fileOpen ? shown : hiding}
           >
-            <p>{instruction}</p>
+            {/* <p>{instruction}</p> */}
 
 
             <select name="file_type" onChange={this.handleChange} required>
@@ -165,22 +166,25 @@ class NewFileForm extends Component {
               value={this.state.file_text}
             />
           </div>
-          <input
-            type="text"
-            name="file_name"
-            placeholder="Add file name"
-            onChange={this.handleChange}
-            value={this.state.file_name}
-          />
-          <input
-            type="text"
-            name="file_desc"
-            placeholder="Add description"
-            onChange={this.handleChange}
-            value={this.state.file_desc}
-          />
+          <div style={inputSelected ? shown : hiding}>
+            <input
+              type="text"
+              name="file_name"
+              placeholder="Add a file name"
+              onChange={this.handleChange}
+              value={this.state.file_name}
+            />
+            <input
+              type="text"
+              name="file_desc"
+              placeholder="Add a file description"
+              onChange={this.handleChange}
+              value={this.state.file_desc}
+            />
+            <button onClick={this.handleSubmit}>Submit</button>
+          </div>
 
-          <button onClick={this.handleSubmit}>Submit</button>
+
         </form>
       </div>
     );
