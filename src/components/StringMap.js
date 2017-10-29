@@ -30,7 +30,6 @@ class StringMap extends Component {
     if (this.props.route) {
       const route = this.props.route;
       return route.map(node => {
-        console.log("route Key", node.d3);
         return (
           <ForceGraphNode
             showLabel
@@ -53,7 +52,6 @@ class StringMap extends Component {
       const currentNode = this.props.route[currentIndex];
       let type;
       return currentNode.children.map(child => {
-        console.log("child Key", child.d3 + this.props.route.length);
         if (child.d3[0] === "t") {
           type = "tag";
         } else {

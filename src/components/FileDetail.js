@@ -1,4 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import CaseItem from "./CaseItem";
+import {
+  getAllCases,
+  getAllFilesFromCase,
+  getAllTagsFromFile
+} from "../services.js";
 import "../styles/CaseView.css"
 
 
@@ -16,6 +23,7 @@ const FileDetail = (props)=>{
         ?<div>{file.file_text}</div>
         : null
       }
+      <Link to="/graph"> GRAPH </Link>
     </div>
   );
 }
