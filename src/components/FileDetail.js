@@ -1,10 +1,4 @@
 import React from "react";
-import CaseItem from "./CaseItem";
-import {
-  getAllCases,
-  getAllFilesFromCase,
-  getAllTagsFromFile
-} from "../services.js";
 import "../styles/CaseView.css"
 
 

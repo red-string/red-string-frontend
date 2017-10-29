@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import NewFileForm from '../components/NewFileForm'
-import SideNav from '../components/NavBar/SideNav'
 import FileDetail from "../components/FileDetail"
 import { connect } from "react-redux";
 import { setRouteService, sideDisplayService } from "../services.js"

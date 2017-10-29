@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SideNavHeader from "./SideNavHeader";
-import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
 import {
   setRouteService,
   sideDisplayService,
-  selectedChildService,
   setFileFocusService
 } from "../../services.js";
-import axios from "axios";
 import "../../styles/SideNav.css";
 
 class SideNav extends Component {
@@ -99,16 +96,29 @@ class SideNav extends Component {
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
-          return (
-            <li
-              className="childSelect"
-              key={item.id}
-              onClick={() =>
-                this._triggerRoute(this.props.activeCase, item.id, "tag")}
-            >
-              {item.name}
-            </li>
-          );
+          if(item.description){
+            return (
+              <li
+                className="childSelect"
+                key={item.id}
+                onClick={() =>
+                  this._triggerRoute(this.props.activeCase, item.id, "file")}
+              >
+                {item.name}
+              </li>
+            )
+          } else {
+            return (
+              <li
+                className="childSelect"
+                key={item.id}
+                onClick={() =>
+                  this._triggerRoute(this.props.activeCase, item.id, "tag")}
+              >
+                {item.name}
+              </li>
+            )
+          }
         });
 
       default:

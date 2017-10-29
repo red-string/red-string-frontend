@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import StringMap from "../components/StringMap";
 import "../styles/FileView.css";
 import "../styles/stringMap.css";
+import { sideDisplayService } from "../services";
 
 class DataVisView extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.props.sideNav("Graph");
   }
 
   render() {
@@ -26,7 +27,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    //fetchData: url => dispatch(itemsFetchData(url))
+    sideNav: display => dispatch(sideDisplayService(display))
   };
 };
 
