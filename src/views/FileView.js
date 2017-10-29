@@ -15,7 +15,7 @@ class FileView extends Component {
   }
 
   componentDidMount(){
-    this.props.sideDisplay("files");
+    this.props.sideDisplay("Files");
   }
 
   componentWillReceiveProps(nextProps){
