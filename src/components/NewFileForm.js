@@ -111,10 +111,12 @@ class NewFileForm extends Component {
 
 
   render() {
-    console.log('toggle text', this.state.textOpen, "file", this.state.fileOpen)
-    let instruction = this.state.file_name
-      ? "You have selected this file for upload: " + this.state.file_name
+    const instruction = this.state.file_name
+      ? "You have selected a " + this.state.file_type + " file for upload"
       : "Select a file for upload";
+
+    const uploadType = this.state.file_type ? "." + this.state.file_type : "";
+    console.log(uploadType)
     const hiding = {
       display: "none"
     };
@@ -137,18 +139,19 @@ class NewFileForm extends Component {
             style={this.state.fileOpen ? shown : hiding}
           >
             <p>{instruction}</p>
-            <ReactFileReader
-              handleFiles={this.setFileState}
-              fileTypes=".docx, .pdf"
-            >
-              <p>Upload</p>
-            </ReactFileReader>
+
 
             <select name="file_type" onChange={this.handleChange} required>
-              <option>Select a filetype...</option>
+              <option>Select a file type...</option>
               <option value="docx">Word Document (.docx)</option>
               <option value="pdf">PDF</option>
             </select>
+            <ReactFileReader
+              handleFiles={this.setFileState}
+              fileTypes={uploadType}
+            >
+              <p>Upload {uploadType}</p>
+            </ReactFileReader>
           </div>
           <div
             className="textOpen"
