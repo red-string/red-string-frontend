@@ -22,7 +22,7 @@ class CaseView extends Component {
 
   componentDidMount() {
     this.props.getCases();
-    this.props.sideNav("cases");
+    this.props.sideDisplay("Cases");
   }
 
   ///////////////////////
@@ -68,7 +68,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     getCases: () => dispatch(getAllCasesService()),
-    sideNav: display => dispatch(sideDisplayService(display)),
+    sideDisplay: display => dispatch(sideDisplayService(display)),
     openCase: case_id => dispatch(openCaseService(case_id))
   };
 };

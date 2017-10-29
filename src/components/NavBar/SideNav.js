@@ -22,7 +22,12 @@ class SideNav extends Component {
     };
   }
 
-  componentDidUpdate() {}
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      header: nextProps.sideDisplayContent
+    })
+  }
+
 
   ///////////////////////////////////////
   // helper functions
@@ -55,12 +60,12 @@ class SideNav extends Component {
 
   _handleDisplayContent = display => {
     switch (display) {
-      case "case":
+      case "Cases":
         return this.props.cases.map(item => {
           return <li key={item.case_id}>{item.case_name}</li>;
         });
 
-      case "files":
+      case "Files":
         return this.props.caseFiles.map(item => {
           return (
             <li
@@ -77,7 +82,7 @@ class SideNav extends Component {
           );
         });
 
-      case "tags":
+      case "Tags":
         return this.props.caseTags.map(item => {
           return (
             <li
@@ -90,10 +95,7 @@ class SideNav extends Component {
           );
         });
 
-      case "graph":
-      this.setState({
-        header: "Graph"
-      })
+      case "Graph":
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
@@ -102,15 +104,7 @@ class SideNav extends Component {
               className="childSelect"
               key={item.id}
               onClick={() =>
-<<<<<<< HEAD
                 this._triggerRoute(this.props.activeCase, item.id, "tag")}
-=======
-                this._triggerRouteAndFocus(
-                  this.props.activeCase,
-                  item.id,
-                  "tag"
-                )}
->>>>>>> 44b1c10010305ea8e7277d41e76701946dbdee75
             >
               {item.name}
             </li>
