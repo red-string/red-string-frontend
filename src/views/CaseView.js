@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SideNav from "../components/NavBar/SideNav";
 import NewCaseForm from "../components/NewCaseForm";
 import CaseList from "../components/CaseList";
 import {
   getAllCasesService,
-  getAllFilesFromCase,
-  getAllTagsFromFile,
   openCaseService,
   sideDisplayService
 } from "../services.js";

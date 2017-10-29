@@ -5,25 +5,15 @@ import {
   ForceGraphNode,
   ForceGraphLink
 } from "react-vis-force";
-import { setRouteService, sideDisplayService } from "../services";
+import { sideDisplayService } from "../services";
 
 class StringMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       route: this.props.route,
-      didMount: false
+      didMount: true
     };
-  }
-
-  componentDidMount() {
-    this.props.sideNav("graph");
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   route: nextProps.route
-    // });
   }
 
   routeNodeCreator = () => {
@@ -33,7 +23,7 @@ class StringMap extends Component {
         return (
           <ForceGraphNode
             showLabel
-            key={node.d3}
+            key={node.d3 + route.length}
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
@@ -60,7 +50,7 @@ class StringMap extends Component {
         return (
           <ForceGraphNode
             showLabel
-            key={child.d3}
+            key={child.d3 + this.state.route.length}
             node={{ id: child.d3, data: child.name }}
             fill="lightgrey"
             stroke="black"
@@ -98,7 +88,7 @@ class StringMap extends Component {
       return currentNode.children.map(child => {
         return (
           <ForceGraphLink
-            key={child.d3}
+            key={child.name}
             link={{ source: child.d3, target: currentNode.d3 }}
             stroke="red"
           />
@@ -111,24 +101,32 @@ class StringMap extends Component {
 
   render() {
     return (
-      <InteractiveForceGraph
-        className="stringMap"
-        zoom
-        labelAttr="data"
-        simulationOptions={{
-          height: 800,
-          width: 900,
-          animate: true,
-          strength: {
-            charge: -2500
-          }
-        }}
-      >
-        {this.routeNodeCreator()}
-        {this.childNodeCreator()}
-        {this.routeLinkCreator()}
-        {this.childLinkCreator()}
-      </InteractiveForceGraph>
+      <div>
+        {
+          this.state.didMount
+          ?<InteractiveForceGraph
+          className="stringMap"
+          zoom
+          labelAttr="data"
+          simulationOptions={{
+            height: 800,
+            width: 900,
+            animate: true,
+            strength: {
+              charge: -2500
+            }
+          }}
+        >
+          {this.routeNodeCreator()}
+          {this.childNodeCreator()}
+          {this.routeLinkCreator()}
+          {this.childLinkCreator()}
+        </InteractiveForceGraph>
+          : null
+        }
+      </div>
+      
+      
     );
   }
 }

@@ -3,17 +3,8 @@ import CaseView from "../views/CaseView";
 import DataVisView from "../views/DataVisView";
 import TagView from "../views/TagView";
 import FileView from "../views/FileView";
-import StringMap from "../components/StringMap";
 import SideNav from "../components/NavBar/SideNav";
-import { Switch, Route, Redirect } from "react-router-dom";
-import {
-  getAllCases,
-  getAllFilesFromCase,
-  getAllTagsFromFile,
-  getAllTagsFromCase,
-  getTagsThatShareFiles,
-  getFileById
-} from "../services.js";
+import { Switch, Route } from "react-router-dom";
 import "../styles/App.css";
 
 class App extends Component {

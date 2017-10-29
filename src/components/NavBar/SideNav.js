@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SideNavHeader from "./SideNavHeader";
-import NewItemButton from "./NewItemButton";
 import ItemList from "./ItemList";
 import {
   setRouteService,
   sideDisplayService,
-  selectedChildService,
   setFileFocusService
 } from "../../services.js";
-import axios from "axios";
 import "../../styles/SideNav.css";
 
 class SideNav extends Component {
