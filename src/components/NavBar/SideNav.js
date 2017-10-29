@@ -149,7 +149,7 @@ class SideNav extends Component {
           page={this.props.sideDisplay}
           activeCase={this.props.activeCase}
         />
-        <Link to="/graph"> GRAPH </Link>
+        {/* <Link to="/graph"> GRAPH </Link> */}
       </div>
     );
   }
