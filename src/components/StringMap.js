@@ -67,25 +67,22 @@ class StringMap extends Component {
         let freqFill;
         console.log(child.freq);
         if (child.freq >= 0 && child.freq < 4) {
-<<<<<<< HEAD
           freqStroke = "lightgray";
-=======
-          freqStroke = "#BD0A13";
->>>>>>> 5e14d98d176141f134d780664efc33e73cebb991
+          freqStroke = "black";
           freqWidth = "0.5px";
           freqFill = "white";
         } else if (child.freq >= 4 && child.freq < 7) {
-          freqStroke = "black";
+          freqStroke = "#f73939";
           freqWidth = "1px";
           freqFill = "#D2D5DD";
         } else if (child.freq >= 7 && child.freq <= 10) {
-          freqStroke = "red";
+          freqStroke = "#f73939";
           freqWidth = "2px";
-          freqFill = "#BD0A13";
+          freqFill = "#FF8888";
         } else if (child.freq > 10) {
-          freqStroke = "#BD0A13";
+          freqStroke = "#f73939";
           freqWidth = "2px";
-          freqFill = "#BD0A13";
+          freqFill = "#f73939";
         }
         if (child.d3[0] === "t") {
           type = "tag";
