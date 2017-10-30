@@ -54,7 +54,8 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
 
     case CLEAR_ROUTE:
       return update(state, {
-        route: { $set: [] }
+        route: { $set: [] },
+        filterUsed: { $set: [] }
       });
 
     case SET_FILE_FOCUS:
