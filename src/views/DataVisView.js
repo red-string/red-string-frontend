@@ -15,10 +15,22 @@ class DataVisView extends Component {
     this.props.clearRoute();
   }
 
+<<<<<<< HEAD
   handleRouteList() {
     return this.props.route.map(item => {
       return <li>{item.name}</li>;
     });
+=======
+  handleRouteList(){
+    return this.props.route.map( item => {
+      console.log(item);
+        return (
+          <li className="routeItem" >
+              {item.name}
+          </li>
+        )
+      })
+>>>>>>> adf223f0011fbf6a5322310421f56e16a5b383d3
   }
 
   render() {
