@@ -1,8 +1,12 @@
 .sideNav {
-  width: 350px;
+  max-width: 250px;
+  min-width: 250px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
+  height: 100vh;
+  background-color: hsl(0, 0%, 95%);
+  border-right: 1px solid #808080;
 }
 
 
@@ -12,6 +16,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
+  width: 20%;
   padding: 1.7em .5em;
   background-color: hsl(0, 0%, 20%);
 }
@@ -33,9 +38,7 @@
 }
 
 .sideNavCont {
-  height: 100vh;
-  background-color: hsl(0, 0%, 95%);
-  border-right: 1px solid #808080;
+  width: 79.99%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
