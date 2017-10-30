@@ -1,10 +1,26 @@
 .routeList {
-    height: 100vh;
+    margin-right: -120px;
 }
 
-.routeList>li {
-    color: blue;
-    margin: .5em .25em
+.routeHeader {
+    list-style: none;
+    color: #414141;
+    cursor: default;
+    background-color: hsl(0, 0%, 90%);
+    border-top: 2px solid #808080;
+    /* border-left: 2px solid #808080; */
+    margin: .35em 0.25em;
+    padding: .25em .75em;
+}
+
+.routeItem {
+    list-style: none;
+    color: #838383;
+    cursor: pointer;
+    background-color: hsl(0, 0%, 95%);
+    border-left: 2px solid #808080;
+    margin: .35em 0.25em;
+    padding: .25em .75em;
 }
 
 .stringMap {
