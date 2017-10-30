@@ -30,6 +30,8 @@ class FileView extends Component {
   }
 
   render() {
+    console.log('this is the props on file view', this.props)
+    const showDetail = (this.state.displayFocus && !this.props.upload)
     return (
       <div className="newFileForm ViewCont">
         {this.state.displayFocus ? (
