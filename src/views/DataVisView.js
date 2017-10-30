@@ -23,8 +23,11 @@ class DataVisView extends Component {
     return this.props.route.map( (item, ind) => {
       console.log(item);
         return (
-          <li className="routeItem" onClick={() => this.props.navigateRoute(ind)} >
+          <li className="routeItemCont" onClick={() => this.props.navigateRoute(ind)} >
+            <div className="routeItem">
               {item.name}
+            </div>
+            <div className="routeLine" />
           </li>
         )
       })
