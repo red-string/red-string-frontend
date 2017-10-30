@@ -21,9 +21,18 @@ class StringMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   route: nextProps.route
-    // });
+    this.setState({
+      route: [],
+      didMount: false
+    });
+  }
+
+  componentDidUpdate(){
+    if(this.state.didMount === false){
+      this.setState({
+        didMount: true
+      })
+    }
   }
 
   routeNodeCreator = () => {
@@ -123,8 +132,7 @@ class StringMap extends Component {
             animate: true,
             strength: {
               charge: -2500
-            },
-            velocityDecay: .1
+            }
           }}
         >
           {this.routeNodeCreator()}
