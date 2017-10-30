@@ -51,6 +51,7 @@ export function setRouteService(case_id, id, type, filterArray) {
   return dispatch => {
     if (type === "tag") {
       axios.get("/" + case_id + "/files/tags/" + id).then(res => {
+        console.log("Respose from server", res);
         const parent = res.data;
         if (filterArray) {
           const filteredParent = keepParent(filterArray, parent);

@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CaseItem from "./CaseItem";
-import {
-  getAllCases,
-  getAllFilesFromCase,
-  getAllTagsFromFile
-} from "../services.js";
-import "../styles/CaseView.css"
+import "../styles/CaseView.css";
 
-
-const FileDetail = (props)=>{
-  const file = props.file
+const FileDetail = props => {
+  const file = props.file;
   return (
     <div className="FileDetail">
       <div className="focus-heading-cont" >
@@ -23,17 +16,22 @@ const FileDetail = (props)=>{
         <p>{file.date_created}</p>
         <p>{file.file_description}</p>
       </div>
+<<<<<<< HEAD
+      {file.file_text ? <div>{file.file_text}</div> : null}
+      <Link to="/graph"> GRAPH </Link>
+=======
       {
         file.file_text
         ?<div>{file.file_text}</div>
         : null
       }
       
+>>>>>>> adf223f0011fbf6a5322310421f56e16a5b383d3
     </div>
   );
-}
+};
 
-export default FileDetail
+export default FileDetail;
 
 // case_id
 // date_created

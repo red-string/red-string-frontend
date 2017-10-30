@@ -11,10 +11,16 @@ class DataVisView extends Component {
     this.props.sideNav("Graph");
   }
 
-  _triggerClearRoute(){
-    this.props.clearRoute()
+  _triggerClearRoute() {
+    this.props.clearRoute();
   }
 
+<<<<<<< HEAD
+  handleRouteList() {
+    return this.props.route.map(item => {
+      return <li>{item.name}</li>;
+    });
+=======
   handleRouteList(){
     return this.props.route.map( item => {
       console.log(item);
@@ -24,12 +30,16 @@ class DataVisView extends Component {
           </li>
         )
       })
+>>>>>>> adf223f0011fbf6a5322310421f56e16a5b383d3
   }
 
   render() {
     return (
       <div className="ViewCont">
-        <RouteTracker route={this.props.route} handleRouteList={this.handleRouteList()} />
+        <RouteTracker
+          route={this.props.route}
+          handleRouteList={this.handleRouteList()}
+        />
         <StringMap />
       </div>
     );
