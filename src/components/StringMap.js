@@ -69,7 +69,7 @@ class StringMap extends Component {
         if (child.freq >= 0 && child.freq < 4) {
           freqStroke = "red";
           freqWidth = "0.5px";
-          freqFill: "red";
+          freqFill = "red";
         } else if (child.freq >= 4 && child.freq < 7) {
           freqStroke = "black";
           freqWidth = "1px";
