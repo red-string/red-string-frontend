@@ -17,25 +17,28 @@
 
 .routeItemCont {
     list-style: none;
-    /* display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start; */
     margin: 0em 1em;
 }
 
 .routeItem {
     color: #838383;
-    cursor: default;
+    cursor: pointer;
     background-color: hsl(0, 0%, 95%);
     border-left: 1px solid #808080;
     padding: .25em .75em;
     font-size: .8em;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
+    transition: .3s;
+}
+
+.routeItem:hover {
+    transform: translateX(6px);
+    border-left: 1px solid #f73939;
+    transition: .3s;
 }
 
 .routeLine {
-    width: 1px;
+    width: 2px;
     background-color: #f73939;
     height: .7em;
     margin: 0 auto;
