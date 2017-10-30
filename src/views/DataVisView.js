@@ -15,21 +15,21 @@ class DataVisView extends Component {
     this.props.clearRoute()
   }
 
-  handleRouteList = () => {
+  handleRouteList(){
     return this.props.route.map( item => {
-        return 
-            (
-            <li >
-                {item.name}
-            </li>
-            )
-        })
+      console.log(item);
+        return (
+          <li>
+              {item.name}
+          </li>
+        )
+      })
   }
 
   render() {
     return (
       <div className="ViewCont">
-        <RouteTracker route={this.props.route} handleRouteList={this.handleRouteList} />
+        <RouteTracker route={this.props.route} handleRouteList={this.handleRouteList()} />
         <StringMap />
       </div>
     );
