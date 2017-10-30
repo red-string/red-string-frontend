@@ -21,23 +21,32 @@ class StringMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   route: nextProps.route
-    // });
+    this.setState({
+      route: [],
+      didMount: false
+    });
+  }
+
+  componentDidUpdate() {
+    if (this.state.didMount === false) {
+      this.setState({
+        didMount: true
+      });
+    }
   }
 
   routeNodeCreator = () => {
     if (this.props.route) {
       const route = this.props.route;
       return route.map(node => {
-        console.log("route Key", node.d3);
         return (
           <ForceGraphNode
             showLabel
-            key={node.d3 + this.props.route.length*5}
+            key={node.d3 + this.props.route.length * 5}
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
+            strokeWidth="1px"
             r="35"
           />
         );
@@ -53,7 +62,6 @@ class StringMap extends Component {
       const currentNode = this.props.route[currentIndex];
       let type;
       return currentNode.children.map(child => {
-        console.log("child Key", child.d3 + this.props.route.length);
         if (child.d3[0] === "t") {
           type = "tag";
         } else {
@@ -66,6 +74,7 @@ class StringMap extends Component {
             node={{ id: child.d3, data: child.name }}
             fill="lightgrey"
             stroke="black"
+            strokeWidth="1px"
             r="35"
           />
         );
@@ -78,7 +87,12 @@ class StringMap extends Component {
   routeLinkCreator = () => {
     if (this.props.route.length > 1) {
       return this.props.route.map((item, ind) => {
-        let prev = this.props.route[this.props.route.length - 2];
+        let prev;
+        if (this.props.route[ind - 1]) {
+          prev = this.props.route[ind - 1];
+        } else {
+          return <div />;
+        }
         return (
           <ForceGraphLink
             key={item.d3 + this.props.route.length}
@@ -113,28 +127,26 @@ class StringMap extends Component {
   render() {
     return (
       <div>
-        {
-          this.state.didMount
-          ?<InteractiveForceGraph
-          className="stringMap"
-          zoom
-          labelAttr="data"
-          simulationOptions={{
-            height: 800,
-            width: 900,
-            animate: true,
-            strength: {
-              charge: -2500
-            }
-          }}
-        >
-          {this.routeNodeCreator()}
-          {this.childNodeCreator()}
-          {this.routeLinkCreator()}
-          {this.childLinkCreator()}
-        </InteractiveForceGraph>
-          : null
-        }
+        {this.state.didMount ? (
+          <InteractiveForceGraph
+            className="stringMap"
+            zoom
+            labelAttr="data"
+            simulationOptions={{
+              height: 800,
+              width: 900,
+              animate: true,
+              strength: {
+                charge: -5000
+              }
+            }}
+          >
+            {this.routeNodeCreator()}
+            {this.childNodeCreator()}
+            {this.routeLinkCreator()}
+            {this.childLinkCreator()}
+          </InteractiveForceGraph>
+        ) : null}
       </div>
     );
   }

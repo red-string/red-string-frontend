@@ -7,7 +7,8 @@ import {
   SET_ROUTE,
   CLEAR_ROUTE,
   SIDE_DISPLAY,
-  SET_FILE_FOCUS
+  SET_FILE_FOCUS,
+  NAVIGATE_ROUTE
 } from "../constants";
 
 const makeActionCreator = function(actionType) {
@@ -19,6 +20,7 @@ const makeActionCreator = function(actionType) {
   };
 };
 
+export const navigateRoute = makeActionCreator(NAVIGATE_ROUTE)
 export const setFileFocus = makeActionCreator(SET_FILE_FOCUS)
 export const sideDisplay = makeActionCreator(SIDE_DISPLAY);
 export const setRoute = makeActionCreator(SET_ROUTE);

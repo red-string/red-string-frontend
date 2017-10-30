@@ -1,3 +1,31 @@
+.routeList {
+    margin-right: -120px;
+    
+}
+
+.routeHeader {
+    list-style: none;
+    color: #414141;
+    cursor: default;
+    background-color: hsl(0, 0%, 90%);
+    border-top: 1px solid #808080;
+    /* border-left: 2px solid #808080; */
+    margin: .35em 0.25em;
+    padding: .25em .75em;
+    font-size: .8em;
+}
+
+.routeItem {
+    list-style: none;
+    color: #838383;
+    cursor: default;
+    background-color: hsl(0, 0%, 95%);
+    border-left: 1px solid #808080;
+    margin: .35em 0.25em;
+    padding: .25em .75em;
+    font-size: .8em;
+}
+
 .stringMap {
     float: right;
 }
