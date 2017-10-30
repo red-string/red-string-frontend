@@ -44,7 +44,7 @@ class StringMap extends Component {
             showLabel
             key={node.d3 + this.props.route.length * 5}
             node={{ id: node.d3, data: node.name }}
-            fill="lightgrey"
+            fill="#D2D5DD"
             stroke="black"
             strokeWidth="1px"
             r="35"
@@ -67,21 +67,25 @@ class StringMap extends Component {
         let freqFill;
         console.log(child.freq);
         if (child.freq >= 0 && child.freq < 4) {
+<<<<<<< HEAD
           freqStroke = "lightgray";
+=======
+          freqStroke = "#BD0A13";
+>>>>>>> 5e14d98d176141f134d780664efc33e73cebb991
           freqWidth = "0.5px";
           freqFill = "white";
         } else if (child.freq >= 4 && child.freq < 7) {
           freqStroke = "black";
           freqWidth = "1px";
-          freqFill = "#a3a3a3";
+          freqFill = "#D2D5DD";
         } else if (child.freq >= 7 && child.freq <= 10) {
           freqStroke = "red";
           freqWidth = "2px";
-          freqFill = "#ef4040";
+          freqFill = "#BD0A13";
         } else if (child.freq > 10) {
-          freqStroke = "red";
+          freqStroke = "#BD0A13";
           freqWidth = "2px";
-          freqFill = "red";
+          freqFill = "#BD0A13";
         }
         if (child.d3[0] === "t") {
           type = "tag";
