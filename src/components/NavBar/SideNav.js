@@ -155,7 +155,7 @@ class SideNav extends Component {
     );
   }
 }
-
+ 
 function mapStateToProps(state) {
   return {
     caseFiles: state.caseFiles,
