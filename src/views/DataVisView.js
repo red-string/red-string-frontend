@@ -15,7 +15,6 @@ class DataVisView extends Component {
     this.props.clearRoute();
   }
 
-<<<<<<< HEAD
   _triggerNavigateRoute(ind){
     this.props.navigateRoute(ind)
   }
@@ -29,13 +28,6 @@ class DataVisView extends Component {
           </li>
         )
       })
-=======
-  handleRouteList() {
-    return this.props.route.map(item => {
-      console.log(item);
-      return <li className="routeItem">{item.name}</li>;
-    });
->>>>>>> 2dd2ebaf4b427bba01152c6158977a001771ff3d
   }
 
   render() {
