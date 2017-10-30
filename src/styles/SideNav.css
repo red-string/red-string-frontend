@@ -1,14 +1,46 @@
 .sideNav {
-  width: 300px;
+  width: 350px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+
+.navIconBar {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  padding: 1.7em .5em;
+  background-color: hsl(0, 0%, 20%);
+}
+
+.navIconBar a {
+  margin-bottom: 1em;
+  transition: .4s;
+}
+
+.navIconBar span {
+  color: rgb(218, 218, 218);
+  font-size: 1em;
+  
+}
+
+.navIconBar>a:hover {
+  transform: translateX(5px);
+  transition: .4s;
+}
+
+.sideNavCont {
   height: 100vh;
   background-color: hsl(0, 0%, 95%);
   border-right: 1px solid #808080;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
-  padding-top: 30px;
-  padding-left: 40px;
-  box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.2);
+  padding: 2em 1.75em 0 1em;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
   overflow-y: scroll;
 }
 

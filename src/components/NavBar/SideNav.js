@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import SideNavHeader from "./SideNavHeader";
+import NavIconBar from "./NavIconBar";
 import ItemList from "./ItemList";
 import {
   setRouteService,
@@ -15,7 +15,6 @@ class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // displayFiles: true,
       header: "Cases"
     };
   }
@@ -28,15 +27,10 @@ class SideNav extends Component {
 
   ///////////////////////////////////////
   // helper functions
-  //
-  // _toggleHeader = () => {
-  //   this.setState(prevState => {
-  //     return { displayFiles: !prevState.displayFiles };
-  //   });
-  // };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
     this.props.clearRoute();
+    this.props._toggleDetail();
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
@@ -144,21 +138,20 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sideNav">
-        <div className="icon-nav">
-          <i className="fa fa-plus" />
+        <NavIconBar />
+        <div className="sideNavCont">
+          <SideNavHeader
+            displayFiles={this.state.displayFiles}
+            _toggleUpload={this.props._toggleUpload}
+            header={this.state.header}
+          />
+          <ItemList
+            _triggerRoute={this._triggerRoute}
+            data={this._handleDisplayContent(this.props.sideDisplayContent)}
+            page={this.props.sideDisplay}
+            activeCase={this.props.activeCase}
+          />
         </div>
-        <SideNavHeader
-          displayFiles={this.state.displayFiles}
-          _toggleHeader={this._toggleHeader}
-          _toggleUpload={this.props._toggleUpload}
-          header={this.state.header}
-        />
-        <ItemList
-          _triggerRoute={this._triggerRoute}
-          data={this._handleDisplayContent(this.props.sideDisplayContent)}
-          page={this.props.sideDisplay}
-          activeCase={this.props.activeCase}
-        />
       </div>
     );
   }
