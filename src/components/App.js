@@ -11,15 +11,16 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      displayUpload: false
+      displayUpload: false,
+      displayDetail: true
     };
   }
 
   componentWillMount() {
-    
+
   }
 
-  
+
   ///////////////////////
   // Helper Functions
   //////////////////////
@@ -29,6 +30,12 @@ class App extends Component {
       return { displayUpload: !prevState.displayUpload };
     });
   };
+
+  _toggleDetail = () => {
+    this.setState(prevState => {
+      return {displayDetail: !prevState.displayDetail}
+    })
+  }
 
   render() {
     return (
@@ -42,6 +49,8 @@ class App extends Component {
             path="/files"
             component={() => (
               <FileView
+                _toggleDetail={this._toggleDetail}
+                detail={this.state.displayDetail}
                 upload={this.state.displayUpload}
                 activeCase={this.state.activeCase}
                 refreshFileList={this.refreshFileList}

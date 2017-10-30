@@ -21,7 +21,7 @@ class FileView extends Component {
     console.log(nextProps);
     if( nextProps.focusedFile ){
       this.setState({
-        displayFocus: true 
+        displayFocus: true
       })
     } else {
       this.setState({
@@ -30,14 +30,15 @@ class FileView extends Component {
     }
   }
 
-  
-
   render() {
+    console.log('this is the props on file view', this.props)
+    const showDetail = (this.state.displayFocus && !this.props.upload)
     return (
       <div className="newFileForm ViewCont">
         {
-          this.state.displayFocus
-          ? <FileDetail file={this.props.focusedFile} />
+          showDetail
+          ? <FileDetail file={this.props.focusedFile}
+           />
           : null
         }
         {

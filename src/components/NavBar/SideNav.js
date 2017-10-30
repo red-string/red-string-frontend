@@ -14,7 +14,7 @@ class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayFiles: true,
+      // displayFiles: true,
       header: "Cases"
     };
   }
@@ -28,12 +28,12 @@ class SideNav extends Component {
 
   ///////////////////////////////////////
   // helper functions
-
-  _toggleHeader = () => {
-    this.setState(prevState => {
-      return { displayFiles: !prevState.displayFiles };
-    });
-  };
+  //
+  // _toggleHeader = () => {
+  //   this.setState(prevState => {
+  //     return { displayFiles: !prevState.displayFiles };
+  //   });
+  // };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
     console.log("This is the active case", case_id);
