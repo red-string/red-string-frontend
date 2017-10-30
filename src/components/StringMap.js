@@ -46,6 +46,7 @@ class StringMap extends Component {
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
+            strokeWidth="1px"
             r="35"
           />
         );
@@ -73,6 +74,7 @@ class StringMap extends Component {
             node={{ id: child.d3, data: child.name }}
             fill="lightgrey"
             stroke="black"
+            strokeWidth="1px"
             r="35"
           />
         );

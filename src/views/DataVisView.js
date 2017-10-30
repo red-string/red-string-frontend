@@ -19,7 +19,7 @@ class DataVisView extends Component {
     return this.props.route.map( item => {
       console.log(item);
         return (
-          <li>
+          <li className="routeItem" >
               {item.name}
           </li>
         )

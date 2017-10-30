@@ -7,6 +7,13 @@
     overflow-y: scroll;
 }
 
+.focus-heading-cont {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .focus-heading {
     font-size: 2em;
 }
@@ -14,4 +21,9 @@
 .focus-subheading p {
     font-size: .8em;
     margin-bottom: .5em;
+}
+
+.graphIcon {
+    color: black;
+    font-size: 1.4em;
 }
