@@ -9,7 +9,7 @@ const FileDetail = props => {
       <div className="focus-heading-cont">
         <h2 className="focus-heading">{file.file_name}</h2>
         <Link to="/graph">
-          <span class="oi graphIcon" data-glyph="pie-chart" />
+          <span className="oi graphIcon" data-glyph="pie-chart"></span>
         </Link>
       </div>
       <div className="focus-subheading">

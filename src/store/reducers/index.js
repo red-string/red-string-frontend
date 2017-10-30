@@ -6,7 +6,8 @@ import {
   SET_ROUTE,
   SIDE_DISPLAY,
   CLEAR_ROUTE,
-  SET_FILE_FOCUS
+  SET_FILE_FOCUS,
+  NAVIGATE_ROUTE
 } from "../constants.js";
 import update from "immutability-helper";
 
@@ -60,6 +61,17 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
       return update(state, {
         focusedFile: { $set: action.payload }
       });
+
+    case NAVIGATE_ROUTE:
+      // let route = state.route;
+      // console.log(route);
+      // let ind = action.payload;
+      // console.log(action.payload);
+      // let newRoute = route.splice(ind, (ind-(ind+1)));
+      // console.log(newRoute);
+      return update(state, {
+        route: { $set: state.route.filter((_, i) => i <= action.payload) }
+      })
 
     default:
       return state;

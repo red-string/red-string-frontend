@@ -4,7 +4,7 @@ import StringMap from "../components/StringMap";
 import RouteTracker from "../components/RouteTracker";
 import "../styles/FileView.css";
 import "../styles/stringMap.css";
-import { sideDisplayService, clearRouteService } from "../services";
+import { sideDisplayService, clearRouteService, navigateRouteService } from "../services";
 
 class DataVisView extends Component {
   componentDidMount() {
@@ -15,11 +15,19 @@ class DataVisView extends Component {
     this.props.clearRoute();
   }
 
-  handleRouteList() {
-    return this.props.route.map(item => {
+  _triggerNavigateRoute(ind){
+    this.props.navigateRoute(ind)
+  }
+
+  handleRouteList(){
+    return this.props.route.map( (item, ind) => {
       console.log(item);
-      return <li className="routeItem">{item.name}</li>;
-    });
+        return (
+          <li className="routeItem" onClick={() => this.props.navigateRoute(ind)} >
+              {item.name}
+          </li>
+        )
+      })
   }
 
   render() {
@@ -44,7 +52,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = dispatch => {
   return {
     sideNav: display => dispatch(sideDisplayService(display)),
-    clearRoute: display => dispatch(clearRouteService(display))
+    clearRoute: display => dispatch(clearRouteService(display)),
+    navigateRoute: ind => dispatch(navigateRouteService(ind))
   };
 };
 
