@@ -6,7 +6,8 @@ import {
   setRoute,
   sideDisplay,
   setFileFocus,
-  clearRoute
+  clearRoute,
+  navigateRoute
 } from "./store/actions";
 
 export function getAllCasesService() {
@@ -122,5 +123,11 @@ function keptChildren(d3Array, childrenArray) {
 export function clearRouteService() {
   return dispatch => {
     dispatch(clearRoute());
+  };
+}
+
+export function navigateRouteService(ind) {
+  return dispatch => {
+    dispatch(navigateRoute(ind));
   };
 }
