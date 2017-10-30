@@ -15,7 +15,6 @@ class SideNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // displayFiles: true,
       header: "Cases"
     };
   }
@@ -28,15 +27,10 @@ class SideNav extends Component {
 
   ///////////////////////////////////////
   // helper functions
-  //
-  // _toggleHeader = () => {
-  //   this.setState(prevState => {
-  //     return { displayFiles: !prevState.displayFiles };
-  //   });
-  // };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
     this.props.clearRoute();
+    this.props._toggleDetail();
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
   };
@@ -149,7 +143,6 @@ class SideNav extends Component {
         </div>
         <SideNavHeader
           displayFiles={this.state.displayFiles}
-          _toggleHeader={this._toggleHeader}
           _toggleUpload={this.props._toggleUpload}
           header={this.state.header}
         />
