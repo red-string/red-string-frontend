@@ -63,15 +63,12 @@ const reducers = function getAllCasesReducer(state = initialState, action) {
       });
 
     case NAVIGATE_ROUTE:
-      // let route = state.route;
-      // console.log(route);
-      // let ind = action.payload;
-      // console.log(action.payload);
-      // let newRoute = route.splice(ind, (ind-(ind+1)));
-      // console.log(newRoute);
       return update(state, {
-        route: { $set: state.route.filter((_, i) => i <= action.payload) }
-      })
+        route: { $set: state.route.filter((_, i) => i <= action.payload) },
+        filterUsed: {
+          $set: state.filterUsed.filter((_, i) => i <= action.payload)
+        }
+      });
 
     default:
       return state;
