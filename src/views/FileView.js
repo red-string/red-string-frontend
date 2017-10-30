@@ -1,55 +1,50 @@
 import React, { Component } from "react";
-import NewFileForm from '../components/NewFileForm'
-import FileDetail from "../components/FileDetail"
+import NewFileForm from "../components/NewFileForm";
+import FileDetail from "../components/FileDetail";
 import { connect } from "react-redux";
-import { setRouteService, sideDisplayService } from "../services.js"
-import "../styles/FileView.css"
+import { setRouteService, sideDisplayService } from "../services.js";
+import "../styles/FileView.css";
 
 class FileView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state= {
+    this.state = {
       displayFocus: false
-    }
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.sideDisplay("Files");
   }
 
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps);
-    if( nextProps.focusedFile ){
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.focusedFile) {
       this.setState({
-        displayFocus: true 
-      })
+        displayFocus: true
+      });
     } else {
       this.setState({
         displayFocus: false
-      })
+      });
     }
   }
-
-  
 
   render() {
     return (
       <div className="newFileForm ViewCont">
-        {
-          this.state.displayFocus
-          ? <FileDetail file={this.props.focusedFile} />
-          : null
-        }
-        {
-          this.props.upload
-          ? <NewFileForm activeCase={this.props.activeCase} refreshFileList={this.props.refreshFileList} />
-          : null
-        }
+        {this.state.displayFocus ? (
+          <FileDetail file={this.props.focusedFile} />
+        ) : null}
+        {this.props.upload ? (
+          <NewFileForm
+            activeCase={this.props.activeCase}
+            refreshFileList={this.props.refreshFileList}
+          />
+        ) : null}
       </div>
-    )
+    );
   }
 }
-
 
 function mapStateToProps(state) {
   return {
@@ -62,8 +57,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setRoute: (case_id, id, type) => dispatch(setRouteService(case_id, id, type)),
-    sideDisplay: (display) => dispatch(sideDisplayService(display))
+    setRoute: (case_id, id, type) =>
+      dispatch(setRouteService(case_id, id, type)),
+    sideDisplay: display => dispatch(sideDisplayService(display))
   };
 };
 

@@ -36,7 +36,6 @@ class SideNav extends Component {
   };
 
   _triggerRouteAndFocus = (case_id, id, type) => {
-    console.log("This is the active case", case_id);
     this.props.clearRoute();
     this.props.setFileFocus(id);
     this.props.setRoute(case_id, id, type);
@@ -94,7 +93,6 @@ class SideNav extends Component {
         });
 
       case "Graph":
-        console.log("ROUTE", this.props.route[this.props.route.length - 1]);
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
@@ -165,7 +163,7 @@ class SideNav extends Component {
     );
   }
 }
- 
+
 function mapStateToProps(state) {
   return {
     caseFiles: state.caseFiles,

@@ -27,11 +27,11 @@ class StringMap extends Component {
     });
   }
 
-  componentDidUpdate(){
-    if(this.state.didMount === false){
+  componentDidUpdate() {
+    if (this.state.didMount === false) {
       this.setState({
         didMount: true
-      })
+      });
     }
   }
 
@@ -85,7 +85,12 @@ class StringMap extends Component {
   routeLinkCreator = () => {
     if (this.props.route.length > 1) {
       return this.props.route.map((item, ind) => {
-        let prev = this.props.route[this.props.route.length - 2];
+        let prev;
+        if (this.props.route[ind - 1]) {
+          prev = this.props.route[ind - 1];
+        } else {
+          return <div />;
+        }
         return (
           <ForceGraphLink
             key={item.d3 + this.props.route.length}

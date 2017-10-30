@@ -37,11 +37,10 @@ class NewFileForm extends Component {
       case_id: "",
       file_text: ""
     });
-  }
+  };
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log('state on submit ', this.state)
     let file = this.state.file;
     let name = this.state.file_name;
     let description = this.state.file_desc;
@@ -100,30 +99,24 @@ class NewFileForm extends Component {
     evt.preventDefault();
     let evtName = evt.target.name;
     if (evtName === "fileOpen") {
-      console.log('file opening', this.state.fileOpen);
       this.setState(prevState => {
         return {
           fileOpen: !prevState[this.state.fileOpen],
           textOpen: false
-        }
-      })
-
-    }
-    else if (evtName === "textOpen") {
-      console.log('text opening', this.state.textOpen);
+        };
+      });
+    } else if (evtName === "textOpen") {
       this.setState(prevState => {
         return {
           textOpen: !prevState[this.state.textOpen],
           fileOpen: false
-        }
-      })
+        };
+      });
     }
-  }
-
-
+  };
 
   render() {
-    const inputSelected = (this.state.textOpen || this.state.fileOpen)
+    const inputSelected = this.state.textOpen || this.state.fileOpen;
     const instruction = this.state.file_name
       ? "You have selected a " + this.state.file_type + " file for upload"
       : "Select a file for upload";
@@ -135,7 +128,6 @@ class NewFileForm extends Component {
     const shown = {
       display: "block"
     };
-
 
     return (
       <div className="newFile">
@@ -152,7 +144,6 @@ class NewFileForm extends Component {
             style={this.state.fileOpen ? shown : hiding}
           >
             {/* <p>{instruction}</p> */}
-
 
             <select name="file_type" onChange={this.handleChange} required>
               <option>Select a file type...</option>
@@ -196,8 +187,6 @@ class NewFileForm extends Component {
             />
             <button onClick={this.handleSubmit}>Submit</button>
           </div>
-
-
         </form>
       </div>
     );
