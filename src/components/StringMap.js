@@ -123,7 +123,8 @@ class StringMap extends Component {
             animate: true,
             strength: {
               charge: -2500
-            }
+            },
+            velocityDecay: .1
           }}
         >
           {this.routeNodeCreator()}
