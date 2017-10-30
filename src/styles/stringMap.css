@@ -39,13 +39,8 @@
 }
 
 .routeLine {
-<<<<<<< HEAD
-    width: 1px;
-    background-color: #BD0A13;
-=======
     width: 2px;
     background-color: #f73939;
->>>>>>> 055cf1ed564ae9ead29e804ed6cac8b4e1aabcd4
     height: .7em;
     margin: 0 auto;
 }
