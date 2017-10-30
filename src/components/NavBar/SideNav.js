@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import SideNavHeader from "./SideNavHeader";
+import NavIconBar from "./NavIconBar";
 import ItemList from "./ItemList";
 import {
   setRouteService,
@@ -138,20 +138,20 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sideNav">
-        <div className="icon-nav">
-          <i className="fa fa-plus" />
+        <NavIconBar />
+        <div className="sideNavCont">
+          <SideNavHeader
+            displayFiles={this.state.displayFiles}
+            _toggleUpload={this.props._toggleUpload}
+            header={this.state.header}
+          />
+          <ItemList
+            _triggerRoute={this._triggerRoute}
+            data={this._handleDisplayContent(this.props.sideDisplayContent)}
+            page={this.props.sideDisplay}
+            activeCase={this.props.activeCase}
+          />
         </div>
-        <SideNavHeader
-          displayFiles={this.state.displayFiles}
-          _toggleUpload={this.props._toggleUpload}
-          header={this.state.header}
-        />
-        <ItemList
-          _triggerRoute={this._triggerRoute}
-          data={this._handleDisplayContent(this.props.sideDisplayContent)}
-          page={this.props.sideDisplay}
-          activeCase={this.props.activeCase}
-        />
       </div>
     );
   }
