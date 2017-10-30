@@ -27,11 +27,11 @@ class StringMap extends Component {
     });
   }
 
-  componentDidUpdate(){
-    if(this.state.didMount === false){
+  componentDidUpdate() {
+    if (this.state.didMount === false) {
       this.setState({
         didMount: true
-      })
+      });
     }
   }
 
@@ -42,7 +42,7 @@ class StringMap extends Component {
         return (
           <ForceGraphNode
             showLabel
-            key={node.d3 + this.props.route.length*5}
+            key={node.d3 + this.props.route.length * 5}
             node={{ id: node.d3, data: node.name }}
             fill="lightgrey"
             stroke="black"
@@ -87,7 +87,12 @@ class StringMap extends Component {
   routeLinkCreator = () => {
     if (this.props.route.length > 1) {
       return this.props.route.map((item, ind) => {
-        let prev = this.props.route[this.props.route.length - 2];
+        let prev;
+        if (this.props.route[ind - 1]) {
+          prev = this.props.route[ind - 1];
+        } else {
+          return <div />;
+        }
         return (
           <ForceGraphLink
             key={item.d3 + this.props.route.length}
@@ -122,28 +127,26 @@ class StringMap extends Component {
   render() {
     return (
       <div>
-        {
-          this.state.didMount
-          ?<InteractiveForceGraph
-          className="stringMap"
-          zoom
-          labelAttr="data"
-          simulationOptions={{
-            height: 800,
-            width: 900,
-            animate: true,
-            strength: {
-              charge: -2500
-            }
-          }}
-        >
-          {this.routeNodeCreator()}
-          {this.childNodeCreator()}
-          {this.routeLinkCreator()}
-          {this.childLinkCreator()}
-        </InteractiveForceGraph>
-          : null
-        }
+        {this.state.didMount ? (
+          <InteractiveForceGraph
+            className="stringMap"
+            zoom
+            labelAttr="data"
+            simulationOptions={{
+              height: 800,
+              width: 900,
+              animate: true,
+              strength: {
+                charge: -5000
+              }
+            }}
+          >
+            {this.routeNodeCreator()}
+            {this.childNodeCreator()}
+            {this.routeLinkCreator()}
+            {this.childLinkCreator()}
+          </InteractiveForceGraph>
+        ) : null}
       </div>
     );
   }

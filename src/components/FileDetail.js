@@ -1,39 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CaseItem from "./CaseItem";
-import {
-  getAllCases,
-  getAllFilesFromCase,
-  getAllTagsFromFile
-} from "../services.js";
-import "../styles/CaseView.css"
+import "../styles/CaseView.css";
 
-
-const FileDetail = (props)=>{
-  const file = props.file
+const FileDetail = props => {
+  const file = props.file;
   return (
     <div className="FileDetail">
-      <div className="focus-heading-cont" >
+      <div className="focus-heading-cont">
         <h2 className="focus-heading">{file.file_name}</h2>
         <Link to="/graph">
+<<<<<<< HEAD
           <span className="oi graphIcon" data-glyph="pie-chart"></span>
+=======
+          <span class="oi graphIcon" data-glyph="pie-chart" />
+>>>>>>> 2dd2ebaf4b427bba01152c6158977a001771ff3d
         </Link>
       </div>
       <div className="focus-subheading">
         <p>{file.date_created}</p>
         <p>{file.file_description}</p>
       </div>
-      {
-        file.file_text
-        ?<div>{file.file_text}</div>
-        : null
-      }
-      
+      {file.file_text ? <div>{file.file_text}</div> : null}
     </div>
   );
-}
+};
 
-export default FileDetail
+export default FileDetail;
 
 // case_id
 // date_created
