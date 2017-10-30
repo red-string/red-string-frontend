@@ -90,7 +90,7 @@ class SideNav extends Component {
         return this.props.route[
           this.props.route.length - 1
         ].children.map(item => {
-          if (item.description) {
+          if (item.d3[0] === "f" ) {
             return (
               <li
                 className="childSelect"
