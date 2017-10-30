@@ -27,13 +27,19 @@ class App extends Component {
 
   _toggleUpload = () => {
     this.setState(prevState => {
-      return { displayUpload: !prevState.displayUpload };
+      return { 
+        displayUpload: !prevState.displayUpload,
+        displayDetail: false
+      };
     });
   };
 
   _toggleDetail = () => {
     this.setState(prevState => {
-      return {displayDetail: !prevState.displayDetail}
+      return {
+        displayDetail: !prevState.displayDetail,
+        displayUpload: false
+      }
     })
   }
 
@@ -42,6 +48,7 @@ class App extends Component {
       <div className="App">
         <SideNav
           _toggleUpload={this._toggleUpload}
+          _toggleDetail={this._toggleDetail}
         />
         <Switch>
           <Route
