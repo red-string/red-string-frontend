@@ -90,6 +90,10 @@
   transition: .2s;
 }
 
+.itemList {
+  margin-top: 6%;
+}
+
 .itemList li {
   list-style: none;
   color: #838383;
