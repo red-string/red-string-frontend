@@ -1,12 +1,3 @@
-.NewFileForm {
-  margin-left: 300px;
-}
-
-.NewFileForm form {
-  display: flex;
-  flex-direction: column;
-}
-
 .newFileForm {
   height: 100vh;
   display: flex;

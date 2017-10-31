@@ -22,6 +22,16 @@ class NewFileForm extends Component {
     };
   }
 
+
+////////////////////////////
+// LIFE CYCLE METHODS
+
+
+
+////////////////////////////
+// HELPER FUNCTIONS
+
+
   handleChange = evt => {
     let inputName = evt.target.name;
     this.setState({ [inputName]: evt.target.value });

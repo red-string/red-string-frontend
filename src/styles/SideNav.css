@@ -45,19 +45,19 @@
   overflow-y: scroll;
 }
 
-.sideNav::-webkit-scrollbar {
+.sideNavCont::-webkit-scrollbar {
   background-color: hsl(0, 0%, 95%);
   border-radius: 0;
   width: 2px;
   height: 2px;
 }
 
-.sideNav::-webkit-scrollbar-thumb {
+.sideNavCont::-webkit-scrollbar-thumb {
   background-color: #f73939;
   border-radius: 0;
 }
 
-.sideNav::-webkit-scrollbar-track {
+.sideNavCont::-webkit-scrollbar-track {
   background-color: hsl(0, 0%, 95%);
 }
 

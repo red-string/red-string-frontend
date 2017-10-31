@@ -159,8 +159,13 @@ class StringMap extends Component {
               animate: true,
               strength: {
                 charge: -5000
-              }
+              },
+              velocityDecay: .9,
+              alpha: 1,
+              alphaDecay: .5,
+              alphaMin: .3
             }}
+            highlightDependencies
           >
             {this.routeNodeCreator()}
             {this.childNodeCreator()}
