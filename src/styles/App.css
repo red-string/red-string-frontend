@@ -13,4 +13,10 @@
   align-items: flex-start;
 }
 
+.modalMounted {
+  transform: translateX(0);
+  transition-delay: .5s;
+  transition: .3s;
+}
+
 

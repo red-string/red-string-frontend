@@ -1,18 +1,15 @@
-.NewFileForm {
-  margin-left: 300px;
-}
-
-.NewFileForm form {
-  display: flex;
-  flex-direction: column;
-}
-
 .newFileForm {
   height: 100vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+.newFile {
+  transform: translateX(-50px);
+  transition-delay: .5s;
+  transition: .3s;
 }
 
 .newFile form {
