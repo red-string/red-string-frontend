@@ -53,18 +53,18 @@ class SideNav extends Component {
     switch (display) {
       case "Cases":
         return this.props.cases.map(item => {
-          return <li key={item.case_id}>{item.case_name}</li>;
+          return <li key={item.id}>{item.case_name}</li>;
         });
 
       case "Files":
         return this.props.caseFiles.map(item => {
           return (
             <li
-              key={item.file_id}
+              key={item.id}
               onClick={() =>
                 this._triggerRouteAndFocus(
                   this.props.activeCase,
-                  item.file_id,
+                  item.id,
                   "file"
                 )}
             >
@@ -77,9 +77,9 @@ class SideNav extends Component {
         return this.props.caseTags.map(item => {
           return (
             <li
-              key={item.tag_id}
+              key={item.id}
               onClick={() =>
-                this._triggerRoute(this.props.activeCase, item.tag_id, "tag")}
+                this._triggerRoute(this.props.activeCase, item.id, "tag")}
             >
               {item.tag}
             </li>
@@ -127,7 +127,7 @@ class SideNav extends Component {
 
       default:
         return this.props.cases.map(item => {
-          return <li key={item.case_id}>{item.case_name}</li>;
+          return <li key={item.id}>{item.case_name}</li>;
         });
     }
   };

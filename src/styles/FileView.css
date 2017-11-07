@@ -23,7 +23,26 @@
     margin-bottom: .5em;
 }
 
-.graphIcon {
-    color: black;
-    font-size: 1.4em;
+.graphLink {
+    color: rgb(255, 0, 0);
+    text-decoration: none;
 }
+
+.graphIcon {
+    color: rgb(255, 0, 0);
+    font-size: 1.4em;
+    text-shadow: 0 0 0 rgb(255, 130, 130);
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+    0% {
+      text-shadow: 0 0 0 rgba(255, 130, 130, 1);
+    }
+    70% {
+        text-shadow: 0 0 50px rgba(255, 130, 130, 0);
+    }
+    100% {
+        text-shadow: 0 0 0 rgba(255, 130, 130, 0);
+    }
+  }

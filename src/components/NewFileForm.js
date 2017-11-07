@@ -100,7 +100,7 @@ class NewFileForm extends Component {
     data.append("file_type", file_type);
     data.append("file_text", file_text);
     await axios
-      .post("/case/" + case_id + "/new", data)
+      .post("https://guarded-crag-52198.herokuapp.com/case/" + case_id + "/new", data)
       .then(response => response);
     this.props.refresh(case_id);
   };

@@ -11,7 +11,7 @@ const CaseList = (props)=>{
           {props.cases.map(singleCase => {
             return <CaseItem
                       key={singleCase.case_id}
-                      id={singleCase.case_id}
+                      id={singleCase.id}
                       name={singleCase.case_name}
                       desc={singleCase.case_description}
                       _openCase={props._openCase}
