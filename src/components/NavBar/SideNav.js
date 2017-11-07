@@ -58,6 +58,7 @@ class SideNav extends Component {
 
       case "Files":
         return this.props.caseFiles.map(item => {
+          console.log("FIles", item)
           return (
             <li
               key={item.id}

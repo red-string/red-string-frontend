@@ -2,7 +2,7 @@ import React from "react";
 
 
 const RouteTracker = (props) => {
-    console.log(props);
+    (props);
     return (
         <ul className="routeList" >
             <li className="routeHeader" >Current Route</li>

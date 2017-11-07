@@ -65,7 +65,7 @@ class StringMap extends Component {
         let freqStroke;
         let freqWidth;
         let freqFill;
-        console.log(child.freq);
+        (child.freq);
         if (child.freq >= 0 && child.freq < 4) {
           freqStroke = "#BD0A13";
           freqWidth = "0.5px";

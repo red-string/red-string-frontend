@@ -52,7 +52,7 @@ export function setRouteService(case_id, id, type, filterArray) {
   return dispatch => {
     if (type === "tag") {
       axios.get("https://guarded-crag-52198.herokuapp.com/" + case_id + "/files/tags/" + id).then(res => {
-        console.log("Respose from server", res);
+        ("Respose from server", res);
         const parent = res.data;
         if (filterArray) {
           const filteredParent = keepParent(filterArray, parent);
@@ -121,6 +121,7 @@ function keptChildren(d3Array, childrenArray) {
   });
   return newChildren;
 }
+
 export function clearRouteService() {
   return dispatch => {
     dispatch(clearRoute());

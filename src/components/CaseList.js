@@ -7,10 +7,11 @@ const CaseList = (props)=>{
     
     return (
       <div className="CaseList">
+        <button onClick={props._toggleForm} className="newCaseBtn">New Case</button>
         <ul>
           {props.cases.map(singleCase => {
             return <CaseItem
-                      key={singleCase.case_id}
+                      key={singleCase.id}
                       id={singleCase.id}
                       name={singleCase.case_name}
                       desc={singleCase.case_description}
@@ -18,7 +19,7 @@ const CaseList = (props)=>{
                     />;
           })}
         </ul>
-        <button onClick={props._toggleForm} className="newCaseBtn">New Case</button>
+        
       </div>
     );
   }
