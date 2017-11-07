@@ -12,7 +12,7 @@ import {
 
 export function getAllCasesService() {
   return dispatch => {
-    axios.get("/case").then(res => {
+    axios.get("https://guarded-crag-52198.herokuapp.com/case").then(res => {
       dispatch(getAllCases(res.data));
     });
   };
@@ -20,9 +20,9 @@ export function getAllCasesService() {
 
 export function openCaseService(caseId) {
   return dispatch => {
-    axios.get("/case/" + caseId.toString()).then(res => {
+    axios.get("https://guarded-crag-52198.herokuapp.com/case/" + caseId.toString()).then(res => {
       const files = res.data;
-      axios.get("/" + caseId.toString() + "/files/tags").then(resp => {
+      axios.get("https://guarded-crag-52198.herokuapp.com/" + caseId.toString() + "/files/tags").then(resp => {
         const tags = resp.data;
         const payload = {
           active: caseId,
@@ -37,9 +37,9 @@ export function openCaseService(caseId) {
 
 export function refreshFileListService(caseId) {
   return dispatch => {
-    axios.get("/case/" + caseId.toString()).then(res => {
+    axios.get("https://guarded-crag-52198.herokuapp.com/case/" + caseId.toString()).then(res => {
       const files = res.data;
-      axios.get("/" + caseId.toString() + "/files/tags").then(resp => {
+      axios.get("https://guarded-crag-52198.herokuapp.com/" + caseId.toString() + "/files/tags").then(resp => {
         const tags = resp.data;
         const payload = { tags, files };
         dispatch(refreshFileList(payload));
@@ -51,7 +51,7 @@ export function refreshFileListService(caseId) {
 export function setRouteService(case_id, id, type, filterArray) {
   return dispatch => {
     if (type === "tag") {
-      axios.get("/" + case_id + "/files/tags/" + id).then(res => {
+      axios.get("https://guarded-crag-52198.herokuapp.com/" + case_id + "/files/tags/" + id).then(res => {
         console.log("Respose from server", res);
         const parent = res.data;
         if (filterArray) {
@@ -69,7 +69,7 @@ export function setRouteService(case_id, id, type, filterArray) {
         }
       });
     } else if (type === "file") {
-      axios.get("/case/" + case_id + "/" + id).then(res => {
+      axios.get("https://guarded-crag-52198.herokuapp.com/case/" + case_id + "/" + id).then(res => {
         const parent = res.data;
         if (filterArray) {
           const filteredParent = keepParent(filterArray, parent);
@@ -97,7 +97,7 @@ export function sideDisplayService(display) {
 
 export function setFileFocusService(file_id) {
   return dispatch => {
-    axios.get("/file/" + file_id).then(res => {
+    axios.get("https://guarded-crag-52198.herokuapp.com/file/" + file_id).then(res => {
       let file = res.data[0];
       dispatch(setFileFocus(file));
     });

@@ -44,7 +44,7 @@ class StringMap extends Component {
             showLabel
             key={node.d3 + this.props.route.length * 5}
             node={{ id: node.d3, data: node.name }}
-            fill="#ececec"
+            fill="#ffffe6"
             stroke="black"
             strokeWidth="1px"
             r="35"

@@ -23,7 +23,7 @@ export default class NewCaseForm extends Component {
         newCase.case_description = this.state.case_description;
         newCase.case_name = this.state.case_name;
 
-        axios.post("/case/new", newCase).then(res => {
+        axios.post("https://guarded-crag-52198.herokuapp.com/case/new", newCase).then(res => {
 
             this.setState({
                 case_name: "",
