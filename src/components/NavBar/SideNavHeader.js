@@ -6,15 +6,12 @@ const SideNavHeader = (props) => {
     return (
         <div className="navHeader" >
             <p>{props.header}</p>
-            <span
-                className="oi addItemIcon"
-                onClick={props._toggleUpload}
-                data-glyph="plus"
-                title="plus"
-                aria-hidden="true"
-            >
-            </span>
-
+            {
+                props.header === "Files"
+                ? ( <span className="oi addItemIcon" onClick={props._toggleUpload} data-glyph="plus" title="plus" aria-hidden="true">
+                    </span>)
+                : null
+            }
         </div>
     )
 }

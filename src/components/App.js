@@ -4,6 +4,7 @@ import DataVisView from "../views/DataVisView";
 import TagView from "../views/TagView";
 import FileView from "../views/FileView";
 import SideNav from "../components/NavBar/SideNav";
+import DemoWarning from "./DemoWarning";
 import { Switch, Route } from "react-router-dom";
 import "../styles/App.css";
 
@@ -50,6 +51,7 @@ class App extends Component {
           _toggleUpload={this._toggleUpload}
           _toggleDetail={this._toggleDetail}
         />
+        <DemoWarning />
         <Switch>
           <Route
             exact
