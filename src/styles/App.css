@@ -12,3 +12,27 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.demoWarning {
+  position: absolute;
+  top: -10px;
+  left: 40%;
+  background-color: rgb(253, 224, 224);
+  padding: .5em 1em .35em;
+  border: 1px solid #f73939;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.demoWarning * {
+  font-size: .6em;
+  color: #f73939;
+}
+
+.demoText {
+
+}
+
+.demoWarning a {
+  margin-left: 1em;
+}

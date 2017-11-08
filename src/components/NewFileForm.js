@@ -141,7 +141,10 @@ class NewFileForm extends Component {
 
     return (
       <div className="newFile">
+        
         <form>
+        <p>File upload disabled for demo version.</p>
+          {/*
           <button onClick={this.toggleVisible} name="textOpen">
             Manually enter text
           </button>
@@ -153,7 +156,6 @@ class NewFileForm extends Component {
             className="fileOpen"
             style={this.state.fileOpen ? shown : hiding}
           >
-            {/* <p>{instruction}</p> */}
 
             <select name="file_type" onChange={this.handleChange} required>
               <option>Select a file type...</option>
@@ -197,7 +199,8 @@ class NewFileForm extends Component {
             />
             <button onClick={this.handleSubmit}>Submit</button>
           </div>
-        </form>
+          */}
+        </form> 
       </div>
     );
   }
